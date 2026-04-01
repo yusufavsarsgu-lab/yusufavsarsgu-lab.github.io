@@ -12,16 +12,26 @@ const menuKodum = `
 `;
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Tüm sayfalardaki <nav> etiketini bul ve içini bu yeni liste ile değiştir
-    const navDegistir = document.querySelector('header nav');
-    if (navDegistir) {
-        navDegistir.innerHTML = menuKodum;
-    }
+    // Tüm sayfalardaki <nav> etiketini bul
+    const navElement = document.querySelector('header nav');
+    
+    if (navElement) {
+        // İçeriği güncelle
+        navElement.innerHTML = menuKodum;
 
-    // Hangi sayfadaysak onu otomatik mavi (active) yap
-    const sayfa = window.location.pathname.split("/").pop().replace(".html", "") || "index";
-    const aktifLink = document.getElementById('link-' + sayfa);
-    if (aktifLink) {
-        aktifLink.classList.add('active');
+        // Mevcut dosya adını al (Örn: hakkimda.html -> hakkimda)
+        let path = window.location.pathname;
+        let page = path.split("/").pop().replace(".html", "");
+        
+        // Eğer ana dizindeyse veya boşsa 'index' kabul et
+        if (page === "" || page === "index") {
+            page = "index";
+        }
+
+        // Aktif linki bul ve class ekle
+        const activeLink = document.getElementById('link-' + page);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
     }
 });
