@@ -1,34 +1,193 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='tr'>
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Anasayfa - Yusuf</title>
 <style>
-body { margin:0; font-family:'Segoe UI',sans-serif; background:#0d1117; color:#f0f6fc; }
-header nav ul { display:flex; list-style:none; padding:15px 30px; background:#161b22; margin:0; }
-header nav ul li { margin-right:20px; }
-header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; transition:0.3s; }
-header nav ul li a:hover, header nav ul li a.active { color:#58a6ff; }
+/* Temel Değişkenler ve Reset */
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --error: #ff4d4d;
+}
 
-.hero { text-align:center; padding:40px 20px; }
-.hero h1 { font-size:3em; color:#58a6ff; margin:0; }
-.hero p { font-size:1.2em; color:#c9d1d9; margin-top:10px; max-width:700px; margin-left:auto;margin-right:auto; }
+body { 
+    margin:0; 
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-.warning { margin:30px auto; font-weight:700; color:#ff4d4d; text-align:center; max-width:800px; font-size:1em; border:2px solid #ff4d4d; padding:15px; border-radius:10px; background:rgba(255,77,77,0.1); }
+/* Navigasyon - Mobil Uyumlu */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #30363d;
+}
 
-.grid-container { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:20px; padding:30px; }
-.card { background:#161b22; border-radius:15px; padding:20px; min-height:220px; position:relative; overflow:hidden; transition:0.3s; }
-.card:hover { transform:scale(1.05); box-shadow:0 0 20px rgba(88,166,255,0.5); }
-.card canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
-.card-content { position:relative; z-index:1; color:#f0f6fc; }
+header nav ul { 
+    display:flex; 
+    list-style:none; 
+    padding: 0 20px; 
+    margin:0; 
+    overflow-x: auto; /* Mobilde kaydırılabilir menü */
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
 
-.social-links { margin-top:30px; display:flex; justify-content:center; gap:20px; }
-.social-links a { color:#58a6ff; text-decoration:none; font-weight:600; transition:0.3s; }
-.social-links a:hover { color:#1f6feb; transform: scale(1.2); }
+header nav ul::-webkit-scrollbar { display: none; }
 
-footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
-footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+header nav ul li a { 
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main); 
+    text-decoration:none; 
+    font-weight:600; 
+    font-size: 0.95rem;
+    transition: 0.3s ease; 
+}
+
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Hero Bölümü */
+.hero { 
+    text-align:center; 
+    padding: 80px 20px;
+    background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+}
+
+.hero h1 { 
+    font-size: clamp(2.5rem, 8vw, 4rem); /* Dinamik font boyutu */
+    color: var(--accent); 
+    margin:0; 
+    letter-spacing: -1px;
+}
+
+.hero p { 
+    font-size: 1.1em; 
+    color: var(--text-dim); 
+    margin: 20px auto; 
+    max-width:600px;
+}
+
+/* Uyarı Mesajı */
+.warning { 
+    margin: 40px auto; 
+    font-weight:600; 
+    color: var(--error); 
+    text-align:center; 
+    max-width: 700px; 
+    font-size: 0.95em; 
+    border: 1px solid rgba(255, 77, 77, 0.3); 
+    padding: 20px; 
+    border-radius: 12px; 
+    background: rgba(255, 77, 77, 0.05);
+    line-height: 1.8;
+}
+
+/* Grid Yapısı */
+.grid-container { 
+    display:grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
+    padding: 20px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card { 
+    background: var(--bg-sec); 
+    border-radius: 16px; 
+    padding: 24px; 
+    min-height: 250px; 
+    position:relative; 
+    overflow:hidden; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #30363d;
+}
+
+.card:hover { 
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card canvas { 
+    position:absolute; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    z-index:0; 
+    opacity: 0.4;
+}
+
+.card-content { 
+    position:relative; 
+    z-index:1; 
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--accent);
+}
+
+/* Sosyal Linkler */
+.social-links { 
+    margin: 60px 0; 
+    display:flex; 
+    flex-wrap: wrap;
+    justify-content:center; 
+    gap: 15px; 
+}
+
+.social-links a { 
+    background: var(--bg-sec);
+    padding: 12px 25px;
+    border-radius: 50px;
+    color: var(--accent); 
+    text-decoration:none; 
+    font-weight:600; 
+    transition: 0.3s; 
+    border: 1px solid #30363d;
+}
+
+.social-links a:hover { 
+    background: var(--accent);
+    color: var(--bg-main);
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer { 
+    background: var(--bg-sec); 
+    text-align:center; 
+    padding: 40px 20px; 
+    margin-top: 60px; 
+    border-top: 1px solid #30363d;
+}
+
+footer p { opacity: 0.7; font-size: 0.9em; }
+
+/* Mobil Ayarlamalar */
+@media (max-width: 600px) {
+    .hero { padding: 50px 15px; }
+    .grid-container { padding: 15px; }
+    .card { min-height: 200px; }
+}
 </style>
 </head>
 <body>
@@ -78,13 +237,19 @@ footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
 
 <script>
 // Particle background for each card
-function cardParticles(cardId,color='rgba(88,166,255,0.7)'){
+function cardParticles(cardId,color='rgba(88,166,255,0.4)'){
   const canvas=document.querySelector('#'+cardId+' canvas');
   const ctx=canvas.getContext('2d');
-  canvas.width=canvas.offsetWidth;
-  canvas.height=canvas.offsetHeight;
+  
+  function setCanvasSize() {
+    canvas.width=canvas.offsetWidth;
+    canvas.height=canvas.offsetHeight;
+  }
+  setCanvasSize();
+  
   let particles=[];
   for(let i=0;i<50;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
+  
   function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p=>{
@@ -99,28 +264,36 @@ function cardParticles(cardId,color='rgba(88,166,255,0.7)'){
     requestAnimationFrame(animate);
   }
   animate();
-  window.addEventListener('resize',()=>{canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;});
+  window.addEventListener('resize', setCanvasSize);
 }
 
 // Pentest Terminal Demo
 function pentestTerminal(){
+  const target = document.querySelector('#card1 .card-content');
   const terminal=document.createElement('div');
-  terminal.style.position='absolute';
-  terminal.style.bottom='10px';
-  terminal.style.left='50%';
-  terminal.style.transform='translateX(-50%)';
-  terminal.style.background='rgba(0,0,0,0.7)';
-  terminal.style.padding='10px';
+  terminal.style.marginTop='15px';
+  terminal.style.background='rgba(0,0,0,0.8)';
+  terminal.style.padding='12px';
   terminal.style.borderRadius='8px';
   terminal.style.fontFamily='monospace';
-  terminal.style.fontSize='12px';
+  terminal.style.fontSize='11px';
   terminal.style.color='#58a6ff';
-  terminal.style.maxWidth='90%';
-  terminal.style.zIndex='1';
-  document.querySelector('#card1 .card-content').appendChild(terminal);
+  terminal.style.border='1px solid #30363d';
+  terminal.style.minHeight='100px';
+  terminal.style.overflow='hidden';
+  target.appendChild(terminal);
+  
   let cmds=["sudo pentest scan --target example.com","[INFO] Scanning ports...","[OK] Port 80 open","[OK] Port 443 open","[WARNING] Possible vulnerability detected","[INFO] Exploit module loaded"];
   let idx=0;
-  function runCmd(){ if(idx<cmds.length){terminal.textContent+=cmds[idx]+'\\n'; idx++; setTimeout(runCmd,1000);} }
+  function runCmd(){ 
+    if(idx<cmds.length){
+        const line = document.createElement('div');
+        line.textContent = '> ' + cmds[idx];
+        terminal.appendChild(line);
+        idx++; 
+        setTimeout(runCmd,1200);
+    } 
+  }
   runCmd();
 }
 
