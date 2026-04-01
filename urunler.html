@@ -1,28 +1,157 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='tr'>
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Ürünler - Yusuf</title>
-<link rel='stylesheet' href='style.css'>
 <style>
-body { background:#0d1117; color:#f0f6fc; font-family:'Segoe UI',sans-serif; margin:0; }
-header nav ul { display:flex; list-style:none; padding:10px; background:#161b22; }
-header nav ul li { margin-right:15px; }
-header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; }
-header nav ul li a.active { color:#58a6ff; }
+/* Temel Değişkenler */
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --border: #30363d;
+}
 
-.main-container { max-width:1400px; margin:auto; padding:40px 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
-.product-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius:15px; padding:20px; transition: transform 0.3s, box-shadow 0.3s; }
-.product-card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(88,166,255,0.5); }
-.product-card h3 { margin-top:0; margin-bottom:8px; color:#58a6ff; }
-.product-card p { margin:0; color:#c9d1d9; font-size:0.95em; line-height:1.5; }
+body { 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+    margin: 0; 
+    line-height: 1.6;
+}
 
-footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
-footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+/* Navigasyon */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+header nav ul { 
+    display: flex; 
+    list-style: none; 
+    padding: 0 20px; 
+    margin: 0; 
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+header nav ul::-webkit-scrollbar { display: none; }
+
+header nav ul li a { 
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem;
+    transition: 0.3s; 
+}
+
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Ana Konteyner - Ürün Grid Yapısı */
+.main-container { 
+    max-width: 1400px; 
+    margin: auto; 
+    padding: 60px 20px; 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
+}
+
+/* Ürün Kartı Tasarımı */
+.product-card { 
+    background: var(--bg-sec); 
+    border: 1px solid var(--border);
+    border-radius: 16px; 
+    padding: 30px; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.product-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card h3 { 
+    margin: 0 0 12px 0; 
+    color: var(--accent); 
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+}
+
+.product-card p { 
+    margin: 0; 
+    color: var(--text-dim); 
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+}
+
+/* Footer */
+footer { 
+    background: var(--bg-sec); 
+    text-align: center; 
+    padding: 50px 20px; 
+    margin-top: 60px; 
+    border-top: 1px solid var(--border);
+}
+
+footer p { margin: 10px 0; font-size: 0.9rem; }
+
+footer a { 
+    color: var(--accent); 
+    margin: 0 8px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: 0.3s;
+}
+
+footer a:hover {
+    color: var(--text-main);
+}
+
+/* Mobil İyileştirmeler */
+@media (max-width: 600px) {
+    .main-container { padding: 40px 15px; gap: 15px; }
+    .product-card { padding: 20px; }
+    .product-card h3 { font-size: 1.1rem; }
+}
 </style>
 </head>
 <body>
+
 <header>
 <nav>
 <ul>
@@ -37,7 +166,8 @@ footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
 </nav>
 </header>
 
-<main class='main-container'><div class='product-card'>
+<main class='main-container'>
+<div class='product-card'>
 <h3>Kurumsal Güvenlik Çözümü</h3>
 <p>Büyük şirketler için ağ ve uygulama güvenliğini sağlayan çözüm paketi</p>
 </div>
@@ -243,5 +373,8 @@ footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
 <a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </p>
 </footer>
+
+<script src="ortak-api.js"></script>
+
 </body>
 </html>
