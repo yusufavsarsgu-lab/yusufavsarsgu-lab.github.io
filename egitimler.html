@@ -1,27 +1,158 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='tr'>
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Eğitimler - Yusuf</title>
-<link rel='stylesheet' href='style.css'>
 <style>
-body { background:#0d1117; color:#f0f6fc; font-family:'Segoe UI',sans-serif; margin:0; }
-header nav ul { display:flex; list-style:none; padding:10px; background:#161b22; }
-header nav ul li { margin-right:15px; }
-header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; }
-header nav ul li a.active { color:#58a6ff; }
+/* Temel Değişkenler */
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --border: #30363d;
+}
 
-.main-container { max-width:900px; margin:auto; padding:60px 20px; text-align:center; }
-.card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius:15px; padding:30px; margin:20px 0; }
-.card h3 { margin-top:0; color:#58a6ff; }
-.card p { color:#c9d1d9; font-size:1em; line-height:1.5; }
+body { 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+    margin: 0; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
-footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+/* Navigasyon */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+header nav ul { 
+    display: flex; 
+    list-style: none; 
+    padding: 0 20px; 
+    margin: 0; 
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+header nav ul::-webkit-scrollbar { display: none; }
+
+header nav ul li a { 
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem;
+    transition: 0.3s; 
+}
+
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Ana İçerik Alanı */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.main-container { 
+    max-width: 700px; 
+    width: 100%;
+    text-align: center; 
+}
+
+/* Eğitim Kartı */
+.card { 
+    background: var(--bg-sec);
+    border: 1px solid var(--border);
+    border-radius: 20px; 
+    padding: 50px 30px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekoratif Işık Efekti */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(88, 166, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.card h3 { 
+    margin-top: 0; 
+    color: var(--accent); 
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.card p { 
+    color: var(--text-dim); 
+    font-size: 1.1rem; 
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* İkon Tasarımı */
+.status-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Footer */
+footer { 
+    background: var(--bg-sec); 
+    text-align: center; 
+    padding: 40px 20px; 
+    border-top: 1px solid var(--border);
+}
+
+footer p { margin: 10px 0; font-size: 0.9rem; }
+
+footer a { 
+    color: var(--accent); 
+    margin: 0 10px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: 0.3s;
+}
+
+footer a:hover {
+    opacity: 0.8;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 600px) {
+    .card { padding: 40px 20px; }
+    .card h3 { font-size: 1.5rem; }
+}
 </style>
 </head>
 <body>
+
 <header>
 <nav>
 <ul>
@@ -36,22 +167,27 @@ footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
 </nav>
 </header>
 
-<main class='main-container'>
-<div class='card'>
-<h3>2026 Eğitim Planı</h3>
-<p>2026 yılına dair herhangi bir eğitim planlanmamıştır.</p>
+<main>
+<div class='main-container'>
+    <div class='card'>
+        <span class='status-icon'>📅</span>
+        <h3>2026 Eğitim Planı</h3>
+        <p>2026 yılına dair herhangi bir eğitim planlanmamıştır.</p>
+    </div>
 </div>
 </main>
 
 <footer>
 <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
 <p>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
 <a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </p>
 </footer>
-  <script src="ortak-api.js"></script>
+
+<script src="ortak-api.js"></script>
 
 </body>
 </html>
+ 
