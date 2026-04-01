@@ -1,38 +1,204 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='tr'>
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Hakkımda - Yusuf</title>
-<link rel='stylesheet' href='style.css'>
 <style>
-body { background:#0d1117; color:#f0f6fc; font-family:'Segoe UI',sans-serif; margin:0; }
-header nav ul { display:flex; list-style:none; padding:10px; background:#161b22; }
-header nav ul li { margin-right:15px; }
-header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; }
-header nav ul li a.active { color:#58a6ff; }
+/* Temel Renkler ve Reset */
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --border: #30363d;
+}
 
-.main-container { display:flex; flex-wrap:wrap; max-width:1400px; margin:auto; padding:40px 20px; }
-.profile { flex:1 1 300px; text-align:center; margin-bottom:40px; }
-.profile img { width:250px; border-radius:50%; border:4px solid #58a6ff; }
-.bio { margin-top:20px; font-size:1.1em; line-height:1.6; color:#c9d1d9; }
+body { 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+    margin:0; 
+    line-height: 1.6;
+}
 
-.skills { flex:2 1 700px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; padding-left:40px; }
-.skill-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius:15px; padding:20px; transition: transform 0.3s, box-shadow 0.3s; }
-.skill-card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(88,166,255,0.5); }
-.skill-card h3 { margin-top:0; margin-bottom:8px; color:#58a6ff; }
-.skill-card p { margin:0; color:#c9d1d9; font-size:0.95em; line-height:1.4; }
+/* Navigasyon */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
 
-.hobbies { max-width:1200px; margin:auto; margin-top:60px; text-align:center; }
-.hobbies h2 { color:#58a6ff; font-size:2em; margin-bottom:20px; }
-.hobbies p { color:#c9d1d9; font-size:1.05em; }
-.hobbies span { margin:0 12px; font-size:1.5em; }
+header nav ul { 
+    display:flex; 
+    list-style:none; 
+    padding: 0 20px; 
+    margin:0; 
+    overflow-x: auto;
+    white-space: nowrap;
+}
 
-footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
-footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+header nav ul::-webkit-scrollbar { display: none; }
+
+header nav ul li a { 
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main); 
+    text-decoration:none; 
+    font-weight:600; 
+    font-size: 0.9rem;
+    transition: 0.3s; 
+}
+
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Ana Konteyner */
+.main-container { 
+    display: flex; 
+    flex-direction: column;
+    max-width: 1200px; 
+    margin: auto; 
+    padding: 60px 20px; 
+}
+
+/* Profil Bölümü */
+.profile { 
+    text-align: center; 
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile img { 
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 4px solid var(--accent);
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+    margin-bottom: 25px;
+}
+
+.bio { 
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.15em; 
+    color: var(--text-dim); 
+}
+
+/* Yetenek Kartları Grid */
+.skills { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
+}
+
+.skill-card { 
+    background: var(--bg-sec); 
+    border: 1px solid var(--border);
+    border-radius: 16px; 
+    padding: 25px; 
+    transition: all 0.3s ease; 
+}
+
+.skill-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+}
+
+.skill-card h3 { 
+    margin: 0 0 15px 0; 
+    color: var(--accent); 
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-card p { 
+    margin:0; 
+    color: var(--text-dim); 
+    font-size: 0.95em; 
+    line-height: 1.6; 
+}
+
+/* Hobiler Bölümü */
+.hobbies { 
+    background: var(--bg-sec);
+    border-radius: 20px;
+    padding: 50px 20px;
+    margin: 60px 20px; 
+    text-align: center; 
+}
+
+.hobbies h2 { 
+    color: var(--accent); 
+    font-size: 2em; 
+    margin-bottom: 20px; 
+}
+
+.hobbies p { 
+    color: var(--text-dim); 
+    font-size: 1.1em; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hobbies span { 
+    font-size: 1.8em; 
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* Footer */
+footer { 
+    background: var(--bg-sec); 
+    text-align: center; 
+    padding: 40px 20px; 
+    border-top: 1px solid var(--border);
+}
+
+footer p { margin: 10px 0; }
+
+footer a { 
+    color: var(--accent); 
+    margin: 0 10px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9em;
+}
+
+/* Masaüstü Düzenleme (Yan yana görünüm) */
+@media (min-width: 992px) {
+    .main-container { flex-direction: row; align-items: flex-start; gap: 50px; }
+    .profile { flex: 1; text-align: left; position: sticky; top: 100px; border-bottom: none; }
+    .profile img { margin-left: 0; }
+    .bio { margin-left: 0; }
+    .skills { flex: 2; }
+}
+
+/* Mobil İnce Ayarlar */
+@media (max-width: 600px) {
+    .main-container { padding: 40px 15px; }
+    .skill-card { padding: 20px; }
+    .hobbies { margin: 40px 15px; }
+}
 </style>
 </head>
 <body>
+
 <header>
 <nav>
 <ul>
@@ -49,38 +215,39 @@ footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
 
 <main>
 <div class='main-container'>
-<div class='profile'>
-<img src='profile.jpg' alt='Yusuf Profile'>
-<p class='bio'>Siber Güvenlik Araştırmacısı ve Yazılım Geliştirici olarak kurumsal projelerde görev alıyorum. Şu anda hobim olarak geliştirme ve güvenlik çalışmaları yürütüyorum. 16 yıllık tecrübemle sadece büyük şirketlerle çalışmaktayım. Modern web, mobil ve güvenlik çözümleri üretiyor, en ileri seviye pentest ve otomasyon projeleri geliştiriyorum.</p>
-</div>
+    <div class='profile'>
+        <img src='profile.jpg' alt='Yusuf Profile'>
+        <p class='bio'>Siber Güvenlik Araştırmacısı ve Yazılım Geliştirici olarak kurumsal projelerde görev alıyorum. Şu anda hobim olarak geliştirme ve güvenlik çalışmaları yürütüyorum. 16 yıllık tecrübemle sadece büyük şirketlerle çalışmaktayım. Modern web, mobil ve güvenlik çözümleri üretiyor, en ileri seviye pentest ve otomasyon projeleri geliştiriyorum.</p>
+    </div>
 
-<div class='skills'>
-<div class='skill-card'><h3>Programlama Dilleri</h3><p>Python, C/C++, Rust, Go, Java, JavaScript/TypeScript, Kotlin, Swift, Bash, PowerShell, SQL, PHP, Ruby, Perl, R, MATLAB</p></div>
-<div class='skill-card'><h3>Web & Mobil</h3><p>React, Angular, Vue.js, Node.js, Next.js, Svelte, Flutter, SwiftUI, Kotlin/Android, Responsive Design, Progressive Web Apps</p></div>
-<div class='skill-card'><h3>Siber Güvenlik</h3><p>Metasploit, Burp Suite, Nmap, Wireshark, Kali Linux, OSINT, SOC Monitoring, Firewall & IDS/IPS, CVE Analysis</p></div>
-<div class='skill-card'><h3>Pentest & Araçlar</h3><p>Nessus, OpenVAS, OWASP ZAP, SQLMap, John the Ripper, Hydra, Aircrack-ng, Docker Security, Kubernetes Security, CI/CD Security, Cloud PenTesting</p></div>
-<div class='skill-card'><h3>Otomasyon & AI</h3><p>Python Automation, PowerShell Scripts, Bash Scripts, Ansible, Terraform, ChatGPT API, TensorFlow, PyTorch, Machine Learning Security Tools</p></div>
-<div class='skill-card'><h3>DevOps & CI/CD</h3><p>Git, GitHub, GitLab, Jenkins, Docker, Kubernetes, Terraform, Continuous Integration & Deployment, Monitoring & Logging</p></div>
-<div class='skill-card'><h3>Database & Storage</h3><p>MySQL, PostgreSQL, MongoDB, Redis, ElasticSearch, Data Analysis & Visualization</p></div>
-<div class='skill-card'><h3>Cloud & Network</h3><p>AWS, Azure, GCP, VPN, Proxy, Load Balancing, Networking Protocols, Cloud Security</p></div>
-</div>
+    <div class='skills'>
+        <div class='skill-card'><h3><span>💻</span> Programlama Dilleri</h3><p>Python, C/C++, Rust, Go, Java, JavaScript/TypeScript, Kotlin, Swift, Bash, PowerShell, SQL, PHP, Ruby, Perl, R, MATLAB</p></div>
+        <div class='skill-card'><h3><span>🌐</span> Web & Mobil</h3><p>React, Angular, Vue.js, Node.js, Next.js, Svelte, Flutter, SwiftUI, Kotlin/Android, Responsive Design, Progressive Web Apps</p></div>
+        <div class='skill-card'><h3><span>🛡️</span> Siber Güvenlik</h3><p>Metasploit, Burp Suite, Nmap, Wireshark, Kali Linux, OSINT, SOC Monitoring, Firewall & IDS/IPS, CVE Analysis</p></div>
+        <div class='skill-card'><h3><span>🔍</span> Pentest & Araçlar</h3><p>Nessus, OpenVAS, OWASP ZAP, SQLMap, John the Ripper, Hydra, Aircrack-ng, Docker Security, Kubernetes Security, CI/CD Security, Cloud PenTesting</p></div>
+        <div class='skill-card'><h3><span>🤖</span> Otomasyon & AI</h3><p>Python Automation, PowerShell Scripts, Bash Scripts, Ansible, Terraform, ChatGPT API, TensorFlow, PyTorch, Machine Learning Security Tools</p></div>
+        <div class='skill-card'><h3><span>⚙️</span> DevOps & CI/CD</h3><p>Git, GitHub, GitLab, Jenkins, Docker, Kubernetes, Terraform, Continuous Integration & Deployment, Monitoring & Logging</p></div>
+        <div class='skill-card'><h3><span>📊</span> Database & Storage</h3><p>MySQL, PostgreSQL, MongoDB, Redis, ElasticSearch, Data Analysis & Visualization</p></div>
+        <div class='skill-card'><h3><span>☁️</span> Cloud & Network</h3><p>AWS, Azure, GCP, VPN, Proxy, Load Balancing, Networking Protocols, Cloud Security</p></div>
+    </div>
 </div>
 
 <div class='hobbies'>
-<h2>Hobiler & İlgi Alanları</h2>
-<p><span>🏕️</span> <span>📚</span> <span>🌲</span> Doğa, kamp, kitap okuma ve teknoloji araştırmaları</p>
+    <h2>Hobiler & İlgi Alanları</h2>
+    <p><span>🏕️</span> <span>📚</span> <span>🌲</span> Doğa, kamp, kitap okuma ve teknoloji araştırmaları</p>
 </div>
 </main>
 
 <footer>
 <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
 <p>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
 <a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </p>
 </footer>
-  <script src="ortak-api.js"></script>
+
+<script src="ortak-api.js"></script>
 
 </body>
 </html>
