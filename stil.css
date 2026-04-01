@@ -1,14 +1,155 @@
-﻿body {margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e0e0e0;}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:#1e293b;}
-.navbar .logo{color:#38bdf8;font-size:1.8rem;}
-.menu{display:flex;list-style:none;gap:1rem;}
-.menu li a{color:#e0e0e0;text-decoration:none;padding:0.5rem;}
-.menu li a.active,.menu li a:hover{color:#38bdf8;}
-.menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:#38bdf8;}
-@media(max-width:768px){.menu{display:none;flex-direction:column;gap:0.5rem;}.menu-toggle{display:block;}}
+/* Temel Değişkenler ve Reset */
+:root {
+    --bg-dark: #0f172a;
+    --bg-nav: #1e293b;
+    --accent: #38bdf8;
+    --text-main: #e0e0e0;
+    --warning: #f59e0b;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-.container{padding:2rem; max-width:1200px; margin:auto;}
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-footer{text-align:center; padding:1rem; background:#1e293b; color:#e0e0e0; margin-top:2rem; font-size:0.9rem;}
+/* Navigasyon Çubuğu */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--bg-nav);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
 
-.update-note{margin:1rem auto; padding:1rem; background:#f59e0b; color:#0f172a; font-weight:bold; border-radius:8px; text-align:center;}
+.navbar .logo {
+    color: var(--accent);
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.navbar .logo:hover {
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* Menü Yapısı */
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li a {
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.menu li a.active, 
+.menu li a:hover {
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+/* Mobil Menü Tetikleyici */
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--accent);
+    transition: var(--transition);
+}
+
+/* Ana Konteyner */
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    min-height: 80vh; /* Footer'ı aşağıda tutmak için */
+}
+
+/* Güncelleme Notu */
+.update-note {
+    margin: 1.5rem auto;
+    padding: 1.2rem;
+    background: var(--warning);
+    color: #0f172a;
+    font-weight: 800;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--bg-nav);
+    color: var(--text-main);
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Mobil Uyumluluk (Responsive) --- */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .menu {
+        display: none; /* JS ile kontrol edilecek şekilde gizli */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--bg-nav);
+        padding: 1rem 0;
+        gap: 0;
+        border-bottom: 1px solid var(--accent);
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu li a {
+        display: block;
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Menü açıldığında kullanılacak sınıf */
+    .menu.show {
+        display: flex;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+}
