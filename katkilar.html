@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang='tr'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Katkılar - Yusuf</title>
+<link rel='stylesheet' href='style.css'>
+<style>
+body { background:#0d1117; color:#f0f6fc; font-family:'Segoe UI',sans-serif; margin:0; }
+header nav ul { display:flex; list-style:none; padding:10px; background:#161b22; }
+header nav ul li { margin-right:15px; }
+header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; }
+header nav ul li a.active { color:#58a6ff; }
+
+.main-container { max-width:1000px; margin:auto; padding:60px 20px; display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px; }
+.card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius:15px; padding:30px 25px; text-align:center; width:280px; transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(88,166,255,0.5); }
+.card h2 { margin:0; font-size:2.5em; color:#58a6ff; }
+.card p { margin-top:10px; font-size:0.95em; color:#c9d1d9; line-height:1.5; }
+
+.total { text-align:center; margin-top:50px; font-size:2em; color:#58a6ff; }
+
+footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
+footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<ul>
+<li><a href='index.html'>Anasayfa</a></li>
+<li><a href='hakkimda.html'>Hakkımda</a></li>
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>
+<li><a href='urunler.html'>Ürünler</a></li>
+<li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='katkilar.html' class='active'>Katkılar</a></li>
+<li><a href='iletisim.html'>İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<main class='main-container'>
+<div class='card'>
+    <h2>120</h2>
+    <p>Yazılım geliştirme, pentest, siber güvenlik, otomasyon, web, mobil vb.</p>
+</div>
+<div class='card'>
+    <h2>301</h2>
+    <p>Kurumsal danışmanlık, güvenlik testleri, proje yönetimi, risk analizi vb.</p>
+</div>
+<div class='card'>
+    <h2>4012</h2>
+    <p>Gönüllü topluluk destekleri, eğitimler, hackathonlar, açık kaynak katkıları vb.</p>
+</div>
+</main>
+
+<div class='total'>
+Toplam: <span id='counter'>0</span>
+</div>
+
+<footer>
+<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+<p>
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
+<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
+</p>
+</footer>
+
+<script>
+// Hızlı sayaç animasyonu
+let count = 0;
+const end = 4433;
+const counter = document.getElementById('counter');
+
+// Daha hızlı artış için büyük adımlar
+function updateCounter() {
+    let increment = Math.ceil((end - count) / 15); // kalan farkın 1/15'i kadar art
+    count += increment;
+    if(count > end) count = end;
+    counter.textContent = count.toLocaleString();
+    if(count < end) requestAnimationFrame(updateCounter);
+}
+
+updateCounter();
+</script>
+
+</body>
+</html>

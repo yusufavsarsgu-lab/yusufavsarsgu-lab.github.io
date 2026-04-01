@@ -1,0 +1,33 @@
+﻿body { font-family: Arial,sans-serif; background:#121212; color:#fff; margin:0; padding:0; }
+header nav ul { display:flex; list-style:none; justify-content:center; background:#1f1f1f; padding:10px 0; margin:0;}
+header nav ul li { margin:0 15px;}
+header nav ul li a { color:#fff; text-decoration:none; font-weight:bold;}
+header nav ul li a.active { border-bottom:2px solid #90caf9;}
+
+.bio-section { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; padding:50px 20px;}
+.profile-photo { width:200px; height:200px; border-radius:50%; margin-right:40px; }
+.bio-card { background:#1f1f1f; padding:20px; border-radius:12px; max-width:600px; box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+.bio-card h1 { color:#90caf9; margin-bottom:15px; }
+.bio-card p { line-height:1.6;}
+
+.skills { padding:40px 20px; }
+.skills h2 { color:#90caf9; margin-bottom:20px;}
+.skill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;}
+.skill-card { background:#1f1f1f; padding:15px; border-radius:10px; text-align:center; font-weight:bold; box-shadow:0 3px 8px rgba(0,0,0,0.5);}
+.skill-icon { font-size:24px; display:block; margin-bottom:5px;}
+
+.projects { padding:40px 20px; }
+.projects h2 { color:#90caf9; margin-bottom:20px; }
+.project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px;}
+.project-card { background:#1f1f1f; padding:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+
+.hobbies { padding:40px 20px; }
+.hobbies h2 { color:#90caf9; margin-bottom:15px; }
+.hobby-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px;}
+.hobby-card { background:#1f1f1f; padding:15px; border-radius:10px; text-align:center; box-shadow:0 3px 8px rgba(0,0,0,0.5);}
+
+footer { text-align:center; padding:20px; background:#1f1f1f; margin-top:50px;}
+footer a { color:#90caf9; text-decoration:none; margin:0 5px;}
+footer a:hover { text-decoration:underline;}
+
+@media(max-width:768px){ .bio-section{ flex-direction:column; text-align:center;} .profile-photo{ margin:0 0 20px 0;} }

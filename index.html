@@ -3,77 +3,131 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>Anasayfa</title>
-<link rel='stylesheet' href='stil.css'>
+<title>Anasayfa - Yusuf</title>
+<style>
+body { margin:0; font-family:'Segoe UI',sans-serif; background:#0d1117; color:#f0f6fc; }
+header nav ul { display:flex; list-style:none; padding:15px 30px; background:#161b22; margin:0; }
+header nav ul li { margin-right:20px; }
+header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; transition:0.3s; }
+header nav ul li a:hover, header nav ul li a.active { color:#58a6ff; }
+
+.hero { text-align:center; padding:40px 20px; }
+.hero h1 { font-size:3em; color:#58a6ff; margin:0; }
+.hero p { font-size:1.2em; color:#c9d1d9; margin-top:10px; max-width:700px; margin-left:auto;margin-right:auto; }
+
+.warning { margin:30px auto; font-weight:700; color:#ff4d4d; text-align:center; max-width:800px; font-size:1em; border:2px solid #ff4d4d; padding:15px; border-radius:10px; background:rgba(255,77,77,0.1); }
+
+.grid-container { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:20px; padding:30px; }
+.card { background:#161b22; border-radius:15px; padding:20px; min-height:220px; position:relative; overflow:hidden; transition:0.3s; }
+.card:hover { transform:scale(1.05); box-shadow:0 0 20px rgba(88,166,255,0.5); }
+.card canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+.card-content { position:relative; z-index:1; color:#f0f6fc; }
+
+.social-links { margin-top:30px; display:flex; justify-content:center; gap:20px; }
+.social-links a { color:#58a6ff; text-decoration:none; font-weight:600; transition:0.3s; }
+.social-links a:hover { color:#1f6feb; transform: scale(1.2); }
+
+footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
+footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+</style>
 </head>
 <body>
+
 <header>
-<nav class='navbar'>
-<h2 class='logo'>YUSUF</h2>
-<div class='menu-toggle' id='menu-toggle'>☰</div>
-<ul class='menu' id='menu'>
-<li><a href='anasayfa.html' class='active'>Anasayfa</a></li>
+<nav>
+<ul>
+<li><a href='index.html' class='active'>Anasayfa</a></li>
 <li><a href='hakkimda.html'>Hakkımda</a></li>
 <li><a href='faaliyetler.html'>Faaliyetler</a></li>
 <li><a href='urunler.html'>Ürünler</a></li>
 <li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='katkilar.html'>Katkılar</a></li>
 <li><a href='iletisim.html'>İletişim</a></li>
 </ul>
 </nav>
 </header>
 
-<main class='container'>
-<div class='alert-box'>
-<strong>UYARI:</strong> Sitemiz güncelleme altındadır! Tahmini bitiş: <span id='countdown'>36:00:00</span> saat. Lütfen sayfayı yenilemeyin, geri sayım otomatik devam eder.
+<section class='hero'>
+<h1>Merhaba, ben Yusuf!</h1>
+<p>Siber güvenlik araştırmacısı ve yazılım geliştirici. Şu anda hobi amaçlı projeler ve kurumsal çalışmalar yürütüyorum.</p>
+
+<div class='warning'>
+<strong>UYARI:</strong> Yasadışı talepler derhal ilgili birimlere bildirilerek yasal işlemler başlatılacaktır.<br>
+İletişim bağlantılarını rahatsız etmek veya spam göndermek gibi davranışlar için <strong>şikayetçi olunacaktır</strong>.
+</div>
+</section>
+
+<section class='grid-container'>
+<div class='card' id='card1'><div class='card-content'><h3>Pentest Terminal Demo</h3></div><canvas></canvas></div>
+<div class='card' id='card2'><div class='card-content'><h3>Network Radar Demo</h3></div><canvas></canvas></div>
+<div class='card' id='card3'><div class='card-content'><h3>Code Rain Demo</h3></div><canvas></canvas></div>
+<div class='card' id='card4'><div class='card-content'><h3>Mobil App Demo</h3></div><canvas></canvas></div>
+<div class='card' id='card5'><div class='card-content'><h3>Data Flow Demo</h3></div><canvas></canvas></div>
+<div class='card' id='card6'><div class='card-content'><h3>Alert Popup Demo</h3></div><canvas></canvas></div>
+</section>
+
+<div class='social-links'>
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
+<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </div>
 
-<section class='content'>
-<h1>Hoşgeldiniz</h1>
-<p>Bu site, tüm kurumsal çözümler ve bilgiler için sürekli güncellenmektedir. 
-Hiçbir şekilde yasadışı faaliyet veya uygunsuz talepler kabul edilmez. 
-Gerekli durumlarda yasal birimler bilgilendirilecektir.</p>
-
-<p style='color:red; font-weight:bold;'>Ciddi ve yasal olarak güvenli bir iletişim için yalnızca belirtilen kanalları kullanın.</p>
-</section>
-</main>
-
 <footer>
-<p>© 2026 Yusuf Avsar Official. Tüm hakları saklıdır.</p>
+<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
 </footer>
 
 <script>
-// Hamburger menü
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
-menuToggle.addEventListener('click', ()=> {
-menu.classList.toggle('active');
-menu.style.display = menu.classList.contains('active') ? 'flex' : 'none';
-});
-
-// 36 saat geri sayım – gerçek zamanlı
-const countdownEl = document.getElementById('countdown');
-let endTime = localStorage.getItem('countdownEndTime');
-
-if(!endTime){
-    // Eğer yoksa 36 saat sonrası
-    endTime = Date.now() + 36*60*60*1000;
-    localStorage.setItem('countdownEndTime', endTime);
-} else {
-    endTime = parseInt(endTime);
+// Particle background for each card
+function cardParticles(cardId,color='rgba(88,166,255,0.7)'){
+  const canvas=document.querySelector('#'+cardId+' canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth;
+  canvas.height=canvas.offsetHeight;
+  let particles=[];
+  for(let i=0;i<50;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=color;
+      ctx.fill();
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x>canvas.width)p.x=0;if(p.x<0)p.x=canvas.width;
+      if(p.y>canvas.height)p.y=0;if(p.y<0)p.y=canvas.height;
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+  window.addEventListener('resize',()=>{canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight;});
 }
 
-function updateCountdown(){
-    let now = Date.now();
-    let remaining = Math.floor((endTime - now)/1000); // saniye
-    if(remaining<0){ remaining=0; }
-    let hours = Math.floor(remaining/3600);
-    let minutes = Math.floor((remaining%3600)/60);
-    let seconds = remaining % 60;
-    countdownEl.textContent = 
-        ${hours.toString().padStart(2,'0')}::;
+// Pentest Terminal Demo
+function pentestTerminal(){
+  const terminal=document.createElement('div');
+  terminal.style.position='absolute';
+  terminal.style.bottom='10px';
+  terminal.style.left='50%';
+  terminal.style.transform='translateX(-50%)';
+  terminal.style.background='rgba(0,0,0,0.7)';
+  terminal.style.padding='10px';
+  terminal.style.borderRadius='8px';
+  terminal.style.fontFamily='monospace';
+  terminal.style.fontSize='12px';
+  terminal.style.color='#58a6ff';
+  terminal.style.maxWidth='90%';
+  terminal.style.zIndex='1';
+  document.querySelector('#card1 .card-content').appendChild(terminal);
+  let cmds=["sudo pentest scan --target example.com","[INFO] Scanning ports...","[OK] Port 80 open","[OK] Port 443 open","[WARNING] Possible vulnerability detected","[INFO] Exploit module loaded"];
+  let idx=0;
+  function runCmd(){ if(idx<cmds.length){terminal.textContent+=cmds[idx]+'\\n'; idx++; setTimeout(runCmd,1000);} }
+  runCmd();
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+
+// Initialize all card particles
+['card1','card2','card3','card4','card5','card6'].forEach(c=>cardParticles(c));
+pentestTerminal();
 </script>
+
 </body>
 </html>

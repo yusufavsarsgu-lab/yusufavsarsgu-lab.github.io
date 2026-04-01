@@ -3,104 +3,245 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>Ürünler</title>
-<link rel='stylesheet' href='stil.css'>
+<title>Ürünler - Yusuf</title>
+<link rel='stylesheet' href='style.css'>
+<style>
+body { background:#0d1117; color:#f0f6fc; font-family:'Segoe UI',sans-serif; margin:0; }
+header nav ul { display:flex; list-style:none; padding:10px; background:#161b22; }
+header nav ul li { margin-right:15px; }
+header nav ul li a { color:#f0f6fc; text-decoration:none; font-weight:600; }
+header nav ul li a.active { color:#58a6ff; }
+
+.main-container { max-width:1400px; margin:auto; padding:40px 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.product-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius:15px; padding:20px; transition: transform 0.3s, box-shadow 0.3s; }
+.product-card:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(88,166,255,0.5); }
+.product-card h3 { margin-top:0; margin-bottom:8px; color:#58a6ff; }
+.product-card p { margin:0; color:#c9d1d9; font-size:0.95em; line-height:1.5; }
+
+footer { background:#161b22; text-align:center; padding:20px; margin-top:40px; }
+footer a { color:#58a6ff; margin:0 8px; text-decoration:none; font-weight:600; }
+</style>
 </head>
 <body>
-
 <header>
-<nav class='navbar'>
-<h2 class='logo'>YUSUF</h2>
-<div class='menu-toggle' id='menu-toggle'>☰</div>
-<ul class='menu' id='menu'>
-<li><a href='anasayfa.html'>Anasayfa</a></li>
+<nav>
+<ul>
+<li><a href='index.html'>Anasayfa</a></li>
 <li><a href='hakkimda.html'>Hakkımda</a></li>
 <li><a href='faaliyetler.html'>Faaliyetler</a></li>
 <li><a href='urunler.html' class='active'>Ürünler</a></li>
 <li><a href='egitimler.html'>Eğitimler</a></li>
+<li><a href='katkilar.html'>Katkılar</a></li>
 <li><a href='iletisim.html'>İletişim</a></li>
 </ul>
 </nav>
 </header>
 
-<!-- Güncelleme Notu -->
-<p class='update-note' style='text-align:center; font-style:italic; color:#facc15; margin-bottom:2rem;'>
-Bilgi: Ürünler sayfası sürekli güncellenmektedir. Yeni eklemeler ve geliştirmeler yapılmaktadır.
+<main class='main-container'><div class='product-card'>
+<h3>Kurumsal Güvenlik Çözümü</h3>
+<p>Büyük şirketler için ağ ve uygulama güvenliğini sağlayan çözüm paketi</p>
+</div>
+<div class='product-card'>
+<h3>Mobil PenTest Aracı</h3>
+<p>iOS ve Android uygulamalar için otomatik güvenlik testleri</p>
+</div>
+<div class='product-card'>
+<h3>Otomasyon Platformu</h3>
+<p>Kurumsal süreçleri hızlandıran otomasyon platformu</p>
+</div>
+<div class='product-card'>
+<h3>Bulut Güvenlik Modülü</h3>
+<p>CI/CD pipeline ve bulut ortamlarını güvenli hale getiren modül</p>
+</div>
+<div class='product-card'>
+<h3>Threat Intelligence Dashboard</h3>
+<p>Gerçek zamanlı tehdit analizi dashboard</p>
+</div>
+<div class='product-card'>
+<h3>IoT Güvenlik Paketi</h3>
+<p>Endüstriyel IoT cihazları için güvenlik taramaları</p>
+</div>
+<div class='product-card'>
+<h3>Blockchain Güvenlik Çözümü</h3>
+<p>Smart contract ve blockchain projeleri için güvenlik denetimi</p>
+</div>
+<div class='product-card'>
+<h3>Web Uygulama Güvenlik Modülü</h3>
+<p>Kurumsal web uygulamaları için proaktif güvenlik testi</p>
+</div>
+<div class='product-card'>
+<h3>Kurumsal Raporlama Aracı</h3>
+<p>Otomatik güvenlik ve performans raporları</p>
+</div>
+<div class='product-card'>
+<h3>API Güvenlik Çözümü</h3>
+<p>REST & GraphQL API güvenlik testleri</p>
+</div>
+<div class='product-card'>
+<h3>Mobil Performans Analizi</h3>
+<p>Android ve iOS uygulamalar için performans izleme</p>
+</div>
+<div class='product-card'>
+<h3>CI/CD Güvenlik Modülü</h3>
+<p>DevOps pipeline güvenlik entegrasyonu</p>
+</div>
+<div class='product-card'>
+<h3>PenTest Otomasyon Aracı</h3>
+<p>Tek tıkla penetrasyon testi ve raporlama</p>
+</div>
+<div class='product-card'>
+<h3>Red Team Toolkit</h3>
+<p>Kurumsal sızma testi araç seti</p>
+</div>
+<div class='product-card'>
+<h3>Web Vulnerability Scanner</h3>
+<p>Otomatik web uygulama tarayıcısı</p>
+</div>
+<div class='product-card'>
+<h3>Mobile Reverse Engineering Tool</h3>
+<p>APK ve IPA analiz aracı</p>
+</div>
+<div class='product-card'>
+<h3>SIEM Integration Suite</h3>
+<p>Log yönetimi ve SIEM entegrasyonu</p>
+</div>
+<div class='product-card'>
+<h3>Cloud Audit Framework</h3>
+<p>AWS & Azure güvenlik denetimi</p>
+</div>
+<div class='product-card'>
+<h3>OT Güvenlik Paketi</h3>
+<p>Endüstriyel kontrol sistemleri güvenliği</p>
+</div>
+<div class='product-card'>
+<h3>Social Engineering Sim Tool</h3>
+<p>Eğitim ve test aracı</p>
+</div>
+<div class='product-card'>
+<h3>Container Security Suite</h3>
+<p>Docker & Kubernetes güvenlik denetimi</p>
+</div>
+<div class='product-card'>
+<h3>Web Application Firewall</h3>
+<p>Kurumsal WAF çözümü</p>
+</div>
+<div class='product-card'>
+<h3>Network Monitoring Platform</h3>
+<p>Ağ izleme ve uyarı sistemi</p>
+</div>
+<div class='product-card'>
+<h3>SIEM Dashboard</h3>
+<p>Gerçek zamanlı güvenlik izleme dashboard</p>
+</div>
+<div class='product-card'>
+<h3>Malware Analysis Lab</h3>
+<p>Zararlı yazılım analiz platformu</p>
+</div>
+<div class='product-card'>
+<h3>Phishing Simulation Suite</h3>
+<p>Kurumsal farkındalık aracı</p>
+</div>
+<div class='product-card'>
+<h3>API Threat Detection</h3>
+<p>Otomatik API tehdit algılama</p>
+</div>
+<div class='product-card'>
+<h3>Web Pentest Suite</h3>
+<p>Web sızma testi aracı</p>
+</div>
+<div class='product-card'>
+<h3>Mobile App Sandbox</h3>
+<p>Uygulama sandbox ve analiz</p>
+</div>
+<div class='product-card'>
+<h3>IoT PenTest Framework</h3>
+<p>IoT cihazları için test platformu</p>
+</div>
+<div class='product-card'>
+<h3>Ransomware Defense Tool</h3>
+<p>Kurumsal ransomware önleme</p>
+</div>
+<div class='product-card'>
+<h3>Blockchain Audit Suite</h3>
+<p>Smart contract ve token denetimi</p>
+</div>
+<div class='product-card'>
+<h3>Cloud Compliance Checker</h3>
+<p>Bulut uyumluluk ve güvenlik denetimi</p>
+</div>
+<div class='product-card'>
+<h3>DevSecOps Pipeline</h3>
+<p>Güvenli CI/CD pipeline</p>
+</div>
+<div class='product-card'>
+<h3>Incident Response Kit</h3>
+<p>Olay müdahale ve adli analiz</p>
+</div>
+<div class='product-card'>
+<h3>Red Team Operations</h3>
+<p>Kurumsal red team operasyonları</p>
+</div>
+<div class='product-card'>
+<h3>Network Forensics Tool</h3>
+<p>Ağ analizi ve adli inceleme</p>
+</div>
+<div class='product-card'>
+<h3>Web App Hardening</h3>
+<p>Web uygulama güvenlik sertifikasyonu</p>
+</div>
+<div class='product-card'>
+<h3>Mobile Security Audit</h3>
+<p>Mobil uygulama güvenlik testi</p>
+</div>
+<div class='product-card'>
+<h3>Threat Intel Collector</h3>
+<p>Tehdit istihbarat toplama aracı</p>
+</div>
+<div class='product-card'>
+<h3>Malware Sandbox</h3>
+<p>Zararlı yazılım izleme platformu</p>
+</div>
+<div class='product-card'>
+<h3>Cloud Security Orchestrator</h3>
+<p>Bulut güvenlik otomasyonu</p>
+</div>
+<div class='product-card'>
+<h3>PenTest Lab Suite</h3>
+<p>Pentest laboratuvar ve simülasyon</p>
+</div>
+<div class='product-card'>
+<h3>Web Exploit Framework</h3>
+<p>Web exploit ve test platformu</p>
+</div>
+<div class='product-card'>
+<h3>Mobile Reverse Engineering Suite</h3>
+<p>APK/IPA analiz platformu</p>
+</div>
+<div class='product-card'>
+<h3>OT Security Dashboard</h3>
+<p>Endüstriyel güvenlik izleme dashboard</p>
+</div>
+<div class='product-card'>
+<h3>Crypto Audit Toolkit</h3>
+<p>Blockchain ve token denetimi</p>
+</div>
+<div class='product-card'>
+<h3>Security Awareness Platform</h3>
+<p>Kurumsal eğitim ve farkındalık aracı</p>
+</div>
+<div class='product-card'>
+<h3>IoT Monitoring & Defense</h3>
+<p>IoT izleme ve savunma aracı</p>
+</div>
+</main>
+
+<footer>
+<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+<p>
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
+<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </p>
-
-<main class='container products'>
-<h1>Kurumsal Yazılım Çözümleri</h1>
-<p class='intro'>Bireyselden şirkete, tamamen kurumsal ihtiyaçlara özel, ölçeklenebilir ve güvenli yazılım çözümleri.</p>
-<div class='product-cards'>
-<div class='card'>
-<h2>Kurumsal ERP Çözümü</h2>
-<p>Şirket süreçlerini entegre eden kapsamlı ERP</p>
-<a href='erp.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Kurumsal CRM</h2>
-<p>Müşteri ilişkileri ve satış yönetimi</p>
-<a href='crm.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Otomasyon & Entegrasyon</h2>
-<p>Farklı sistemleri tek platformda birleştirin</p>
-<a href='otomasyon.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Siber Güvenlik Paketi</h2>
-<p>Kurumsal ağ ve uygulama güvenliği</p>
-<a href='siber-guvenlik.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Veri Analizi & Raporlama</h2>
-<p>Kurumsal veri analizi ve dashboardlar</p>
-<a href='veri-analizi.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Bulut Altyapı Yönetimi</h2>
-<p>Ölçeklenebilir bulut çözümleri</p>
-<a href='bulut.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Kurumsal Mobil Uygulamalar</h2>
-<p>iOS ve Android için kurumsal uygulamalar</p>
-<a href='mobil.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>API Yönetim Platformu</h2>
-<p>Kurumsal API tasarımı ve entegrasyonu</p>
-<a href='api.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Kurumsal E-Ticaret Çözümü</h2>
-<p>B2B ve B2C platformları</p>
-<a href='e-ticaret.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>İçerik Yönetim Sistemi (CMS)</h2>
-<p>Kurumsal CMS ve portal çözümleri</p>
-<a href='cms.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Proje Yönetim Araçları</h2>
-<p>Kurumsal proje takibi ve raporlama</p>
-<a href='proje.html' class='btn'>Detaylı İncele</a>
-</div>
-<div class='card'>
-<h2>Yedekleme & Felaket Kurtarma</h2>
-<p>Kurumsal veri güvenliği</p>
-<a href='yedekleme.html' class='btn'>Detaylı İncele</a>
-</div>
-</div>
-</main>
-
-<script src='script.js'></script>
-</body>
-</html>
-</div>
-</main>
-
-<script src='script.js'></script>
+</footer>
 </body>
 </html>
