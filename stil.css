@@ -1,155 +1,185 @@
-/* Temel Değişkenler ve Reset */
+/* Yusuf Avşar Official - Unified Style Sheet
+    Combined: Portfolio + Responsive Navigation + Cyber Security Theme
+*/
+
 :root {
-    --bg-dark: #0f172a;
+    /* Renk Paleti (2. CSS'den geliştirildi) */
+    --bg-darker: #0d1117;
+    --bg-card: #161b22;
     --bg-nav: #1e293b;
-    --accent: #38bdf8;
-    --text-main: #e0e0e0;
+    --accent: #38bdf8; /* Modern Siber Mavi */
+    --text-primary: #f0f6fc;
+    --text-secondary: #c9d1d9;
+    --border: #30363d;
     --warning: #f59e0b;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-    margin: 0;
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-main);
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body { 
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+    background: var(--bg-darker); 
+    color: var(--text-primary); 
+    margin: 0; 
+    padding: 0; 
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Navigasyon Çubuğu */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: var(--bg-nav);
+/* --- NAVİGASYON (YENİLENMİŞ & KAYDIRILABİLİR) --- */
+header nav, .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-}
-
-.navbar .logo {
-    color: var(--accent);
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.navbar .logo:hover {
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-}
-
-/* Menü Yapısı */
-.menu {
+    background: rgba(22, 27, 34, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
     display: flex;
-    list-style: none;
-    gap: 1.5rem;
+    justify-content: center; /* Masaüstünde ortalar */
+    align-items: center;
+}
+
+header nav ul, .menu { 
+    display: flex; 
+    list-style: none; 
+    padding: 0 10px; 
     margin: 0;
-    padding: 0;
+    overflow-x: auto; /* Mobilde kaydırmayı açar */
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox gizle */
+    -webkit-overflow-scrolling: touch;
 }
 
-.menu li a {
-    color: var(--text-main);
-    text-decoration: none;
-    padding: 0.6rem 1rem;
-    font-weight: 600;
+header nav ul::-webkit-scrollbar { display: none; } /* Chrome gizle */
+
+header nav ul li, .menu li { 
+    margin: 0; 
+}
+
+header nav ul li a, .menu li a { 
+    display: block;
+    padding: 18px 15px;
+    color: var(--text-primary); 
+    text-decoration: none; 
+    font-weight: 600; 
     font-size: 0.95rem;
-    border-radius: 8px;
     transition: var(--transition);
+    position: relative;
+    opacity: 0.8;
 }
 
-.menu li a.active, 
-.menu li a:hover {
-    color: var(--accent);
-    background: rgba(56, 189, 248, 0.1);
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    opacity: 1;
 }
 
-/* Mobil Menü Tetikleyici */
-.menu-toggle {
-    display: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: var(--accent);
-    transition: var(--transition);
+/* Aktif Başlık Alt Çizgisi */
+header nav ul li a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px 3px 0 0;
 }
 
-/* Ana Konteyner */
-.container {
-    padding: 2rem;
+/* --- BİO & KARTLAR (1. CSS'DEN) --- */
+.bio-section { 
+    display: flex; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 60px 20px; 
+    gap: 40px;
+}
+
+.profile-photo { 
+    width: 220px; 
+    height: 220px; 
+    border-radius: 50%; 
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    object-fit: cover;
+}
+
+.bio-card { 
+    background: var(--bg-card); 
+    padding: 30px; 
+    border-radius: 20px; 
+    max-width: 600px; 
+    border: 1px solid var(--border);
+}
+
+.bio-card h1 { color: var(--accent); margin: 0 0 15px 0; font-size: 2rem; }
+
+/* --- GRİDLER VE KUTULAR --- */
+.container, .skills, .projects, .hobbies { 
     max-width: 1200px;
     margin: auto;
-    min-height: 80vh; /* Footer'ı aşağıda tutmak için */
+    padding: 40px 20px; 
 }
 
-/* Güncelleme Notu */
+h2 { 
+    color: var(--accent); 
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+}
+
+.skill-grid, .project-grid, .hobby-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 20px;
+}
+
+.skill-card, .project-card, .hobby-card, .product-card { 
+    background: var(--bg-card); 
+    padding: 25px; 
+    border-radius: 16px; 
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.skill-card:hover, .project-card:hover, .product-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
+}
+
+/* --- UYARI VE GÜNCELLEME NOTU (2. CSS'DEN) --- */
 .update-note {
     margin: 1.5rem auto;
     padding: 1.2rem;
-    background: var(--warning);
-    color: #0f172a;
-    font-weight: 800;
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+    font-weight: 700;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--warning);
 }
 
-/* Footer */
+/* --- FOOTER --- */
 footer {
     text-align: center;
-    padding: 2rem 1rem;
-    background: var(--bg-nav);
-    color: var(--text-main);
-    margin-top: 3rem;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 1rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
 }
 
-/* --- Mobil Uyumluluk (Responsive) --- */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 1.5rem;
-    }
+footer a { color: var(--accent); text-decoration: none; margin: 0 8px; font-weight: 600; }
 
-    .menu {
-        display: none; /* JS ile kontrol edilecek şekilde gizli */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: var(--bg-nav);
-        padding: 1rem 0;
-        gap: 0;
-        border-bottom: 1px solid var(--accent);
-    }
-
-    .menu li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .menu li a {
-        display: block;
-        padding: 1rem;
-        border-radius: 0;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    /* Menü açıldığında kullanılacak sınıf */
-    .menu.show {
-        display: flex;
-    }
-
-    .container {
-        padding: 1.5rem;
-    }
+/* --- MOBİL DÜZENLEMELER --- */
+@media (max-width: 768px) { 
+    .bio-section { flex-direction: column; text-align: center; padding: 40px 15px; } 
+    .profile-photo { width: 180px; height: 180px; } 
+    header nav { justify-content: flex-start; } /* Mobilde baştan başlar ki kaydığı anlaşılsın */
 }
