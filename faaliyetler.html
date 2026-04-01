@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='tr'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Faaliyetler - Yusuf</title>
+<style>
+/* Temel Değişkenler */
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --border: #30363d;
+}
+
+body { 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+    margin: 0; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navigasyon */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+header nav ul { 
+    display: flex; 
+    list-style: none; 
+    padding: 0 20px; 
+    margin: 0; 
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+header nav ul::-webkit-scrollbar { display: none; }
+
+header nav ul li a { 
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main); 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 0.9rem;
+    transition: 0.3s; 
+}
+
+header nav ul li a:hover, header nav ul li a.active { 
+    color: var(--accent); 
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Ana İçerik Alanı */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.update-container { 
+    text-align: center; 
+    max-width: 500px;
+    width: 100%;
+}
+
+.update-card { 
+    background: var(--bg-sec);
+    border: 1px solid var(--border);
+    border-radius: 20px; 
+    padding: 60px 40px; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekoratif efekt */
+.update-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.loader-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+.update-card h2 { 
+    margin: 0; 
+    color: var(--accent); 
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Footer */
+footer { 
+    background: var(--bg-sec); 
+    text-align: center; 
+    padding: 40px 20px; 
+    border-top: 1px solid var(--border);
+}
+
+footer p { margin: 10px 0; font-size: 0.9rem; }
+
+footer a { 
+    color: var(--accent); 
+    margin: 0 8px; 
+    text-decoration: none; 
+    font-weight: 600; 
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+    </nav>
+</header>
+
+<main>
+    <div class='update-container'>
+        <div class='update-card'>
+            <div class='loader-icon'>🛠️</div>
+            <h2>Güncellenmektedir</h2>
+        </div>
+    </div>
+</main>
+
+<footer>
+<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+<p>
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
+<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
+</p>
+</footer>
+
+<script src="ortak-api.js"></script>
+
+</body>
+</html>
