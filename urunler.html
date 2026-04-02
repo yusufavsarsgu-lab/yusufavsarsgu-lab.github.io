@@ -1,261 +1,368 @@
-<!-- Sayfa: Ürünler - Yusuf Avşar Official -->
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ürünler - Yusuf</title>
-
-<style>
-/* --- Temel Değişkenler --- */
-:root {
-    --bg-main: #0d1117;
-    --bg-sec: #161b22;
-    --bg-nav: #161b22;
-    --accent: #38bdf8;
-    --text-main: #f0f6fc;
-    --text-dim: #c9d1d9;
-    --border: #30363d;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+<!DOCTYPE html>  <html lang='tr'>  
+<head>  
+<meta charset='UTF-8'>  
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>  
+<title>Ürünler - Yusuf</title>  
+<style>  
+/* Temel Değişkenler */  
+:root {  
+    --bg-main: #0d1117;  
+    --bg-sec: #161b22;  
+    --accent: #58a6ff;  
+    --text-main: #f0f6fc;  
+    --text-dim: #c9d1d9;  
+    --border: #30363d;  
+}  body {
+background: var(--bg-main);
+color: var(--text-main);
+font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+margin: 0;
+line-height: 1.6;
 }
 
-/* --- Global Reset --- */
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
-body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-
-/* --- NAVBAR --- */
+/* Navigasyon */
 header nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: var(--bg-nav);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-header nav .logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--accent);
+position: sticky;
+top: 0;
+z-index: 1000;
+background: rgba(22, 27, 34, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
 }
 
 header nav ul {
-    display: flex;
-    list-style: none;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
+display: flex;
+list-style: none;
+padding: 0 20px;
+margin: 0;
+overflow-x: auto;
+white-space: nowrap;
+scrollbar-width: none;
 }
 
 header nav ul::-webkit-scrollbar { display: none; }
 
 header nav ul li a {
-    display: block;
-    padding: 20px 15px;
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: var(--transition);
-    position: relative;
-    opacity: 0.8;
+display: block;
+padding: 20px 15px;
+color: var(--text-main);
+text-decoration: none;
+font-weight: 600;
+font-size: 0.9rem;
+transition: 0.3s;
 }
 
 header nav ul li a:hover, header nav ul li a.active {
-    color: var(--accent);
-    opacity: 1;
+color: var(--accent);
+box-shadow: inset 0 -3px 0 var(--accent);
 }
 
-header nav ul li a.active::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 15px;
-    right: 15px;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 3px 3px 0 0;
-}
-
-/* --- Hamburger Button --- */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: var(--text-main);
-    border-radius: 2px;
-    transition: var(--transition);
-}
-
-/* --- Responsive Nav Active --- */
-header nav ul.active {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: var(--bg-nav);
-    padding: 20px;
-    display: none;
-}
-
-header nav ul.active.show {
-    display: flex;
-}
-
-/* --- Main Container & Product Grid --- */
+/* Ana Konteyner - Ürün Grid Yapısı */
 .main-container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 60px 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+max-width: 1400px;
+margin: auto;
+padding: 60px 20px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 25px;
 }
 
-/* --- Product Card --- */
+/* Ürün Kartı Tasarımı */
 .product-card {
-    background: var(--bg-sec);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 30px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
+background: var(--bg-sec);
+border: 1px solid var(--border);
+border-radius: 16px;
+padding: 30px;
+transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+display: flex;
+flex-direction: column;
+position: relative;
+overflow: hidden;
 }
 
 .product-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: 0.3s;
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 100%;
+background: var(--accent);
+opacity: 0;
+transition: 0.3s;
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+transform: translateY(-8px);
+border-color: var(--accent);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.product-card:hover::before { opacity: 1; }
+.product-card:hover::before {
+opacity: 1;
+}
 
 .product-card h3 {
-    margin: 0 0 12px 0;
-    color: var(--accent);
-    font-size: 1.3rem;
-    letter-spacing: -0.5px;
+margin: 0 0 12px 0;
+color: var(--accent);
+font-size: 1.3rem;
+letter-spacing: -0.5px;
 }
 
 .product-card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    line-height: 1.5;
+margin: 0;
+color: var(--text-dim);
+font-size: 0.95rem;
+line-height: 1.5;
 }
 
-/* --- Footer --- */
+/* Footer */
 footer {
-    background: var(--bg-sec);
-    text-align: center;
-    padding: 50px 20px;
-    margin-top: 60px;
-    border-top: 1px solid var(--border);
+background: var(--bg-sec);
+text-align: center;
+padding: 50px 20px;
+margin-top: 60px;
+border-top: 1px solid var(--border);
 }
 
 footer p { margin: 10px 0; font-size: 0.9rem; }
 
 footer a {
-    color: var(--accent);
-    margin: 0 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
+color: var(--accent);
+margin: 0 8px;
+text-decoration: none;
+font-weight: 600;
+transition: 0.3s;
 }
 
-footer a:hover { color: var(--text-main); }
+footer a:hover {
+color: var(--text-main);
+}
 
-/* --- Mobil Düzenleme --- */
-@media (max-width: 768px) {
-    .hamburger { display: flex; }
-    header nav ul { display: none; flex-direction: column; background: var(--bg-nav); width: 100%; top: 60px; left: 0; position: absolute; padding: 20px; }
-    header nav ul li a { padding: 15px; }
-    header nav ul.show { display: flex; }
-    .main-container { padding: 40px 15px; gap: 15px; }
-    .product-card { padding: 20px; }
-    .product-card h3 { font-size: 1.1rem; }
+/* Mobil İyileştirmeler */
+@media (max-width: 600px) {
+.main-container { padding: 40px 15px; gap: 15px; }
+.product-card { padding: 20px; }
+.product-card h3 { font-size: 1.1rem; }
 }
 </style>
-</head>
 
-<body>
-
-<header>
-<nav>
-<div class="logo">Yusuf</div>
-<div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-<ul id="nav-links">
-<li><a href='index.html'>Anasayfa</a></li>
-<li><a href='hakkimda.html'>Hakkımda</a></li>
-<li><a href='faaliyetler.html'>Faaliyetler</a></li>
-<li><a href='urunler.html' class='active'>Ürünler</a></li>
-<li><a href='egitimler.html'>Eğitimler</a></li>
-<li><a href='katkilar.html'>Katkılar</a></li>
-<li><a href='iletisim.html'>İletişim</a></li>
-</ul>
-</nav>
-</header>
-
-<main class='main-container'>
-<!-- Ürün kartları buraya korunarak eklendi -->
-<div class='product-card'><h3>Kurumsal Güvenlik Çözümü</h3><p>Büyük şirketler için ağ ve uygulama güvenliğini sağlayan çözüm paketi</p></div>
-<div class='product-card'><h3>Mobil PenTest Aracı</h3><p>iOS ve Android uygulamalar için otomatik güvenlik testleri</p></div>
-<div class='product-card'><h3>Otomasyon Platformu</h3><p>Kurumsal süreçleri hızlandıran otomasyon platformu</p></div>
-<!-- ... tüm diğer ürün kartları ... -->
-<div class='product-card'><h3>IoT Monitoring & Defense</h3><p>IoT izleme ve savunma aracı</p></div>
-</main>
-
-<footer>
-<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
-<p>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
-<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
-</p>
-</footer>
-
-<script>
-// Hamburger menü toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-});
-</script>
-
-<script src="ortak-api.js"></script>
-</body>
-</html>
+</head>  
+<body>  <header>  
+<nav>  
+<ul>  
+<li><a href='index.html'>Anasayfa</a></li>  
+<li><a href='hakkimda.html'>Hakkımda</a></li>  
+<li><a href='faaliyetler.html'>Faaliyetler</a></li>  
+<li><a href='urunler.html' class='active'>Ürünler</a></li>  
+<li><a href='egitimler.html'>Eğitimler</a></li>  
+<li><a href='katkilar.html'>Katkılar</a></li>  
+<li><a href='iletisim.html'>İletişim</a></li>  
+</ul>  
+</nav>  
+</header>  <main class='main-container'>  
+<div class='product-card'>  
+<h3>Kurumsal Güvenlik Çözümü</h3>  
+<p>Büyük şirketler için ağ ve uygulama güvenliğini sağlayan çözüm paketi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobil PenTest Aracı</h3>  
+<p>iOS ve Android uygulamalar için otomatik güvenlik testleri</p>  
+</div>  
+<div class='product-card'>  
+<h3>Otomasyon Platformu</h3>  
+<p>Kurumsal süreçleri hızlandıran otomasyon platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Bulut Güvenlik Modülü</h3>  
+<p>CI/CD pipeline ve bulut ortamlarını güvenli hale getiren modül</p>  
+</div>  
+<div class='product-card'>  
+<h3>Threat Intelligence Dashboard</h3>  
+<p>Gerçek zamanlı tehdit analizi dashboard</p>  
+</div>  
+<div class='product-card'>  
+<h3>IoT Güvenlik Paketi</h3>  
+<p>Endüstriyel IoT cihazları için güvenlik taramaları</p>  
+</div>  
+<div class='product-card'>  
+<h3>Blockchain Güvenlik Çözümü</h3>  
+<p>Smart contract ve blockchain projeleri için güvenlik denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web Uygulama Güvenlik Modülü</h3>  
+<p>Kurumsal web uygulamaları için proaktif güvenlik testi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Kurumsal Raporlama Aracı</h3>  
+<p>Otomatik güvenlik ve performans raporları</p>  
+</div>  
+<div class='product-card'>  
+<h3>API Güvenlik Çözümü</h3>  
+<p>REST & GraphQL API güvenlik testleri</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobil Performans Analizi</h3>  
+<p>Android ve iOS uygulamalar için performans izleme</p>  
+</div>  
+<div class='product-card'>  
+<h3>CI/CD Güvenlik Modülü</h3>  
+<p>DevOps pipeline güvenlik entegrasyonu</p>  
+</div>  
+<div class='product-card'>  
+<h3>PenTest Otomasyon Aracı</h3>  
+<p>Tek tıkla penetrasyon testi ve raporlama</p>  
+</div>  
+<div class='product-card'>  
+<h3>Red Team Toolkit</h3>  
+<p>Kurumsal sızma testi araç seti</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web Vulnerability Scanner</h3>  
+<p>Otomatik web uygulama tarayıcısı</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobile Reverse Engineering Tool</h3>  
+<p>APK ve IPA analiz aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>SIEM Integration Suite</h3>  
+<p>Log yönetimi ve SIEM entegrasyonu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Cloud Audit Framework</h3>  
+<p>AWS & Azure güvenlik denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>OT Güvenlik Paketi</h3>  
+<p>Endüstriyel kontrol sistemleri güvenliği</p>  
+</div>  
+<div class='product-card'>  
+<h3>Social Engineering Sim Tool</h3>  
+<p>Eğitim ve test aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>Container Security Suite</h3>  
+<p>Docker & Kubernetes güvenlik denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web Application Firewall</h3>  
+<p>Kurumsal WAF çözümü</p>  
+</div>  
+<div class='product-card'>  
+<h3>Network Monitoring Platform</h3>  
+<p>Ağ izleme ve uyarı sistemi</p>  
+</div>  
+<div class='product-card'>  
+<h3>SIEM Dashboard</h3>  
+<p>Gerçek zamanlı güvenlik izleme dashboard</p>  
+</div>  
+<div class='product-card'>  
+<h3>Malware Analysis Lab</h3>  
+<p>Zararlı yazılım analiz platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Phishing Simulation Suite</h3>  
+<p>Kurumsal farkındalık aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>API Threat Detection</h3>  
+<p>Otomatik API tehdit algılama</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web Pentest Suite</h3>  
+<p>Web sızma testi aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobile App Sandbox</h3>  
+<p>Uygulama sandbox ve analiz</p>  
+</div>  
+<div class='product-card'>  
+<h3>IoT PenTest Framework</h3>  
+<p>IoT cihazları için test platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Ransomware Defense Tool</h3>  
+<p>Kurumsal ransomware önleme</p>  
+</div>  
+<div class='product-card'>  
+<h3>Blockchain Audit Suite</h3>  
+<p>Smart contract ve token denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Cloud Compliance Checker</h3>  
+<p>Bulut uyumluluk ve güvenlik denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>DevSecOps Pipeline</h3>  
+<p>Güvenli CI/CD pipeline</p>  
+</div>  
+<div class='product-card'>  
+<h3>Incident Response Kit</h3>  
+<p>Olay müdahale ve adli analiz</p>  
+</div>  
+<div class='product-card'>  
+<h3>Red Team Operations</h3>  
+<p>Kurumsal red team operasyonları</p>  
+</div>  
+<div class='product-card'>  
+<h3>Network Forensics Tool</h3>  
+<p>Ağ analizi ve adli inceleme</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web App Hardening</h3>  
+<p>Web uygulama güvenlik sertifikasyonu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobile Security Audit</h3>  
+<p>Mobil uygulama güvenlik testi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Threat Intel Collector</h3>  
+<p>Tehdit istihbarat toplama aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>Malware Sandbox</h3>  
+<p>Zararlı yazılım izleme platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Cloud Security Orchestrator</h3>  
+<p>Bulut güvenlik otomasyonu</p>  
+</div>  
+<div class='product-card'>  
+<h3>PenTest Lab Suite</h3>  
+<p>Pentest laboratuvar ve simülasyon</p>  
+</div>  
+<div class='product-card'>  
+<h3>Web Exploit Framework</h3>  
+<p>Web exploit ve test platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>Mobile Reverse Engineering Suite</h3>  
+<p>APK/IPA analiz platformu</p>  
+</div>  
+<div class='product-card'>  
+<h3>OT Security Dashboard</h3>  
+<p>Endüstriyel güvenlik izleme dashboard</p>  
+</div>  
+<div class='product-card'>  
+<h3>Crypto Audit Toolkit</h3>  
+<p>Blockchain ve token denetimi</p>  
+</div>  
+<div class='product-card'>  
+<h3>Security Awareness Platform</h3>  
+<p>Kurumsal eğitim ve farkındalık aracı</p>  
+</div>  
+<div class='product-card'>  
+<h3>IoT Monitoring & Defense</h3>  
+<p>IoT izleme ve savunma aracı</p>  
+</div>  
+</main>  <footer>  
+<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>  
+<p>  
+<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |  
+<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |  
+<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>  
+</p>  
+</footer>  <script src="ortak-api.js"></script>  </body>  
+</html> 
