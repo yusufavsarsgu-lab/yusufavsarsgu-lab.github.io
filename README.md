@@ -1,1 +1,0 @@
-# yusufavsarsgu-lab.github.io
