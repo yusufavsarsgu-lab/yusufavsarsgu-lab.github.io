@@ -9,33 +9,34 @@
     --bg-main: #0d1117;
     --bg-sec: #161b22;
     --accent: #58a6ff;
-    --accent-soft: rgba(88, 166, 255, 0.12);
+    --accent-soft: rgba(88, 166, 255, 0.10);
     --text-main: #f0f6fc;
     --text-dim: #c9d1d9;
     --border: #30363d;
     --success: #3fb950;
+    --danger: #ff6b6b;
+    --shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
 * { box-sizing: border-box; }
 
 body {
+    margin: 0;
     background: var(--bg-main);
     color: var(--text-main);
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    margin: 0;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* NAV */
 header nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(22, 27, 34, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
     min-height: 72px;
+    background: rgba(22, 27, 34, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 
 header nav ul {
@@ -56,8 +57,8 @@ header nav ul li a {
     color: var(--text-main);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.92rem;
-    transition: 0.3s;
+    font-size: 0.94rem;
+    transition: 0.3s ease;
 }
 
 header nav ul li a:hover,
@@ -66,84 +67,39 @@ header nav ul li a.active {
     box-shadow: inset 0 -3px 0 var(--accent);
 }
 
-/* Mobil hamburger */
-header nav .nav-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.04);
-    color: var(--text-main);
-    cursor: pointer;
-    margin: 12px 16px 12px auto;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-header nav .nav-toggle span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    position: relative;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle span::before,
-header nav .nav-toggle span::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle span::before { top: -6px; }
-header nav .nav-toggle span::after { top: 6px; }
-
-header nav.nav-open .nav-toggle span { background: transparent; }
-header nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
-header nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
-
-header nav .nav-menu-wrap {
-    width: 100%;
-}
-
-/* HERO */
 .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 20px 50px;
+    background:
+        radial-gradient(circle at top center, rgba(88,166,255,0.16), transparent 35%),
+        linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+}
+
+.hero-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px 30px;
     text-align: center;
 }
 
 .hero-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 14px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(88,166,255,0.22);
     background: var(--accent-soft);
     color: var(--accent);
     border-radius: 999px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 700;
     margin-bottom: 18px;
 }
 
 .hero h1 {
     margin: 0;
-    font-size: clamp(2.2rem, 7vw, 3.6rem);
-    color: var(--text-main);
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    line-height: 1.05;
     letter-spacing: -1px;
 }
 
@@ -152,69 +108,116 @@ header nav .nav-menu-wrap {
 }
 
 .hero p {
-    max-width: 760px;
+    max-width: 860px;
     margin: 18px auto 0;
     color: var(--text-dim);
     font-size: 1.08rem;
 }
 
-/* LEGAL */
-.legal-note {
-    max-width: 1100px;
-    margin: 18px auto 0;
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.hero-actions a {
+    text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #0d1117;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.btn-secondary {
+    color: var(--accent);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+}
+
+.btn-secondary:hover {
+    border-color: rgba(88,166,255,0.40);
+    transform: translateY(-2px);
+}
+
+.legal-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
 .legal-box {
-    background: linear-gradient(180deg, rgba(88,166,255,0.08), rgba(88,166,255,0.03));
-    border: 1px solid rgba(88,166,255,0.18);
+    background: linear-gradient(180deg, rgba(255,107,107,0.08), rgba(255,107,107,0.03));
+    border: 1px solid rgba(255,107,107,0.20);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+}
+
+.legal-box h2 {
+    margin: 0 0 10px;
+    color: #ff8b8b;
+    font-size: 1.25rem;
+}
+
+.legal-box p {
+    margin: 0;
     color: var(--text-dim);
-    border-radius: 16px;
-    padding: 18px 20px;
-    text-align: center;
     font-size: 0.96rem;
     line-height: 1.8;
 }
 
-/* SECTION TITLE */
-.section-head {
+.section {
     max-width: 1200px;
-    margin: 40px auto 0;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 60px 20px 0;
+}
+
+.section-head {
+    margin-bottom: 24px;
 }
 
 .section-head h2 {
     margin: 0 0 10px;
+    font-size: 1.9rem;
     color: var(--accent);
-    font-size: 1.7rem;
+    letter-spacing: -0.5px;
 }
 
 .section-head p {
     margin: 0;
     color: var(--text-dim);
+    max-width: 760px;
 }
 
-/* GRID */
-.main-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 28px 20px 30px;
+.services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 22px;
 }
 
 .service-card {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 20px;
     padding: 26px;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    position: relative;
-    overflow: hidden;
+    transition: 0.3s ease;
 }
 
 .service-card::before {
@@ -227,8 +230,8 @@ header nav .nav-menu-wrap {
 
 .service-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(88,166,255,0.45);
-    box-shadow: 0 14px 36px rgba(0,0,0,0.35);
+    border-color: rgba(88,166,255,0.42);
+    box-shadow: var(--shadow);
 }
 
 .card-top {
@@ -239,14 +242,14 @@ header nav .nav-menu-wrap {
 }
 
 .card-icon {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: var(--accent-soft);
-    border: 1px solid rgba(88,166,255,0.18);
+    border: 1px solid rgba(88,166,255,0.20);
     font-size: 1.2rem;
 }
 
@@ -262,8 +265,8 @@ header nav .nav-menu-wrap {
 
 .service-card h3 {
     margin: 0;
+    font-size: 1.2rem;
     color: var(--text-main);
-    font-size: 1.22rem;
     letter-spacing: -0.2px;
 }
 
@@ -283,7 +286,6 @@ header nav .nav-menu-wrap {
 .features span {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
     font-size: 0.82rem;
     color: var(--text-main);
     padding: 8px 10px;
@@ -304,89 +306,98 @@ header nav .nav-menu-wrap {
     color: var(--accent);
     text-decoration: none;
     font-weight: 700;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .card-bottom a:hover {
-    opacity: 0.85;
     transform: translateX(2px);
+    opacity: 0.9;
 }
 
-/* CTA */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.process-card {
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(17,22,29,1));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    transition: 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(88,166,255,0.35);
+    box-shadow: var(--shadow);
+}
+
+.process-number {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border: 1px solid rgba(88,166,255,0.20);
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.process-card h3 {
+    margin: 0 0 8px;
+    color: var(--text-main);
+    font-size: 1.05rem;
+}
+
+.process-card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.94rem;
+}
+
 .cta-box {
     max-width: 1200px;
-    margin: 10px auto 0;
-    padding: 0 20px 50px;
+    margin: 0 auto;
+    padding: 60px 20px;
 }
 
 .cta-inner {
     background: linear-gradient(180deg, rgba(22,27,34,1), rgba(16,20,25,1));
     border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 30px 26px;
+    border-radius: 24px;
+    padding: 34px 28px;
     text-align: center;
+    box-shadow: var(--shadow);
 }
 
-.cta-inner h3 {
+.cta-inner h2 {
     margin: 0 0 10px;
     color: var(--accent);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .cta-inner p {
-    margin: 0 auto 20px;
+    margin: 0 auto 22px;
     color: var(--text-dim);
-    max-width: 700px;
+    max-width: 760px;
 }
 
-.cta-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.cta-actions a {
-    text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-weight: 700;
-    transition: 0.3s;
-}
-
-.btn-primary {
-    background: var(--accent);
-    color: #0d1117;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
-}
-
-.btn-secondary {
-    color: var(--accent);
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.03);
-}
-
-.btn-secondary:hover {
-    border-color: rgba(88,166,255,0.4);
-    transform: translateY(-2px);
-}
-
-/* FOOTER */
 footer {
     background: var(--bg-sec);
     text-align: center;
-    padding: 45px 20px;
+    padding: 42px 20px;
     border-top: 1px solid var(--border);
 }
 
 footer p {
     margin: 10px 0;
-    font-size: 0.92rem;
     color: var(--text-dim);
+    font-size: 0.92rem;
 }
 
 footer a {
@@ -394,76 +405,35 @@ footer a {
     margin: 0 8px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 footer a:hover {
     color: var(--text-main);
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
-    header nav {
-        display: block;
-        padding: 0;
-    }
-
-    header nav .nav-toggle {
-        display: inline-flex;
-    }
-
-    header nav .nav-menu-wrap {
-        display: none;
-        width: 100%;
-        border-top: 1px solid var(--border);
-        background: rgba(13, 17, 23, 0.98);
-    }
-
-    header nav.nav-open .nav-menu-wrap {
-        display: block;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        white-space: normal;
-        padding: 8px 12px 16px;
-        gap: 6px;
-    }
-
-    header nav ul li {
-        width: 100%;
-    }
-
-    header nav ul li a {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px 16px;
-        border-radius: 12px;
-        box-shadow: none !important;
-    }
-
-    header nav ul li a.active,
-    header nav ul li a:hover {
-        background: rgba(88, 166, 255, 0.10);
-    }
-
     .hero {
-        padding: 55px 16px 22px;
+        padding: 60px 16px 36px;
     }
 
-    .main-container {
-        padding: 22px 16px 26px;
-        gap: 16px;
+    .section,
+    .cta-box {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
-    .service-card {
+    .legal-wrap {
+        padding: 0 16px;
+    }
+
+    .service-card,
+    .process-card {
         padding: 22px;
     }
 
     .cta-inner {
-        padding: 24px 18px;
+        padding: 26px 18px;
     }
 }
 </style>
@@ -486,161 +456,219 @@ footer a:hover {
 </header>
 
 <section class="hero">
-    <div class="hero-badge">Teknik Hizmet Alanları</div>
-    <h1>Siber güvenlik ve <span>teknik hizmetler</span></h1>
-    <p>
-        Bu sayfada; güvenlik odaklı analiz, pentest simülasyonları, teknik araştırma, yazılım geliştirme ve otomasyon alanlarında sunduğum çalışma başlıkları yer almaktadır.
-        Tüm içerikler profesyonel, etik ve yasal çerçevede değerlendirilir.
-    </p>
-</section>
-
-<section class="legal-note">
-    <div class="legal-box">
-        Bu sayfadaki tüm hizmet başlıkları yalnızca yasal, izinli ve profesyonel kapsamda değerlendirilir.
-        Yetkisiz erişim, zarar verme, veri ihlali, sistem istismarı veya hukuka aykırı kullanım amacı taşıyan talepler kabul edilmez.
-        Yapılan tüm çalışmalar, etik yaklaşım ve sorumluluk bilinciyle ele alınır.
+    <div class="hero-inner">
+        <div class="hero-badge">Siber Güvenlik Hizmetleri</div>
+        <h1>Profesyonel <span>siber güvenlik</span> hizmetleri</h1>
+        <p>
+            Bu sayfa; web uygulama güvenliği, pentest simülasyonları, mobil ve API güvenlik incelemeleri,
+            zafiyet doğrulama, teknik araştırma, güvenlik danışmanlığı ve kontrollü demo/lab çalışmaları gibi
+            siber güvenlik odaklı hizmet başlıklarını içermektedir.
+        </p>
+        <div class="hero-actions">
+            <a href="iletisim.html" class="btn-primary">İletişime Geç</a>
+            <a href="#hizmetler" class="btn-secondary">Hizmetleri İncele</a>
+        </div>
     </div>
 </section>
 
-<div class="section-head">
-    <h2>Hizmet başlıkları</h2>
-    <p>Profesyonel güvenlik, analiz, araştırma, otomasyon ve geliştirme odaklı çalışma alanları.</p>
+<div class="legal-wrap">
+    <div class="legal-box">
+        <h2>Yasal ve etik çerçeve</h2>
+        <p>
+            Bu sayfadaki tüm hizmet başlıkları yalnızca yasal, izinli ve profesyonel kapsamda değerlendirilir.
+            Yetkisiz erişim, veri ihlali, sistem istismarı, üçüncü taraf altyapılara izinsiz müdahale, zararlı amaçlı kullanım
+            veya hukuka aykırı talep içeren çalışmalar kabul edilmez. Tüm değerlendirme, analiz ve simülasyon süreçleri etik yaklaşım,
+            kontrollü kapsam ve profesyonel sorumluluk anlayışıyla yürütülür.
+        </p>
+    </div>
 </div>
 
-<main class="main-container">
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">🛡️</div>
-            <div class="card-tag">Analiz</div>
-        </div>
-        <h3>Web Uygulama Güvenlik Analizi</h3>
-        <p>Web tabanlı projelerde güvenlik yüzeyi, temel giriş noktaları, zafiyet alanları ve yapı bütünlüğüne yönelik teknik değerlendirme çalışmaları.</p>
-        <div class="features">
-            <span>Yüzey Analizi</span>
-            <span>Teknik Değerlendirme</span>
-            <span>Raporlama</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+<section class="section" id="hizmetler">
+    <div class="section-head">
+        <h2>Hizmet başlıkları</h2>
+        <p>Siber güvenlik odağında konumlanan analiz, test, araştırma ve danışmanlık alanları.</p>
     </div>
 
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">🎯</div>
-            <div class="card-tag">Pentest</div>
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🛡️</div>
+                <div class="card-tag">Web Security</div>
+            </div>
+            <h3>Web Uygulama Güvenlik Analizi</h3>
+            <p>Web tabanlı sistemlerde güvenlik yüzeyi, giriş noktaları, zafiyet alanları ve uygulama akışına yönelik teknik değerlendirme çalışmaları.</p>
+            <div class="features">
+                <span>Yüzey Analizi</span>
+                <span>Risk Değerlendirme</span>
+                <span>Teknik Rapor</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
         </div>
-        <h3>Pentest Simülasyon ve Demo Ortamları</h3>
-        <p>Yetkili test senaryoları, eğitim amaçlı lab kurguları ve kontrollü gösterim ortamları üzerinden güvenlik süreçlerinin simülasyonu.</p>
-        <div class="features">
-            <span>Demo Senaryolar</span>
-            <span>Lab Ortamı</span>
-            <span>Kontrollü Test</span>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🎯</div>
+                <div class="card-tag">Pentest</div>
+            </div>
+            <h3>Pentest Simülasyon ve Demo Ortamları</h3>
+            <p>Yetkili test senaryoları, eğitim amaçlı lab kurguları ve kontrollü gösterim ortamları üzerinden pentest süreçlerinin simülasyonu.</p>
+            <div class="features">
+                <span>Lab Kurgu</span>
+                <span>Kontrollü Test</span>
+                <span>Demo Senaryo</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
         </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">📱</div>
+                <div class="card-tag">Mobile</div>
+            </div>
+            <h3>Mobil Uygulama Güvenlik İncelemesi</h3>
+            <p>Mobil uygulama akışı, istemci tarafı davranışları, veri görünürlüğü ve temel risk yüzeyine odaklanan teknik inceleme süreçleri.</p>
+            <div class="features">
+                <span>Uygulama Akışı</span>
+                <span>Risk Yüzeyi</span>
+                <span>Teknik Notlar</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🌐</div>
+                <div class="card-tag">API Security</div>
+            </div>
+            <h3>API Güvenlik İncelemeleri</h3>
+            <p>API yapılarında endpoint mantığı, erişim kontrolü, kimlik doğrulama akışı ve entegrasyon güvenliğine yönelik teknik değerlendirme.</p>
+            <div class="features">
+                <span>Endpoint İnceleme</span>
+                <span>Access Control</span>
+                <span>Akış Analizi</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🔍</div>
+                <div class="card-tag">Validation</div>
+            </div>
+            <h3>Zafiyet Doğrulama ve Teknik İnceleme</h3>
+            <p>Belirli bir bulgunun gerçekten güvenlik riski oluşturup oluşturmadığını değerlendirmeye yönelik doğrulama ve teknik inceleme süreçleri.</p>
+            <div class="features">
+                <span>Bulgu Doğrulama</span>
+                <span>Teknik Kontrol</span>
+                <span>Risk Seviyesi</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🧪</div>
+                <div class="card-tag">Research</div>
+            </div>
+            <h3>Güvenlik Araştırması ve Teknik Raporlama</h3>
+            <p>Belirli sistemler, akışlar veya senaryolar üzerinde gerçekleştirilen teknik incelemelerin anlamlı, profesyonel ve okunabilir şekilde raporlanması.</p>
+            <div class="features">
+                <span>İnceleme</span>
+                <span>Dokümantasyon</span>
+                <span>Sunum</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🧠</div>
+                <div class="card-tag">Consulting</div>
+            </div>
+            <h3>Siber Güvenlik Danışmanlığı</h3>
+            <p>Proje veya yapı özelinde güvenlik yaklaşımı, önceliklendirme, temel riskler, savunma mantığı ve süreç planlaması hakkında profesyonel yönlendirme.</p>
+            <div class="features">
+                <span>Yol Haritası</span>
+                <span>Güvenlik Yaklaşımı</span>
+                <span>Planlama</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🛰️</div>
+                <div class="card-tag">Surface</div>
+            </div>
+            <h3>Sistem ve Saldırı Yüzeyi Değerlendirmesi</h3>
+            <p>Bir yapının dışarıdan görünen bileşenleri, potansiyel giriş alanları ve genel görünür güvenlik yüzeyine odaklanan teknik değerlendirme.</p>
+            <div class="features">
+                <span>Yüzey Haritalama</span>
+                <span>Varlık Görünürlüğü</span>
+                <span>Ön Değerlendirme</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+        <div class="service-card">
+            <div class="card-top">
+                <div class="card-icon">🔐</div>
+                <div class="card-tag">Hardening</div>
+            </div>
+            <h3>Temel Güvenlik Sertleştirme Yönlendirmesi</h3>
+            <p>Panel, uygulama veya servis yapılarında temel güvenlik sertleştirme yaklaşımına yönelik yönlendirme, kontrol ve iyileştirme başlıkları.</p>
+            <div class="features">
+                <span>Temel Hardening</span>
+                <span>Kontrol Başlıkları</span>
+                <span>İyileştirme Notları</span>
+            </div>
+            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <h2>Süreç nasıl ilerler?</h2>
+        <p>İlk talepten teknik değerlendirmeye kadar daha net ve kontrollü bir çalışma akışı.</p>
     </div>
 
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">📱</div>
-            <div class="card-tag">Mobil</div>
+    <div class="process-grid">
+        <div class="process-card">
+            <div class="process-number">1</div>
+            <h3>Talep değerlendirmesi</h3>
+            <p>İlk aşamada ihtiyaç, amaç ve çalışmanın yasal/etik uygunluğu değerlendirilir.</p>
         </div>
-        <h3>Mobil Uygulama Güvenlik İncelemesi</h3>
-        <p>Mobil uygulama mimarisi, veri akışı, kullanıcı işlemleri ve görünür risk yüzeyine odaklanan teknik inceleme ve değerlendirme süreçleri.</p>
-        <div class="features">
-            <span>Uygulama Akışı</span>
-            <span>Risk Yüzeyi</span>
-            <span>Teknik Notlar</span>
+        <div class="process-card">
+            <div class="process-number">2</div>
+            <h3>Kapsam belirleme</h3>
+            <p>Hangi yapı, hangi sınır ve hangi çıktı beklentisiyle ilerlenmesi gerektiği netleştirilir.</p>
         </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        <div class="process-card">
+            <div class="process-number">3</div>
+            <h3>Analiz / simülasyon</h3>
+            <p>Uygun bulunan kapsam dahilinde değerlendirme, inceleme veya demo/simülasyon süreci yürütülür.</p>
+        </div>
+        <div class="process-card">
+            <div class="process-number">4</div>
+            <h3>Çıktı ve yönlendirme</h3>
+            <p>Elde edilen bulgular, teknik notlar ve gerekirse iyileştirme önerileri düzenli şekilde sunulur.</p>
+        </div>
     </div>
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">🌐</div>
-            <div class="card-tag">API</div>
-        </div>
-        <h3>API Güvenlik İncelemeleri</h3>
-        <p>Servisler arası veri alışverişi, erişim kontrol mantığı, endpoint yapısı ve entegrasyon güvenliği üzerine teknik analiz çalışmaları.</p>
-        <div class="features">
-            <span>REST Yapısı</span>
-            <span>Erişim Kontrolü</span>
-            <span>Entegrasyon Akışı</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-    </div>
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">⚙️</div>
-            <div class="card-tag">Otomasyon</div>
-        </div>
-        <h3>Güvenlik Odaklı Otomasyon Çözümleri</h3>
-        <p>Tekrarlayan teknik süreçlerin otomasyonu, veri toplama akışları, izleme yardımcıları ve operasyonel verimlilik sağlayan yapılar.</p>
-        <div class="features">
-            <span>Script Geliştirme</span>
-            <span>Veri Akışı</span>
-            <span>Operasyonel Destek</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-    </div>
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">💻</div>
-            <div class="card-tag">Geliştirme</div>
-        </div>
-        <h3>Güvenlik Odaklı Yazılım Geliştirme</h3>
-        <p>Web arayüzleri, kontrol panelleri, teknik demo ekranları ve güvenlik yaklaşımı gözetilerek geliştirilen özel yazılım çözümleri.</p>
-        <div class="features">
-            <span>Özel Arayüz</span>
-            <span>Panel Yapısı</span>
-            <span>Teknik Demo</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-    </div>
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">🔍</div>
-            <div class="card-tag">Araştırma</div>
-        </div>
-        <h3>Teknik Araştırma ve Güvenlik Raporlama</h3>
-        <p>Belirli sistemler, akışlar veya senaryolar hakkında teknik inceleme, yorumlama ve raporlaştırma desteği sunulan çalışma başlıkları.</p>
-        <div class="features">
-            <span>İnceleme</span>
-            <span>Dokümantasyon</span>
-            <span>Sunum</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-    </div>
-
-    <div class="service-card">
-        <div class="card-top">
-            <div class="card-icon">🧠</div>
-            <div class="card-tag">Danışmanlık</div>
-        </div>
-        <h3>Teknik Yönlendirme ve Danışmanlık</h3>
-        <p>Proje yapısına göre uygun teknik yön, güvenlik yaklaşımı, araç seçimi ve süreç planlaması hakkında profesyonel değerlendirme desteği.</p>
-        <div class="features">
-            <span>Yol Haritası</span>
-            <span>Teknik Öneri</span>
-            <span>Planlama</span>
-        </div>
-        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-    </div>
-
-</main>
+</section>
 
 <section class="cta-box">
     <div class="cta-inner">
-        <h3>İhtiyaca göre şekillenen hizmet yapısı</h3>
+        <h2>Siber güvenlik odağında profesyonel yaklaşım</h2>
         <p>
-            Her çalışma sabit bir paket mantığında değil; kapsam, içerik ve teslim yapısı ihtiyaca göre belirlenir.
-            Uygun yapı için iletişime geçebilir, talebinizi kısa bir özetle paylaşabilirsiniz.
+            Buradaki hizmet başlıkları sabit paket mantığında değil; ihtiyaç, kapsam ve uygunluk durumuna göre değerlendirilir.
+            Güvenlik odaklı bir çalışma için kısa bir özetle iletişime geçebilirsin.
         </p>
-        <div class="cta-actions">
-            <a class="btn-primary" href="iletisim.html">İletişime Geç</a>
-            <a class="btn-secondary" href="hakkimda.html">Daha fazla bilgi</a>
+        <div class="hero-actions">
+            <a href="iletisim.html" class="btn-primary">İletişime Geç</a>
+            <a href="hakkimda.html" class="btn-secondary">Hakkımda</a>
         </div>
     </div>
 </section>
