@@ -5,301 +5,364 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <title>Anasayfa - Yusuf</title>
 <style>
-/* Temel Değişkenler ve Reset */
-:root {
-    --bg-main: #0d1117;
-    --bg-sec: #161b22;
-    --accent: #58a6ff;
-    --text-main: #f0f6fc;
-    --text-dim: #c9d1d9;
-    --error: #ff4d4d;
+:root{
+    --bg-main:#0d1117;
+    --bg-sec:#161b22;
+    --bg-card:#11161d;
+    --accent:#58a6ff;
+    --accent-2:#7ee787;
+    --text-main:#f0f6fc;
+    --text-dim:#c9d1d9;
+    --border:#30363d;
+    --warning:#ff7b72;
 }
-
-body { 
-    margin:0; 
-    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif; 
-    background: var(--bg-main); 
-    color: var(--text-main); 
-    line-height: 1.6;
-    overflow-x: hidden;
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:'Inter','Segoe UI',Roboto,sans-serif;
+    background:var(--bg-main);
+    color:var(--text-main);
+    line-height:1.6;
+    overflow-x:hidden;
 }
-
-/* Navigasyon - Mobil Uyumlu */
-header nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(22, 27, 34, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #30363d;
+header nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(22,27,34,.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
 }
-
-header nav ul { 
-    display:flex; 
-    list-style:none; 
-    padding: 0 20px; 
-    margin:0; 
-    overflow-x: auto; /* Mobilde kaydırılabilir menü */
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
+header nav ul{
+    display:flex;
+    list-style:none;
+    padding:0 20px;
+    margin:0;
+    overflow-x:auto;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
 }
-
-header nav ul::-webkit-scrollbar { display: none; }
-
-header nav ul li a { 
-    display: block;
-    padding: 20px 15px;
-    color: var(--text-main); 
-    text-decoration:none; 
-    font-weight:600; 
-    font-size: 0.95rem;
-    transition: 0.3s ease; 
+header nav ul::-webkit-scrollbar{display:none}
+header nav ul li a{
+    display:block;
+    padding:20px 15px;
+    color:var(--text-main);
+    text-decoration:none;
+    font-weight:600;
+    font-size:.95rem;
+    transition:.3s ease;
 }
-
-header nav ul li a:hover, header nav ul li a.active { 
-    color: var(--accent); 
+header nav ul li a:hover, header nav ul li a.active{
+    color:var(--accent);
     box-shadow: inset 0 -3px 0 var(--accent);
 }
 
-/* Hero Bölümü */
-.hero { 
-    text-align:center; 
-    padding: 80px 20px;
-    background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+.hero{
+    position:relative;
+    padding:92px 20px 56px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(88,166,255,.14), transparent 35%),
+      radial-gradient(circle at 80% 0%, rgba(126,231,135,.08), transparent 28%),
+      linear-gradient(180deg,#131920 0%, #0d1117 75%);
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(88,166,255,.35), transparent);
+}
+.hero-badge{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    padding:8px 14px;
+    border:1px solid rgba(88,166,255,.28);
+    border-radius:999px;
+    background:rgba(88,166,255,.08);
+    color:var(--accent);
+    font-size:.88rem;
+    font-weight:700;
+    margin-bottom:22px;
+}
+.hero h1{
+    margin:0;
+    font-size:clamp(2.4rem, 8vw, 4.25rem);
+    line-height:1.05;
+    letter-spacing:-1.2px;
+}
+.hero h1 span{color:var(--accent)}
+.hero p{
+    max-width:760px;
+    margin:22px auto 0;
+    color:var(--text-dim);
+    font-size:1.08rem;
+}
+.hero-actions{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+.hero-actions a{
+    text-decoration:none;
+    font-weight:700;
+    border-radius:14px;
+    padding:14px 20px;
+    transition:.25s ease;
+}
+.btn-primary{
+    background:var(--accent);
+    color:#08111b;
+}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{
+    color:var(--text-main);
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.03);
+}
+.btn-secondary:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+.quick-stats{
+    max-width:1150px;
+    margin:34px auto 0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+.stat{
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px 16px;
+    text-align:left;
+}
+.stat strong{
+    display:block;
+    color:var(--accent);
+    font-size:1.25rem;
+    margin-bottom:5px;
+}
+.stat span{
+    color:var(--text-dim);
+    font-size:.92rem;
 }
 
-.hero h1 { 
-    font-size: clamp(2.5rem, 8vw, 4rem); /* Dinamik font boyutu */
-    color: var(--accent); 
-    margin:0; 
-    letter-spacing: -1px;
+.section-head{
+    max-width:1200px;
+    margin:0 auto 22px;
+    padding:0 20px;
+}
+.section-head h2{
+    margin:0 0 8px;
+    color:var(--accent);
+    font-size:1.9rem;
+}
+.section-head p{
+    margin:0;
+    color:var(--text-dim);
+    max-width:780px;
 }
 
-.hero p { 
-    font-size: 1.1em; 
-    color: var(--text-dim); 
-    margin: 20px auto; 
-    max-width:600px;
+.grid-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:22px;
+    padding:0 20px;
+    max-width:1200px;
+    margin:0 auto;
 }
-
-/* Uyarı Mesajı */
-.warning { 
-    margin: 40px auto; 
-    font-weight:600; 
-    color: var(--error); 
-    text-align:center; 
-    max-width: 700px; 
-    font-size: 0.95em; 
-    border: 1px solid rgba(255, 77, 77, 0.3); 
-    padding: 20px; 
-    border-radius: 12px; 
-    background: rgba(255, 77, 77, 0.05);
-    line-height: 1.8;
+.card{
+    background:linear-gradient(180deg, rgba(22,27,34,.98), rgba(17,22,29,.98));
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:24px;
+    min-height:270px;
+    position:relative;
+    overflow:hidden;
+    transition:.35s ease;
 }
-
-/* Grid Yapısı */
-.grid-container { 
-    display:grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px; 
-    padding: 20px; 
-    max-width: 1200px;
-    margin: 0 auto;
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(88,166,255,.55);
+    box-shadow:0 14px 34px rgba(0,0,0,.35);
 }
-
-.card { 
-    background: var(--bg-sec); 
-    border-radius: 16px; 
-    padding: 24px; 
-    min-height: 250px; 
-    position:relative; 
-    overflow:hidden; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid #30363d;
+.card canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    opacity:.4;
+    z-index:0;
 }
-
-.card:hover { 
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+.card-content{
+    position:relative;
+    z-index:1;
 }
-
-.card canvas { 
-    position:absolute; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    height:100%; 
-    z-index:0; 
-    opacity: 0.4;
+.card-kicker{
+    display:inline-block;
+    margin-bottom:10px;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:.74rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    background:rgba(88,166,255,.1);
+    color:var(--accent);
+    border:1px solid rgba(88,166,255,.22);
 }
-
-.card-content { 
-    position:relative; 
-    z-index:1; 
+.card-content h3{
+    margin:0 0 8px;
+    font-size:1.25rem;
+    color:var(--text-main);
 }
-
-.card-content h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--accent);
+.card-content p{
+    margin:0 0 16px;
+    color:var(--text-dim);
+    font-size:.95rem;
 }
-
-/* Sosyal Linkler */
-.social-links { 
-    margin: 60px 0; 
-    display:flex; 
-    flex-wrap: wrap;
-    justify-content:center; 
-    gap: 15px; 
+.demo-surface{
+    background:rgba(5,8,12,.72);
+    border:1px solid rgba(88,166,255,.16);
+    border-radius:14px;
+    padding:14px;
+    min-height:132px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:12px;
+    color:#9ecbff;
+    overflow:hidden;
 }
-
-.social-links a { 
-    background: var(--bg-sec);
-    padding: 12px 25px;
-    border-radius: 50px;
-    color: var(--accent); 
-    text-decoration:none; 
-    font-weight:600; 
-    transition: 0.3s; 
-    border: 1px solid #30363d;
+.demo-surface .label{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#7d8590;
+    margin-bottom:10px;
+    font-size:11px;
 }
-
-.social-links a:hover { 
-    background: var(--accent);
-    color: var(--bg-main);
-    transform: translateY(-3px);
+.badge-ok{
+    color:var(--accent-2);
+    font-weight:700;
 }
-
-/* Footer */
-footer { 
-    background: var(--bg-sec); 
-    text-align:center; 
-    padding: 40px 20px; 
-    margin-top: 60px; 
-    border-top: 1px solid #30363d;
+.approach{
+    max-width:1200px;
+    margin:70px auto 0;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:22px;
 }
-
-footer p { opacity: 0.7; font-size: 0.9em; }
-
-/* Mobil Ayarlamalar */
-@media (max-width: 600px) {
-    .hero { padding: 50px 15px; }
-    .grid-container { padding: 15px; }
-    .card { min-height: 200px; }
+.panel{
+    background:var(--bg-sec);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
 }
-
-
-/* Ortak Mobil Hamburger Menü */
-header nav {
-    min-height: 72px;
+.panel h3{
+    margin-top:0;
+    font-size:1.45rem;
+    color:var(--accent);
 }
-
-header nav .nav-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid var(--border, #30363d);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-main, #f0f6fc);
-    cursor: pointer;
-    margin: 12px 16px 12px auto;
-    transition: 0.3s ease;
+.list{
+    display:grid;
+    gap:12px;
 }
-
-header nav .nav-toggle:hover {
-    border-color: var(--accent, #58a6ff);
-    color: var(--accent, #58a6ff);
+.list-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
 }
-
-header nav .nav-toggle span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    position: relative;
-    transition: 0.3s ease;
+.list-item:last-child{border-bottom:0}
+.list-item strong{display:block;margin-bottom:4px}
+.list-item span{color:var(--text-dim); font-size:.95rem}
+.dot{
+    flex:0 0 12px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--accent);
+    margin-top:7px;
+    box-shadow:0 0 0 5px rgba(88,166,255,.1);
 }
-
-header nav .nav-toggle span::before,
-header nav .nav-toggle span::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    transition: 0.3s ease;
+.warning{
+    margin:70px auto 0;
+    max-width:1200px;
+    padding:0 20px;
 }
-
-header nav .nav-toggle span::before { top: -6px; }
-header nav .nav-toggle span::after { top: 6px; }
-
-header nav.nav-open .nav-toggle span { background: transparent; }
-header nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
-header nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
-
-header nav .nav-menu-wrap {
-    width: 100%;
+.warning-box{
+    border:1px solid rgba(255,123,114,.35);
+    background:linear-gradient(180deg, rgba(255,123,114,.08), rgba(255,123,114,.04));
+    color:#ffd7d5;
+    border-radius:20px;
+    padding:28px;
 }
-
-@media (max-width: 768px) {
-    header nav {
-        display: block;
-        padding: 0;
-    }
-
-    header nav .nav-toggle {
-        display: inline-flex;
-    }
-
-    header nav .nav-menu-wrap {
-        display: none;
-        width: 100%;
-        border-top: 1px solid var(--border, #30363d);
-        background: rgba(13, 17, 23, 0.98);
-    }
-
-    header nav.nav-open .nav-menu-wrap {
-        display: block;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        white-space: normal;
-        padding: 8px 12px 16px;
-        gap: 6px;
-    }
-
-    header nav ul li {
-        width: 100%;
-    }
-
-    header nav ul li a {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px 16px;
-        border-radius: 12px;
-        box-shadow: none !important;
-    }
-
-    header nav ul li a.active,
-    header nav ul li a:hover {
-        background: rgba(88, 166, 255, 0.10);
-    }
-
-    header nav ul li a.active::after {
-        display: none;
-    }
+.warning-box h3{
+    margin:0 0 10px;
+    color:#ffb4ac;
+    font-size:1.35rem;
 }
+.warning-box p{
+    margin:0 0 14px;
+    color:#f2c9c5;
+}
+.warning-box ul{
+    margin:0;
+    padding-left:20px;
+    color:#f2c9c5;
+}
+.warning-box li{margin-bottom:8px}
 
+.social-links{
+    margin:60px 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    padding:0 20px;
+}
+.social-links a{
+    background:var(--bg-sec);
+    padding:12px 25px;
+    border-radius:50px;
+    color:var(--accent);
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+    border:1px solid var(--border);
+}
+.social-links a:hover{
+    background:var(--accent);
+    color:var(--bg-main);
+    transform:translateY(-3px);
+}
+footer{
+    background:var(--bg-sec);
+    text-align:center;
+    padding:40px 20px;
+    margin-top:60px;
+    border-top:1px solid var(--border);
+}
+footer p{opacity:.78;font-size:.92em;margin:8px 0}
+
+@media (max-width: 900px){
+    .quick-stats{grid-template-columns:repeat(2,1fr)}
+    .approach{grid-template-columns:1fr}
+}
+@media (max-width: 600px){
+    .hero{padding:72px 15px 46px}
+    .grid-container,.section-head,.warning{padding-left:15px;padding-right:15px}
+    .quick-stats{grid-template-columns:1fr}
+    .card{min-height:240px}
+    .panel,.warning-box{padding:22px}
+}
 </style>
 </head>
 <body>
@@ -319,99 +382,408 @@ header nav .nav-menu-wrap {
 </header>
 
 <section class='hero'>
-<h1>Merhaba, ben Yusuf!</h1>
-<p>Siber güvenlik araştırmacısı ve yazılım geliştirici. Şu anda hobi amaçlı projeler ve kurumsal çalışmalar yürütüyorum.</p>
+    <div class='hero-badge'>Bağımsız Araştırma • Güvenlik Odaklı Geliştirme</div>
+    <h1>Profesyonel <span>simülasyonlar</span>, analizler ve teknik demolar</h1>
+    <p>
+        Güvenlik, ağ görünürlüğü, uygulama davranışı ve veri akışı gibi alanlarda hazırlanan demo çalışmalar;
+        teknik yaklaşımı görselleştirmek, süreçleri anlaşılır hale getirmek ve gerçek dünya senaryolarını kontrollü biçimde temsil etmek amacıyla sunulmaktadır.
+    </p>
+    <div class='hero-actions'>
+        <a class='btn-primary' href='iletisim.html'>İletişime Geç</a>
+        <a class='btn-secondary' href='hakkimda.html'>Hakkımda</a>
+    </div>
 
-<div class='warning'>
-<strong>UYARI:</strong> Yasadışı talepler derhal ilgili birimlere bildirilerek yasal işlemler başlatılacaktır.<br>
-İletişim bağlantılarını rahatsız etmek veya spam göndermek gibi davranışlar için <strong>şikayetçi olunacaktır</strong>.
-</div>
+    <div class='quick-stats'>
+        <div class='stat'><strong>6 Demo Alanı</strong><span>Farklı teknik yaklaşım ve simülasyon örnekleri</span></div>
+        <div class='stat'><strong>Gerçekçi Arayüz</strong><span>Terminal, radar, akış ve log temelli görsel anlatım</span></div>
+        <div class='stat'><strong>Güvenlik Odağı</strong><span>Ağ, görünürlük, analiz ve test süreçleri</span></div>
+        <div class='stat'><strong>Kurumsal Sunum</strong><span>Abartısız, temiz ve profesyonel vitrin yapısı</span></div>
+    </div>
 </section>
 
+<div class='section-head' style='margin-top:52px;'>
+    <h2>Demo & Simülasyon Alanları</h2>
+    <p>
+        Aşağıdaki kartlar, farklı güvenlik ve yazılım senaryolarını temsil eden görsel simülasyonlar içerir.
+        Amaç, teknik beceriyi estetik ve anlaşılır bir arayüzle sunmaktır.
+    </p>
+</div>
+
 <section class='grid-container'>
-<div class='card' id='card1'><div class='card-content'><h3>Pentest Terminal Demo</h3></div><canvas></canvas></div>
-<div class='card' id='card2'><div class='card-content'><h3>Network Radar Demo</h3></div><canvas></canvas></div>
-<div class='card' id='card3'><div class='card-content'><h3>Code Rain Demo</h3></div><canvas></canvas></div>
-<div class='card' id='card4'><div class='card-content'><h3>Mobil App Demo</h3></div><canvas></canvas></div>
-<div class='card' id='card5'><div class='card-content'><h3>Data Flow Demo</h3></div><canvas></canvas></div>
-<div class='card' id='card6'><div class='card-content'><h3>Alert Popup Demo</h3></div><canvas></canvas></div>
+    <div class='card' id='card1'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Terminal Simülasyonu</span>
+            <h3>Pentest İş Akışı Demosu</h3>
+            <p>Kontrollü bir test sürecini temsil eden komut akışı, kontrol noktaları ve sonuç satırları.</p>
+            <div class='demo-surface' id='terminalDemo'>
+                <div class='label'><span>pentest-session.log</span><span class='badge-ok'>LIVE DEMO</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card' id='card2'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Ağ Görselleştirme</span>
+            <h3>Network Radar İzleme</h3>
+            <p>Çevresel node aktivitesi, tarama ritmi ve ağ görünürlüğü algısını yansıtan bir radar ekranı.</p>
+            <div class='demo-surface' id='radarDemo'>
+                <div class='label'><span>network-visibility.map</span><span class='badge-ok'>TRACKING</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card' id='card3'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Kod Akışı</span>
+            <h3>Secure Code Stream</h3>
+            <p>Uygulama mantığı, kontrol blokları ve derleme akışını estetik biçimde canlandıran kod yağmuru demosu.</p>
+            <div class='demo-surface' id='codeDemo'>
+                <div class='label'><span>secure-build.pipeline</span><span class='badge-ok'>PROCESSING</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card' id='card4'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Mobil Davranış</span>
+            <h3>Uygulama Analiz Ekranı</h3>
+            <p>Ekran akışı, istek yoğunluğu ve olay zincirini temsil eden mobil analiz vitrini.</p>
+            <div class='demo-surface' id='mobileDemo'>
+                <div class='label'><span>mobile-session.trace</span><span class='badge-ok'>OBSERVING</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card' id='card5'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Veri Akışı</span>
+            <h3>Data Flow Haritalama</h3>
+            <p>Paket geçişleri, servis bağımlılıkları ve işlem akışlarını temsil eden hafif simülasyon katmanı.</p>
+            <div class='demo-surface' id='flowDemo'>
+                <div class='label'><span>dataflow.routes</span><span class='badge-ok'>SYNCED</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='card' id='card6'>
+        <canvas></canvas>
+        <div class='card-content'>
+            <span class='card-kicker'>Olay Yönetimi</span>
+            <h3>Alert & Response Paneli</h3>
+            <p>Önceliklendirme, durum etiketi ve yanıt akışını gösteren profesyonel uyarı paneli.</p>
+            <div class='demo-surface' id='alertDemo'>
+                <div class='label'><span>alert-response.queue</span><span class='badge-ok'>MONITORING</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class='approach'>
+    <div class='panel'>
+        <h3>Çalışma Yaklaşımı</h3>
+        <div class='list'>
+            <div class='list-item'>
+                <div class='dot'></div>
+                <div><strong>Görsel ve Teknik Denge</strong><span>Sunum tarafında estetik; içerik tarafında ise anlaşılır, kontrollü ve düzenli teknik gösterim hedeflenir.</span></div>
+            </div>
+            <div class='list-item'>
+                <div class='dot'></div>
+                <div><strong>Simülasyon Tabanlı Anlatım</strong><span>Gerçek sistem davranışlarını birebir kopyalamak yerine, süreçleri güvenli ve profesyonel bir çerçevede temsil eden görsel demolar kullanılır.</span></div>
+            </div>
+            <div class='list-item'>
+                <div class='dot'></div>
+                <div><strong>Seçici Proje Yaklaşımı</strong><span>Kalite, etik çerçeve ve teknik gereklilikler doğrultusunda uygun görülen çalışmalar değerlendirilir.</span></div>
+            </div>
+        </div>
+    </div>
+    <div class='panel'>
+        <h3>Odak Başlıkları</h3>
+        <div class='list'>
+            <div class='list-item'><div class='dot'></div><div><strong>Güvenlik Odaklı Arayüzler</strong><span>Analiz ve görünürlük odaklı demo tasarımları.</span></div></div>
+            <div class='list-item'><div class='dot'></div><div><strong>Ağ & Veri Görselleştirme</strong><span>Akış, trafik ve durum takibi için temsil katmanları.</span></div></div>
+            <div class='list-item'><div class='dot'></div><div><strong>Teknik Prototipler</strong><span>Vaka sunumu, ürün gösterimi ve araştırma vitrini.</span></div></div>
+        </div>
+    </div>
+</section>
+
+<section class='warning'>
+    <div class='warning-box'>
+        <h3>Yasal Uyarı ve Kullanım Bildirimi</h3>
+        <p>
+            Bu web sitesinde yer alan tüm simülasyonlar, arayüzler, teknik görseller, açıklamalar ve demo içerikleri yalnızca
+            tanıtım, portfolyo, araştırma ve profesyonel sunum amacıyla paylaşılmaktadır. Sunulan içerikler; yetkisiz erişim,
+            müdahale, zarar verme, veri toplama, spam, taciz veya yasa dışı işlem çağrısı niteliği taşımaz.
+        </p>
+        <ul>
+            <li>İletişim kanallarının kötüye kullanımı, ısrarlı rahatsızlık, tehdit, spam ve benzeri davranışlar kayıt altına alınabilir.</li>
+            <li>İzinsiz test, saldırı talebi, yetkisiz erişim isteği veya hukuka aykırı yönlendirme içeren başvurular değerlendirmeye alınmaz.</li>
+            <li>Gerek görülmesi halinde hukuki haklar saklı tutulur ve ilgili süreçler işletilebilir.</li>
+            <li>Bu sitedeki tüm içeriklerin fikri ve görsel kullanım hakları saklıdır; izinsiz kopyalama veya yanıltıcı kullanıma izin verilmez.</li>
+        </ul>
+    </div>
 </section>
 
 <div class='social-links'>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
-<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
+    <a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
+    <a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
+    <a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
 </div>
 
 <footer>
-<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+    <p>Bağımsız siber güvenlik araştırmaları, teknik sunum arayüzleri ve kontrollü simülasyon çalışmaları.</p>
 </footer>
 
 <script>
-// Particle background for each card
-function cardParticles(cardId,color='rgba(88,166,255,0.4)'){
-  const canvas=document.querySelector('#'+cardId+' canvas');
-  const ctx=canvas.getContext('2d');
-  
-  function setCanvasSize() {
-    canvas.width=canvas.offsetWidth;
-    canvas.height=canvas.offsetHeight;
-  }
-  setCanvasSize();
-  
-  let particles=[];
-  for(let i=0;i<50;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
-  
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=color;
-      ctx.fill();
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x>canvas.width)p.x=0;if(p.x<0)p.x=canvas.width;
-      if(p.y>canvas.height)p.y=0;if(p.y<0)p.y=canvas.height;
+function cardParticles(cardId,color='rgba(88,166,255,0.38)'){
+    const canvas=document.querySelector('#'+cardId+' canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    function setCanvasSize(){
+        canvas.width=canvas.offsetWidth;
+        canvas.height=canvas.offsetHeight;
+    }
+    setCanvasSize();
+    let particles=[];
+    for(let i=0;i<34;i++){
+        particles.push({
+            x:Math.random()*canvas.width,
+            y:Math.random()*canvas.height,
+            r:Math.random()*1.8+0.8,
+            dx:(Math.random()-0.5)*0.35,
+            dy:(Math.random()-0.5)*0.35
+        });
+    }
+    function animate(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p=>{
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            ctx.fillStyle=color;
+            ctx.fill();
+            p.x+=p.dx; p.y+=p.dy;
+            if(p.x>canvas.width)p.x=0;
+            if(p.x<0)p.x=canvas.width;
+            if(p.y>canvas.height)p.y=0;
+            if(p.y<0)p.y=canvas.height;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize', setCanvasSize);
+}
+
+function appendLine(el, text, className=''){
+    const line=document.createElement('div');
+    line.textContent=text;
+    if(className) line.className=className;
+    line.style.marginBottom='6px';
+    el.appendChild(line);
+    el.scrollTop=el.scrollHeight;
+}
+
+function terminalDemo(){
+    const box=document.getElementById('terminalDemo');
+    const lines=[
+        '[session] initializing controlled test environment',
+        '$ target profile loaded: external-app.demo',
+        '$ passive enumeration started',
+        '[ok] dns footprint mapped',
+        '[ok] service headers collected',
+        '[note] auth surface identified',
+        '[review] manual verification recommended'
+    ];
+    let i=0;
+    function tick(){
+        if(i>=lines.length){
+            box.innerHTML = "<div class='label'><span>pentest-session.log</span><span class='badge-ok'>LIVE DEMO</span></div>";
+            i=0;
+        }
+        appendLine(box, lines[i]);
+        i++;
+        setTimeout(tick, 900);
+    }
+    tick();
+}
+
+function radarDemo(){
+    const box=document.getElementById('radarDemo');
+    const cvs=document.createElement('canvas');
+    cvs.width=500; cvs.height=220;
+    cvs.style.width='100%'; cvs.style.height='110px'; cvs.style.display='block';
+    box.appendChild(cvs);
+    const list=document.createElement('div');
+    list.style.marginTop='10px';
+    list.style.color='#9ecbff';
+    list.style.fontSize='11px';
+    box.appendChild(list);
+    const ctx=cvs.getContext('2d');
+    const points=Array.from({length:8},()=>({a:Math.random()*Math.PI*2,r:30+Math.random()*70}));
+    function draw(){
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        const cx=110, cy=110;
+        ctx.strokeStyle='rgba(88,166,255,.25)';
+        [25,50,75,100].forEach(r=>{
+            ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.stroke();
+        });
+        ctx.beginPath(); ctx.moveTo(cx,10); ctx.lineTo(cx,210); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(10,cy); ctx.lineTo(210,cy); ctx.stroke();
+        const sweep=(Date.now()/700)% (Math.PI*2);
+        ctx.strokeStyle='rgba(126,231,135,.55)';
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.lineTo(cx + Math.cos(sweep)*100, cy + Math.sin(sweep)*100);
+        ctx.stroke();
+        points.forEach((p,idx)=>{
+            const x=cx + Math.cos(p.a)*p.r;
+            const y=cy + Math.sin(p.a)*p.r;
+            const active=Math.abs(((p.a - sweep + Math.PI*3)%(Math.PI*2))-Math.PI) < 0.25;
+            ctx.beginPath();
+            ctx.arc(x,y, active?4:2.5,0,Math.PI*2);
+            ctx.fillStyle=active?'#7ee787':'#58a6ff';
+            ctx.fill();
+        });
+        list.innerHTML = [
+            'node-01 · perimeter · visible',
+            'node-02 · api edge · passive',
+            'node-03 · auth route · observed'
+        ].join('<br>');
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+
+function codeDemo(){
+    const box=document.getElementById('codeDemo');
+    const rows = [
+      'if (request.validated) { pipeline.advance(); }',
+      'const riskScore = analyze(headers, payload, route);',
+      'audit.log("trace", sessionId, riskScore);',
+      'return renderer.securePreview(componentMap);',
+      'for (const node of graph) integrity.scan(node);'
+    ];
+    let buffer = '';
+    let row = 0;
+    function step(){
+        buffer += rows[row] + '\n';
+        if(buffer.length > 420) buffer = buffer.slice(90);
+        box.innerHTML = "<div class='label'><span>secure-build.pipeline</span><span class='badge-ok'>PROCESSING</span></div><div style='white-space:pre-line;color:#7ee787'>" + buffer + "</div>";
+        row = (row + 1) % rows.length;
+        setTimeout(step, 700);
+    }
+    step();
+}
+
+function mobileDemo(){
+    const box=document.getElementById('mobileDemo');
+    const phone=document.createElement('div');
+    phone.style.width='92px';
+    phone.style.height='150px';
+    phone.style.border='1px solid rgba(88,166,255,.22)';
+    phone.style.borderRadius='18px';
+    phone.style.padding='10px';
+    phone.style.background='rgba(255,255,255,.02)';
+    phone.style.float='left';
+    phone.style.marginRight='14px';
+    phone.innerHTML="<div style='height:18px;background:rgba(88,166,255,.12);border-radius:8px;margin-bottom:8px'></div><div id='mobileBars'></div>";
+    box.appendChild(phone);
+    const info=document.createElement('div');
+    info.style.overflow='hidden';
+    info.style.color='#9ecbff';
+    box.appendChild(info);
+    const barsWrap = phone.querySelector('#mobileBars');
+    const bars = Array.from({length:6},()=>{
+        const d=document.createElement('div');
+        d.style.height='10px';
+        d.style.marginBottom='8px';
+        d.style.borderRadius='999px';
+        d.style.background='rgba(88,166,255,.15)';
+        barsWrap.appendChild(d);
+        return d;
     });
-    requestAnimationFrame(animate);
-  }
-  animate();
-  window.addEventListener('resize', setCanvasSize);
+    function animate(){
+        bars.forEach(b=>b.style.width=(35+Math.random()*55)+'px');
+        info.innerHTML="screen transitions · request bursts · response timing<br><span style='color:#7d8590'>demo view refreshed</span>";
+        setTimeout(animate, 900);
+    }
+    animate();
 }
 
-// Pentest Terminal Demo
-function pentestTerminal(){
-  const target = document.querySelector('#card1 .card-content');
-  const terminal=document.createElement('div');
-  terminal.style.marginTop='15px';
-  terminal.style.background='rgba(0,0,0,0.8)';
-  terminal.style.padding='12px';
-  terminal.style.borderRadius='8px';
-  terminal.style.fontFamily='monospace';
-  terminal.style.fontSize='11px';
-  terminal.style.color='#58a6ff';
-  terminal.style.border='1px solid #30363d';
-  terminal.style.minHeight='100px';
-  terminal.style.overflow='hidden';
-  target.appendChild(terminal);
-  
-  let cmds=["sudo pentest scan --target example.com","[INFO] Scanning ports...","[OK] Port 80 open","[OK] Port 443 open","[WARNING] Possible vulnerability detected","[INFO] Exploit module loaded"];
-  let idx=0;
-  function runCmd(){ 
-    if(idx<cmds.length){
-        const line = document.createElement('div');
-        line.textContent = '> ' + cmds[idx];
-        terminal.appendChild(line);
-        idx++; 
-        setTimeout(runCmd,1200);
-    } 
-  }
-  runCmd();
+function flowDemo(){
+    const box=document.getElementById('flowDemo');
+    const cvs=document.createElement('canvas');
+    cvs.width=500; cvs.height=160;
+    cvs.style.width='100%'; cvs.style.height='110px'; cvs.style.display='block';
+    box.appendChild(cvs);
+    const ctx=cvs.getContext('2d');
+    const dots=[40,120,210,300,390];
+    let phase=0;
+    function draw(){
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        ctx.strokeStyle='rgba(88,166,255,.25)';
+        ctx.lineWidth=2;
+        ctx.beginPath();
+        ctx.moveTo(40,80); ctx.lineTo(450,80); ctx.stroke();
+        dots.forEach((x,idx)=>{
+            ctx.beginPath();
+            ctx.arc(x,80, idx===2?12:9, 0, Math.PI*2);
+            ctx.fillStyle='rgba(88,166,255,.18)';
+            ctx.fill();
+            ctx.strokeStyle='rgba(88,166,255,.5)';
+            ctx.stroke();
+        });
+        const p = 40 + ((Date.now()/10)%410);
+        ctx.beginPath();
+        ctx.arc(p,80,6,0,Math.PI*2);
+        ctx.fillStyle='#7ee787';
+        ctx.fill();
+        requestAnimationFrame(draw);
+    }
+    draw();
+    const info=document.createElement('div');
+    info.style.marginTop='10px';
+    info.innerHTML="ingest → normalize → validate → route → render";
+    box.appendChild(info);
 }
 
-// Initialize all card particles
+function alertDemo(){
+    const box=document.getElementById('alertDemo');
+    const statuses = [
+      ['LOW','Routine review pending'],
+      ['MED','Behavioral anomaly detected'],
+      ['INFO','New telemetry synchronized'],
+      ['HIGH','Manual assessment required']
+    ];
+    function render(){
+        box.innerHTML = "<div class='label'><span>alert-response.queue</span><span class='badge-ok'>MONITORING</span></div>";
+        statuses.sort(()=>Math.random()-0.5).forEach(([lvl,msg])=>{
+            const row=document.createElement('div');
+            row.style.display='flex';
+            row.style.justifyContent='space-between';
+            row.style.alignItems='center';
+            row.style.gap='10px';
+            row.style.padding='8px 0';
+            row.style.borderBottom='1px solid rgba(255,255,255,.05)';
+            row.innerHTML = "<span>"+msg+"</span><strong style='color:"+(lvl==='HIGH'?'#ff7b72':lvl==='MED'?'#f2cc60':'#7ee787')+"'>"+lvl+"</strong>";
+            box.appendChild(row);
+        });
+        setTimeout(render, 1400);
+    }
+    render();
+}
+
 ['card1','card2','card3','card4','card5','card6'].forEach(c=>cardParticles(c));
-pentestTerminal();
+terminalDemo();
+radarDemo();
+codeDemo();
+mobileDemo();
+flowDemo();
+alertDemo();
 </script>
 <script src="ortak-api.js"></script>
 
