@@ -474,27 +474,12 @@ footer a:hover {
     }
 }
 </style>
+<link rel="stylesheet" href="site-theme.css">
 </head>
 <body>
 
 <header>
-<nav id="mainNav">
-    <button class="nav-toggle" type="button" aria-label="Menüyü Aç/Kapat" aria-expanded="false">
-        <span></span>
-    </button>
-    <div class="nav-menu-wrap">
-        <ul>
-            <li><a href="index.html">Anasayfa</a></li>
-            <li><a href="hakkimda.html">Hakkımda</a></li>
-            <li><a href="faaliyetler.html">Faaliyetler</a></li>
-            <li><a href="urunler.html">Ürünler</a></li>
-            <li><a href="hizmetler.html">Hizmetler</a></li>
-            <li><a href="egitimler.html">Eğitimler</a></li>
-            <li><a href="katkilar.html">Katkılar</a></li>
-            <li><a href="iletisim.html" class="active">İletişim</a></li>
-        </ul>
-    </div>
-</nav>
+<nav></nav>
 </header>
 
 <section class="hero">
@@ -586,24 +571,8 @@ footer a:hover {
     </p>
 </footer>
 
+<script src="ortak-api.js"></script>
 <script>
-const nav = document.getElementById('mainNav');
-const toggleBtn = nav.querySelector('.nav-toggle');
-const navLinks = nav.querySelectorAll('.nav-menu-wrap a');
-
-toggleBtn.addEventListener('click', function () {
-    nav.classList.toggle('nav-open');
-    const isOpen = nav.classList.contains('nav-open');
-    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-});
-
-navLinks.forEach(link => {
-    link.addEventListener('click', function () {
-        nav.classList.remove('nav-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-    });
-});
-
 const form = document.getElementById("contact-form");
 const statusBox = document.getElementById("form-status");
 const submitBtn = document.getElementById("submit-btn");
