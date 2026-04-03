@@ -1,45 +1,52 @@
 <!DOCTYPE html>
-<html lang='tr'>
+<html lang="tr">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eğitimler - Yusuf</title>
 <style>
-/* Temel Değişkenler */
 :root {
     --bg-main: #0d1117;
     --bg-sec: #161b22;
     --accent: #58a6ff;
+    --accent-soft: rgba(88, 166, 255, 0.10);
     --text-main: #f0f6fc;
     --text-dim: #c9d1d9;
     --border: #30363d;
+    --warning: #f59e0b;
+    --shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
-body { 
-    background: var(--bg-main); 
-    color: var(--text-main); 
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
-    margin: 0; 
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* Navigasyon */
+/* NAV */
 header nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(22, 27, 34, 0.95);
-    backdrop-filter: blur(10px);
+    min-height: 72px;
+    background: rgba(22, 27, 34, 0.92);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
 }
 
-header nav ul { 
-    display: flex; 
-    list-style: none; 
-    padding: 0 20px; 
-    margin: 0; 
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
@@ -47,220 +54,215 @@ header nav ul {
 
 header nav ul::-webkit-scrollbar { display: none; }
 
-header nav ul li a { 
+header nav ul li a {
     display: block;
     padding: 20px 15px;
-    color: var(--text-main); 
-    text-decoration: none; 
-    font-weight: 600; 
-    font-size: 0.9rem;
-    transition: 0.3s; 
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.94rem;
+    transition: 0.3s ease;
 }
 
-header nav ul li a:hover, header nav ul li a.active { 
-    color: var(--accent); 
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: var(--accent);
     box-shadow: inset 0 -3px 0 var(--accent);
 }
 
-/* Ana İçerik Alanı */
+/* MAIN */
 main {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
-.main-container { 
-    max-width: 700px; 
+.main-container {
     width: 100%;
-    text-align: center; 
+    max-width: 920px;
 }
 
-/* Eğitim Kartı */
-.card { 
-    background: var(--bg-sec);
+.hero-card {
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
     border: 1px solid var(--border);
-    border-radius: 20px; 
-    padding: 50px 30px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-radius: 24px;
+    padding: 42px 28px;
+    text-align: center;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
-/* Dekoratif Işık Efekti */
-.card::before {
+.hero-card::before {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(88, 166, 255, 0.05) 0%, transparent 70%);
+    inset: 0;
+    background: radial-gradient(circle at top center, rgba(88,166,255,0.12), transparent 42%);
     pointer-events: none;
 }
 
-.card h3 { 
-    margin-top: 0; 
-    color: var(--accent); 
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(88,166,255,0.22);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 18px;
 }
 
-.card p { 
-    color: var(--text-dim); 
-    font-size: 1.1rem; 
-    line-height: 1.6;
+.hero-card h1 {
     margin: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -0.8px;
+    color: var(--text-main);
 }
 
-/* İkon Tasarımı */
-.status-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    display: block;
+.hero-card h1 span {
+    color: var(--accent);
 }
 
-/* Footer */
-footer { 
-    background: var(--bg-sec); 
-    text-align: center; 
-    padding: 40px 20px; 
+.hero-card p.lead {
+    margin: 16px auto 0;
+    max-width: 680px;
+    color: var(--text-dim);
+    font-size: 1.02rem;
+}
+
+.status-box {
+    margin: 26px auto 0;
+    max-width: 720px;
+    background: linear-gradient(180deg, rgba(245,158,11,0.10), rgba(245,158,11,0.04));
+    border: 1px solid rgba(245,158,11,0.24);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: left;
+}
+
+.status-box h2 {
+    margin: 0 0 8px;
+    color: #ffcc66;
+    font-size: 1.15rem;
+}
+
+.status-box p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.96rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: left;
+}
+
+.info-card h3 {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.info-card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.93rem;
+}
+
+.cta {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cta a {
+    text-decoration: none;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #0d1117;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.btn-secondary {
+    color: var(--accent);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+}
+
+.btn-secondary:hover {
+    border-color: rgba(88,166,255,0.40);
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+    background: var(--bg-sec);
+    text-align: center;
+    padding: 40px 20px;
     border-top: 1px solid var(--border);
 }
 
-footer p { margin: 10px 0; font-size: 0.9rem; }
+footer p {
+    margin: 10px 0;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+}
 
-footer a { 
-    color: var(--accent); 
-    margin: 0 10px; 
-    text-decoration: none; 
-    font-weight: 600; 
-    transition: 0.3s;
+footer a {
+    color: var(--accent);
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
 }
 
 footer a:hover {
-    opacity: 0.8;
+    color: var(--text-main);
 }
 
-/* Mobil Uyumluluk */
-@media (max-width: 600px) {
-    .card { padding: 40px 20px; }
-    .card h3 { font-size: 1.5rem; }
-}
-
-
-/* Ortak Mobil Hamburger Menü */
-header nav {
-    min-height: 72px;
-}
-
-header nav .nav-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid var(--border, #30363d);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-main, #f0f6fc);
-    cursor: pointer;
-    margin: 12px 16px 12px auto;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle:hover {
-    border-color: var(--accent, #58a6ff);
-    color: var(--accent, #58a6ff);
-}
-
-header nav .nav-toggle span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    position: relative;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle span::before,
-header nav .nav-toggle span::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle span::before { top: -6px; }
-header nav .nav-toggle span::after { top: 6px; }
-
-header nav.nav-open .nav-toggle span { background: transparent; }
-header nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
-header nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
-
-header nav .nav-menu-wrap {
-    width: 100%;
-}
-
+/* MOBILE */
 @media (max-width: 768px) {
-    header nav {
-        display: block;
-        padding: 0;
+    main {
+        padding: 36px 16px;
     }
 
-    header nav .nav-toggle {
-        display: inline-flex;
+    .hero-card {
+        padding: 30px 18px;
+        border-radius: 20px;
     }
 
-    header nav .nav-menu-wrap {
-        display: none;
-        width: 100%;
-        border-top: 1px solid var(--border, #30363d);
-        background: rgba(13, 17, 23, 0.98);
-    }
-
-    header nav.nav-open .nav-menu-wrap {
-        display: block;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        white-space: normal;
-        padding: 8px 12px 16px;
-        gap: 6px;
-    }
-
-    header nav ul li {
-        width: 100%;
-    }
-
-    header nav ul li a {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px 16px;
-        border-radius: 12px;
-        box-shadow: none !important;
-    }
-
-    header nav ul li a.active,
-    header nav ul li a:hover {
-        background: rgba(88, 166, 255, 0.10);
-    }
-
-    header nav ul li a.active::after {
-        display: none;
+    .status-box,
+    .info-card {
+        padding: 18px;
     }
 }
-
 </style>
 </head>
 <body>
@@ -268,38 +270,69 @@ header nav .nav-menu-wrap {
 <header>
 <nav>
 <ul>
-<li><a href='index.html'>Anasayfa</a></li>
-<li><a href='hakkimda.html'>Hakkımda</a></li>
-<li><a href='faaliyetler.html'>Faaliyetler</a></li>
-<li><a href='urunler.html'>Ürünler</a></li>
-<li><a href='egitimler.html' class='active'>Eğitimler</a></li>
-<li><a href='katkilar.html'>Katkılar</a></li>
-<li><a href='iletisim.html'>İletişim</a></li>
+<li><a href="index.html">Anasayfa</a></li>
+<li><a href="hakkimda.html">Hakkımda</a></li>
+<li><a href="faaliyetler.html">Faaliyetler</a></li>
+<li><a href="urunler.html">Ürünler</a></li>
+<li><a href="hizmetler.html">Hizmetler</a></li>
+<li><a href="egitimler.html" class="active">Eğitimler</a></li>
+<li><a href="katkilar.html">Katkılar</a></li>
+<li><a href="iletisim.html">İletişim</a></li>
 </ul>
 </nav>
 </header>
 
 <main>
-<div class='main-container'>
-    <div class='card'>
-        <span class='status-icon'>📅</span>
-        <h3>2026 Eğitim Planı</h3>
-        <p>2026 yılına dair herhangi bir eğitim planlanmamıştır.</p>
+    <div class="main-container">
+        <div class="hero-card">
+            <div class="badge">Eğitim Bilgilendirmesi</div>
+            <h1>2026 yılı için <span>aktif eğitim planı</span> bulunmamaktadır</h1>
+            <p class="lead">
+                Eğitim içerikleri ve olası teknik paylaşım başlıkları dönemsel yoğunluk, çalışma takvimi ve uygunluk durumuna göre değerlendirilmektedir.
+            </p>
+
+            <div class="status-box">
+                <h2>Güncel durum</h2>
+                <p>
+                    2026 yılı için planlanmış aktif bir eğitim, atölye, seminer veya açık katılımlı teknik program bulunmamaktadır.
+                    Uygun görülmesi halinde ilerleyen dönemde yeni içerikler bu sayfada duyurulacaktır.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Planlama durumu</h3>
+                    <p>Şu an için takvime alınmış bir eğitim programı yer almamaktadır.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>İçerik yaklaşımı</h3>
+                    <p>Olası eğitim başlıkları teknik seviye, kapsam ve uygunluk durumuna göre şekillenir.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Güncelleme noktası</h3>
+                    <p>Yeni bir eğitim planı oluştuğunda bu sayfa üzerinden duyuru yapılacaktır.</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="index.html" class="btn-primary">Anasayfaya Dön</a>
+                <a href="iletisim.html" class="btn-secondary">İletişime Geç</a>
+            </div>
+        </div>
     </div>
-</div>
 </main>
 
 <footer>
-<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
-<p>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a>
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a>
-<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
-</p>
+    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+    <p>
+        <a href="https://instagram.com/avyusuf95" target="_blank">📸 Instagram</a> |
+        <a href="https://t.me/Yusufavsarofficial" target="_blank">✈️ Telegram</a> |
+        <a href="mailto:yusufavsarsgu@gmail.com">✉️ Email</a>
+    </p>
 </footer>
 
 <script src="ortak-api.js"></script>
-
 </body>
 </html>
- 
