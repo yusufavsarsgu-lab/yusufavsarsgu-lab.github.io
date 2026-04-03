@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hizmetler - Yusuf</title>
+<style>
+:root {
+    --bg-main: #0d1117;
+    --bg-sec: #161b22;
+    --accent: #58a6ff;
+    --accent-soft: rgba(88, 166, 255, 0.12);
+    --text-main: #f0f6fc;
+    --text-dim: #c9d1d9;
+    --border: #30363d;
+    --success: #3fb950;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* NAV */
+header nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    min-height: 72px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+header nav ul::-webkit-scrollbar { display: none; }
+
+header nav ul li a {
+    display: block;
+    padding: 20px 15px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: 0.3s;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: var(--accent);
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+/* Mobil hamburger */
+header nav .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-main);
+    cursor: pointer;
+    margin: 12px 16px 12px auto;
+    transition: 0.3s ease;
+}
+
+header nav .nav-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+header nav .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+header nav .nav-toggle span::before,
+header nav .nav-toggle span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    transition: 0.3s ease;
+}
+
+header nav .nav-toggle span::before { top: -6px; }
+header nav .nav-toggle span::after { top: 6px; }
+
+header nav.nav-open .nav-toggle span { background: transparent; }
+header nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
+header nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
+
+header nav .nav-menu-wrap {
+    width: 100%;
+}
+
+/* HERO */
+.hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 30px;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    color: var(--text-main);
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--accent);
+}
+
+.hero p {
+    max-width: 760px;
+    margin: 18px auto 0;
+    color: var(--text-dim);
+    font-size: 1.08rem;
+}
+
+/* LEGAL */
+.legal-note {
+    max-width: 1100px;
+    margin: 18px auto 0;
+    padding: 0 20px;
+}
+
+.legal-box {
+    background: linear-gradient(180deg, rgba(88,166,255,0.08), rgba(88,166,255,0.03));
+    border: 1px solid rgba(88,166,255,0.18);
+    color: var(--text-dim);
+    border-radius: 16px;
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+/* SECTION TITLE */
+.section-head {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.section-head h2 {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 1.7rem;
+}
+
+.section-head p {
+    margin: 0;
+    color: var(--text-dim);
+}
+
+/* GRID */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 20px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 22px;
+}
+
+.service-card {
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(88,166,255,0.12), transparent 45%);
+    pointer-events: none;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(88,166,255,0.45);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.35);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    border: 1px solid rgba(88,166,255,0.18);
+    font-size: 1.2rem;
+}
+
+.card-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--success);
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(63,185,80,0.10);
+    border: 1px solid rgba(63,185,80,0.22);
+}
+
+.service-card h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.22rem;
+    letter-spacing: -0.2px;
+}
+
+.service-card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.96rem;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-main);
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+}
+
+.card-bottom {
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.card-bottom a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.card-bottom a:hover {
+    opacity: 0.85;
+    transform: translateX(2px);
+}
+
+/* CTA */
+.cta-box {
+    max-width: 1200px;
+    margin: 10px auto 0;
+    padding: 0 20px 50px;
+}
+
+.cta-inner {
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(16,20,25,1));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 30px 26px;
+    text-align: center;
+}
+
+.cta-inner h3 {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.cta-inner p {
+    margin: 0 auto 20px;
+    color: var(--text-dim);
+    max-width: 700px;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.cta-actions a {
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #0d1117;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.btn-secondary {
+    color: var(--accent);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+}
+
+.btn-secondary:hover {
+    border-color: rgba(88,166,255,0.4);
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+    background: var(--bg-sec);
+    text-align: center;
+    padding: 45px 20px;
+    border-top: 1px solid var(--border);
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+}
+
+footer a {
+    color: var(--accent);
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+footer a:hover {
+    color: var(--text-main);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    header nav {
+        display: block;
+        padding: 0;
+    }
+
+    header nav .nav-toggle {
+        display: inline-flex;
+    }
+
+    header nav .nav-menu-wrap {
+        display: none;
+        width: 100%;
+        border-top: 1px solid var(--border);
+        background: rgba(13, 17, 23, 0.98);
+    }
+
+    header nav.nav-open .nav-menu-wrap {
+        display: block;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        white-space: normal;
+        padding: 8px 12px 16px;
+        gap: 6px;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+
+    header nav ul li a {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 16px;
+        border-radius: 12px;
+        box-shadow: none !important;
+    }
+
+    header nav ul li a.active,
+    header nav ul li a:hover {
+        background: rgba(88, 166, 255, 0.10);
+    }
+
+    .hero {
+        padding: 55px 16px 22px;
+    }
+
+    .main-container {
+        padding: 22px 16px 26px;
+        gap: 16px;
+    }
+
+    .service-card {
+        padding: 22px;
+    }
+
+    .cta-inner {
+        padding: 24px 18px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<ul>
+<li><a href="index.html">Anasayfa</a></li>
+<li><a href="hakkimda.html">Hakkımda</a></li>
+<li><a href="faaliyetler.html">Faaliyetler</a></li>
+<li><a href="urunler.html">Ürünler</a></li>
+<li><a href="hizmetler.html" class="active">Hizmetler</a></li>
+<li><a href="egitimler.html">Eğitimler</a></li>
+<li><a href="katkilar.html">Katkılar</a></li>
+<li><a href="iletisim.html">İletişim</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+    <div class="hero-badge">Teknik Hizmet Alanları</div>
+    <h1>Siber güvenlik ve <span>teknik hizmetler</span></h1>
+    <p>
+        Bu sayfada; güvenlik odaklı analiz, pentest simülasyonları, teknik araştırma, yazılım geliştirme ve otomasyon alanlarında sunduğum çalışma başlıkları yer almaktadır.
+        Tüm içerikler profesyonel, etik ve yasal çerçevede değerlendirilir.
+    </p>
+</section>
+
+<section class="legal-note">
+    <div class="legal-box">
+        Bu sayfadaki tüm hizmet başlıkları yalnızca yasal, izinli ve profesyonel kapsamda değerlendirilir.
+        Yetkisiz erişim, zarar verme, veri ihlali, sistem istismarı veya hukuka aykırı kullanım amacı taşıyan talepler kabul edilmez.
+        Yapılan tüm çalışmalar, etik yaklaşım ve sorumluluk bilinciyle ele alınır.
+    </div>
+</section>
+
+<div class="section-head">
+    <h2>Hizmet başlıkları</h2>
+    <p>Profesyonel güvenlik, analiz, araştırma, otomasyon ve geliştirme odaklı çalışma alanları.</p>
+</div>
+
+<main class="main-container">
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">🛡️</div>
+            <div class="card-tag">Analiz</div>
+        </div>
+        <h3>Web Uygulama Güvenlik Analizi</h3>
+        <p>Web tabanlı projelerde güvenlik yüzeyi, temel giriş noktaları, zafiyet alanları ve yapı bütünlüğüne yönelik teknik değerlendirme çalışmaları.</p>
+        <div class="features">
+            <span>Yüzey Analizi</span>
+            <span>Teknik Değerlendirme</span>
+            <span>Raporlama</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">🎯</div>
+            <div class="card-tag">Pentest</div>
+        </div>
+        <h3>Pentest Simülasyon ve Demo Ortamları</h3>
+        <p>Yetkili test senaryoları, eğitim amaçlı lab kurguları ve kontrollü gösterim ortamları üzerinden güvenlik süreçlerinin simülasyonu.</p>
+        <div class="features">
+            <span>Demo Senaryolar</span>
+            <span>Lab Ortamı</span>
+            <span>Kontrollü Test</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">📱</div>
+            <div class="card-tag">Mobil</div>
+        </div>
+        <h3>Mobil Uygulama Güvenlik İncelemesi</h3>
+        <p>Mobil uygulama mimarisi, veri akışı, kullanıcı işlemleri ve görünür risk yüzeyine odaklanan teknik inceleme ve değerlendirme süreçleri.</p>
+        <div class="features">
+            <span>Uygulama Akışı</span>
+            <span>Risk Yüzeyi</span>
+            <span>Teknik Notlar</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">🌐</div>
+            <div class="card-tag">API</div>
+        </div>
+        <h3>API Güvenlik İncelemeleri</h3>
+        <p>Servisler arası veri alışverişi, erişim kontrol mantığı, endpoint yapısı ve entegrasyon güvenliği üzerine teknik analiz çalışmaları.</p>
+        <div class="features">
+            <span>REST Yapısı</span>
+            <span>Erişim Kontrolü</span>
+            <span>Entegrasyon Akışı</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">⚙️</div>
+            <div class="card-tag">Otomasyon</div>
+        </div>
+        <h3>Güvenlik Odaklı Otomasyon Çözümleri</h3>
+        <p>Tekrarlayan teknik süreçlerin otomasyonu, veri toplama akışları, izleme yardımcıları ve operasyonel verimlilik sağlayan yapılar.</p>
+        <div class="features">
+            <span>Script Geliştirme</span>
+            <span>Veri Akışı</span>
+            <span>Operasyonel Destek</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">💻</div>
+            <div class="card-tag">Geliştirme</div>
+        </div>
+        <h3>Güvenlik Odaklı Yazılım Geliştirme</h3>
+        <p>Web arayüzleri, kontrol panelleri, teknik demo ekranları ve güvenlik yaklaşımı gözetilerek geliştirilen özel yazılım çözümleri.</p>
+        <div class="features">
+            <span>Özel Arayüz</span>
+            <span>Panel Yapısı</span>
+            <span>Teknik Demo</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">🔍</div>
+            <div class="card-tag">Araştırma</div>
+        </div>
+        <h3>Teknik Araştırma ve Güvenlik Raporlama</h3>
+        <p>Belirli sistemler, akışlar veya senaryolar hakkında teknik inceleme, yorumlama ve raporlaştırma desteği sunulan çalışma başlıkları.</p>
+        <div class="features">
+            <span>İnceleme</span>
+            <span>Dokümantasyon</span>
+            <span>Sunum</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+    <div class="service-card">
+        <div class="card-top">
+            <div class="card-icon">🧠</div>
+            <div class="card-tag">Danışmanlık</div>
+        </div>
+        <h3>Teknik Yönlendirme ve Danışmanlık</h3>
+        <p>Proje yapısına göre uygun teknik yön, güvenlik yaklaşımı, araç seçimi ve süreç planlaması hakkında profesyonel değerlendirme desteği.</p>
+        <div class="features">
+            <span>Yol Haritası</span>
+            <span>Teknik Öneri</span>
+            <span>Planlama</span>
+        </div>
+        <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+    </div>
+
+</main>
+
+<section class="cta-box">
+    <div class="cta-inner">
+        <h3>İhtiyaca göre şekillenen hizmet yapısı</h3>
+        <p>
+            Her çalışma sabit bir paket mantığında değil; kapsam, içerik ve teslim yapısı ihtiyaca göre belirlenir.
+            Uygun yapı için iletişime geçebilir, talebinizi kısa bir özetle paylaşabilirsiniz.
+        </p>
+        <div class="cta-actions">
+            <a class="btn-primary" href="iletisim.html">İletişime Geç</a>
+            <a class="btn-secondary" href="hakkimda.html">Daha fazla bilgi</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+    <p>
+        <a href="https://instagram.com/avyusuf95" target="_blank">📸 Instagram</a> |
+        <a href="https://t.me/Yusufavsarofficial" target="_blank">✈️ Telegram</a> |
+        <a href="mailto:yusufavsarsgu@gmail.com">✉️ Email</a>
+    </p>
+</footer>
+
+<script src="ortak-api.js"></script>
+</body>
+</html>
