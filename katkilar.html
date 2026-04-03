@@ -1,45 +1,49 @@
 <!DOCTYPE html>
-<html lang='tr'>
+<html lang="tr">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Katkılar - Yusuf</title>
 <style>
-/* Temel Değişkenler */
 :root {
     --bg-main: #0d1117;
     --bg-sec: #161b22;
     --accent: #58a6ff;
+    --accent-soft: rgba(88, 166, 255, 0.10);
     --text-main: #f0f6fc;
     --text-dim: #c9d1d9;
     --border: #30363d;
+    --success: #3fb950;
+    --shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
-body { 
-    background: var(--bg-main); 
-    color: var(--text-main); 
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
-    margin: 0; 
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Navigasyon */
+/* NAV */
 header nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(22, 27, 34, 0.95);
-    backdrop-filter: blur(10px);
+    min-height: 72px;
+    background: rgba(22, 27, 34, 0.92);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
 }
 
-header nav ul { 
-    display: flex; 
-    list-style: none; 
-    padding: 0 20px; 
-    margin: 0; 
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: none;
@@ -47,220 +51,265 @@ header nav ul {
 
 header nav ul::-webkit-scrollbar { display: none; }
 
-header nav ul li a { 
+header nav ul li a {
     display: block;
     padding: 20px 15px;
-    color: var(--text-main); 
-    text-decoration: none; 
-    font-weight: 600; 
-    font-size: 0.9rem;
-    transition: 0.3s; 
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.94rem;
+    transition: 0.3s ease;
 }
 
-header nav ul li a:hover, header nav ul li a.active { 
-    color: var(--accent); 
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: var(--accent);
     box-shadow: inset 0 -3px 0 var(--accent);
 }
 
-/* Ana Konteyner */
-.main-container { 
-    max-width: 1100px; 
-    margin: auto; 
-    padding: 60px 20px; 
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap; 
-    gap: 30px; 
+/* HERO */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 20px 44px;
+    background:
+        radial-gradient(circle at top center, rgba(88,166,255,0.16), transparent 35%),
+        linear-gradient(180deg, #161b22 0%, #0d1117 100%);
 }
 
-/* Kart Tasarımı */
-.card { 
-    background: var(--bg-sec); 
+.hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(88,166,255,0.22);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--accent);
+}
+
+.hero p {
+    max-width: 780px;
+    margin: 18px auto 0;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+}
+
+/* SECTION */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px 0;
+}
+
+.section-head {
+    margin-bottom: 24px;
+}
+
+.section-head h2 {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 1.8rem;
+    letter-spacing: -0.4px;
+}
+
+.section-head p {
+    margin: 0;
+    color: var(--text-dim);
+    max-width: 760px;
+}
+
+/* GRID */
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
     border: 1px solid var(--border);
-    border-radius: 20px; 
-    padding: 40px 25px; 
-    text-align: center; 
-    width: 280px; 
-    transition: all 0.3s ease; 
-    display: flex;
-    flex-direction: column;
+    border-radius: 22px;
+    padding: 30px 24px;
+    text-align: center;
+    transition: 0.3s ease;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(88,166,255,0.12), transparent 45%);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(88,166,255,0.38);
+}
+
+.card .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
+    margin-bottom: 14px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(88,166,255,0.18);
+    font-size: 1.3rem;
 }
 
-.card:hover { 
-    transform: translateY(-10px); 
-    border-color: var(--accent);
-    box-shadow: 0 15px 35px rgba(88, 166, 255, 0.15); 
-}
-
-.card h2 { 
-    margin: 0; 
-    font-size: 3rem; 
-    color: var(--accent); 
+.card h2 {
+    margin: 0;
+    font-size: 3rem;
+    color: var(--accent);
     font-weight: 800;
     letter-spacing: -1px;
 }
 
-.card p { 
-    margin-top: 20px; 
-    font-size: 0.95rem; 
-    color: var(--text-dim); 
-    line-height: 1.6; 
-}
-
-/* Toplam Bölümü */
-.total-wrapper {
-    text-align: center;
-    padding: 40px 20px;
-    margin-bottom: 60px;
-}
-
-.total { 
-    display: inline-block;
-    padding: 20px 40px;
-    background: rgba(88, 166, 255, 0.05);
-    border: 1px dashed var(--accent);
-    border-radius: 50px;
-    font-size: 2.2rem; 
-    color: var(--accent); 
+.card h3 {
+    margin: 12px 0 10px;
+    color: var(--text-main);
+    font-size: 1.08rem;
     font-weight: 700;
 }
 
-/* Footer */
-footer { 
-    background: var(--bg-sec); 
-    text-align: center; 
-    padding: 40px 20px; 
-    border-top: 1px solid var(--border);
+.card p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.95rem;
 }
 
-footer p { margin: 10px 0; font-size: 0.9rem; }
-
-footer a { 
-    color: var(--accent); 
-    margin: 0 8px; 
-    text-decoration: none; 
-    font-weight: 600; 
+/* TOTAL */
+.total-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 34px 20px 0;
+    text-align: center;
 }
 
-/* Mobil Uyumluluk */
-@media (max-width: 600px) {
-    .main-container { padding: 40px 15px; }
-    .card { width: 100%; padding: 30px 20px; }
-    .total { font-size: 1.8rem; padding: 15px 30px; }
+.total-box {
+    display: inline-block;
+    min-width: 280px;
+    padding: 22px 34px;
+    background: linear-gradient(180deg, rgba(88,166,255,0.10), rgba(88,166,255,0.04));
+    border: 1px dashed rgba(88,166,255,0.50);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
 }
 
-
-/* Ortak Mobil Hamburger Menü */
-header nav {
-    min-height: 72px;
-}
-
-header nav .nav-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid var(--border, #30363d);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-main, #f0f6fc);
-    cursor: pointer;
-    margin: 12px 16px 12px auto;
-    transition: 0.3s ease;
-}
-
-header nav .nav-toggle:hover {
-    border-color: var(--accent, #58a6ff);
-    color: var(--accent, #58a6ff);
-}
-
-header nav .nav-toggle span {
+.total-label {
     display: block;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    position: relative;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.total {
+    font-size: 2.4rem;
+    color: var(--accent);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* NOTE */
+.note-box {
+    max-width: 920px;
+    margin: 36px auto 0;
+    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.note-box h3 {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 1.08rem;
+}
+
+.note-box p {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.94rem;
+}
+
+/* FOOTER */
+footer {
+    background: var(--bg-sec);
+    text-align: center;
+    padding: 42px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 56px;
+}
+
+footer p {
+    margin: 10px 0;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+}
+
+footer a {
+    color: var(--accent);
+    margin: 0 8px;
+    text-decoration: none;
+    font-weight: 600;
     transition: 0.3s ease;
 }
 
-header nav .nav-toggle span::before,
-header nav .nav-toggle span::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: currentColor;
-    border-radius: 999px;
-    transition: 0.3s ease;
+footer a:hover {
+    color: var(--text-main);
 }
 
-header nav .nav-toggle span::before { top: -6px; }
-header nav .nav-toggle span::after { top: 6px; }
-
-header nav.nav-open .nav-toggle span { background: transparent; }
-header nav.nav-open .nav-toggle span::before { top: 0; transform: rotate(45deg); }
-header nav.nav-open .nav-toggle span::after { top: 0; transform: rotate(-45deg); }
-
-header nav .nav-menu-wrap {
-    width: 100%;
-}
-
+/* MOBILE */
 @media (max-width: 768px) {
-    header nav {
-        display: block;
-        padding: 0;
+    .hero {
+        padding: 60px 16px 34px;
     }
 
-    header nav .nav-toggle {
-        display: inline-flex;
+    .section,
+    .total-wrapper {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
-    header nav .nav-menu-wrap {
-        display: none;
+    .card {
+        padding: 24px 20px;
+    }
+
+    .total-box {
         width: 100%;
-        border-top: 1px solid var(--border, #30363d);
-        background: rgba(13, 17, 23, 0.98);
-    }
-
-    header nav.nav-open .nav-menu-wrap {
-        display: block;
-    }
-
-    header nav ul {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        white-space: normal;
-        padding: 8px 12px 16px;
-        gap: 6px;
-    }
-
-    header nav ul li {
-        width: 100%;
-    }
-
-    header nav ul li a {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px 16px;
-        border-radius: 12px;
-        box-shadow: none !important;
-    }
-
-    header nav ul li a.active,
-    header nav ul li a:hover {
-        background: rgba(88, 166, 255, 0.10);
-    }
-
-    header nav ul li a.active::after {
-        display: none;
+        min-width: 0;
+        border-radius: 22px;
     }
 }
-
 </style>
 </head>
 <body>
@@ -268,65 +317,103 @@ header nav .nav-menu-wrap {
 <header>
 <nav>
 <ul>
-<li><a href='index.html'>Anasayfa</a></li>
-<li><a href='hakkimda.html'>Hakkımda</a></li>
-<li><a href='faaliyetler.html'>Faaliyetler</a></li>
-<li><a href='urunler.html'>Ürünler</a></li>
-<li><a href='egitimler.html'>Eğitimler</a></li>
-<li><a href='katkilar.html' class='active'>Katkılar</a></li>
-<li><a href='iletisim.html'>İletişim</a></li>
+<li><a href="index.html">Anasayfa</a></li>
+<li><a href="hakkimda.html">Hakkımda</a></li>
+<li><a href="faaliyetler.html">Faaliyetler</a></li>
+<li><a href="urunler.html">Ürünler</a></li>
+<li><a href="hizmetler.html">Hizmetler</a></li>
+<li><a href="egitimler.html">Eğitimler</a></li>
+<li><a href="katkilar.html" class="active">Katkılar</a></li>
+<li><a href="iletisim.html">İletişim</a></li>
 </ul>
 </nav>
 </header>
 
-<main class='main-container'>
-    <div class='card'>
-        <h2>120</h2>
-        <p>Yazılım geliştirme, pentest, siber güvenlik, otomasyon, web, mobil vb.</p>
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge">Katkı Alanları</div>
+        <h1>Teknik üretim ve <span>katkı</span> başlıkları</h1>
+        <p>
+            Bu sayfa; yazılım, teknik destek, güvenlik odaklı çalışmalar ve topluluk katkıları gibi başlıklarda yürüttüğüm genel katkı alanlarını özetlemek amacıyla hazırlanmıştır.
+        </p>
     </div>
-    <div class='card'>
-        <h2>301</h2>
-        <p>Kurumsal danışmanlık, güvenlik testleri, proje yönetimi, risk analizi vb.</p>
-    </div>
-    <div class='card'>
-        <h2>4012</h2>
-        <p>Gönüllü topluluk destekleri, eğitimler, hackathonlar, açık kaynak katkıları vb.</p>
-    </div>
-</main>
+</section>
 
-<div class='total-wrapper'>
-    <div class='total'>
-        Toplam: <span id='counter'>0</span>
+<section class="section">
+    <div class="section-head">
+        <h2>Katkı dağılımı</h2>
+        <p>Farklı başlıklarda yapılan üretim, destek ve gönüllü katkıların genel dağılımı.</p>
+    </div>
+
+    <div class="main-container">
+        <div class="card">
+            <div class="icon">💻</div>
+            <h2>120</h2>
+            <h3>Teknik üretim</h3>
+            <p>Yazılım geliştirme, demo arayüzler, otomasyon, teknik araçlar ve güvenlik odaklı dijital üretim süreçleri.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h2>301</h2>
+            <h3>Profesyonel katkılar</h3>
+            <p>Danışmanlık, teknik değerlendirme, güvenlik bakışı, sistem analizi ve proje bazlı profesyonel destek alanları.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h2>4012</h2>
+            <h3>Topluluk ve gönüllü destek</h3>
+            <p>Bilgi paylaşımı, topluluk katkıları, teknik yönlendirmeler, eğitim odaklı destekler ve gönüllü üretim alanları.</p>
+        </div>
+    </div>
+</section>
+
+<div class="total-wrapper">
+    <div class="total-box">
+        <span class="total-label">Genel toplam katkı</span>
+        <span class="total" id="counter">0</span>
     </div>
 </div>
 
+<section class="section">
+    <div class="note-box">
+        <h3>Not</h3>
+        <p>
+            Bu veriler; farklı dönemlerde yürütülen teknik üretim, bireysel katkı, profesyonel destek ve topluluk bazlı çalışmaların genel bir özetini temsil etmektedir.
+            İçerikler sabit bir ölçüm sistemi yerine genel faaliyet yoğunluğunu yansıtacak biçimde sunulmaktadır.
+        </p>
+    </div>
+</section>
+
 <footer>
-<p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
-<p>
-<a href='https://instagram.com/avyusuf95' target='_blank'>📸 Instagram</a> |
-<a href='https://t.me/Yusufavsarofficial' target='_blank'>✈️ Telegram</a> |
-<a href='mailto:yusufavsarsgu@gmail.com'>✉️ Email</a>
-</p>
+    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
+    <p>
+        <a href="https://instagram.com/avyusuf95" target="_blank">📸 Instagram</a> |
+        <a href="https://t.me/Yusufavsarofficial" target="_blank">✈️ Telegram</a> |
+        <a href="mailto:yusufavsarsgu@gmail.com">✉️ Email</a>
+    </p>
 </footer>
 
 <script>
-// Hızlı sayaç animasyonu - Mantık korunmuştur
 let count = 0;
 const end = 4433;
 const counter = document.getElementById('counter');
 
 function updateCounter() {
-    let increment = Math.ceil((end - count) / 15); 
+    let increment = Math.ceil((end - count) / 15);
     count += increment;
-    if(count > end) count = end;
-    counter.textContent = count.toLocaleString();
-    if(count < end) requestAnimationFrame(updateCounter);
+
+    if (count >= end) {
+        counter.textContent = end;
+    } else {
+        counter.textContent = count;
+        requestAnimationFrame(updateCounter);
+    }
 }
 
 updateCounter();
 </script>
-
 <script src="ortak-api.js"></script>
-
 </body>
 </html>
