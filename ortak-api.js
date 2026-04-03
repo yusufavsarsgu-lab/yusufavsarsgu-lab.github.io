@@ -8,6 +8,7 @@ const menuKodum = `
     <li><a href='egitimler.html' id='link-egitimler'>Eğitimler</a></li>
     <li><a href='katkilar.html' id='link-katkilar'>Katkılar</a></li>
     <li><a href='iletisim.html' id='link-iletisim'>İletişim</a></li>
+    <li><a href='hizmetler.html' id='link-hizmetler'>Hizmetler</a></li>
 </ul>
 `;
 
