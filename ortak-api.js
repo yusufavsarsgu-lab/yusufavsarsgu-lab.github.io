@@ -12,26 +12,54 @@ const menuKodum = `
 `;
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Tüm sayfalardaki <nav> etiketini bul
     const navElement = document.querySelector('header nav');
-    
-    if (navElement) {
-        // İçeriği güncelle
-        navElement.innerHTML = menuKodum;
 
-        // Mevcut dosya adını al (Örn: hakkimda.html -> hakkimda)
+    if (navElement) {
+        navElement.innerHTML = `
+            <button class="nav-toggle" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                <span></span>
+            </button>
+            <div class="nav-menu-wrap">${menuKodum}</div>
+        `;
+
         let path = window.location.pathname;
         let page = path.split("/").pop().replace(".html", "");
-        
-        // Eğer ana dizindeyse veya boşsa 'index' kabul et
+
         if (page === "" || page === "index") {
             page = "index";
         }
 
-        // Aktif linki bul ve class ekle
         const activeLink = document.getElementById('link-' + page);
         if (activeLink) {
             activeLink.classList.add('active');
         }
+
+        const toggleButton = navElement.querySelector('.nav-toggle');
+        const menuLinks = navElement.querySelectorAll('a');
+
+        if (toggleButton) {
+            toggleButton.addEventListener('click', function() {
+                const isOpen = navElement.classList.toggle('nav-open');
+                toggleButton.setAttribute('aria-expanded', String(isOpen));
+            });
+        }
+
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navElement.classList.remove('nav-open');
+                if (toggleButton) {
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navElement.classList.remove('nav-open');
+                if (toggleButton) {
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
     }
 });
