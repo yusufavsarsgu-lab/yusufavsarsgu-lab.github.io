@@ -1,58 +1,73 @@
-// Ortak menü yapısı
-const menuKodum = `
-<ul>
-    <li><a href="index.html" id="link-index">Anasayfa</a></li>
-    <li><a href="hakkimda.html" id="link-hakkimda">Hakkımda</a></li>
-    <li><a href="faaliyetler.html" id="link-faaliyetler">Faaliyetler</a></li>
-    <li><a href="urunler.html" id="link-urunler">Ürünler</a></li>
-    <li><a href="hizmetler.html" id="link-hizmetler">Hizmetler</a></li>
-    <li><a href="egitimler.html" id="link-egitimler">Eğitimler</a></li>
-    <li><a href="katkilar.html" id="link-katkilar">Katkılar</a></li>
-    <li><a href="iletisim.html" id="link-iletisim">İletişim</a></li>
-</ul>
-`;
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".site-header");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const currentYearTargets = document.querySelectorAll("[data-current-year]");
 
-document.addEventListener("DOMContentLoaded", function () {
-    const navElement = document.querySelector("header nav");
-    if (!navElement) return;
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
-    navElement.innerHTML = `
-        <button class="nav-toggle" type="button" aria-label="Menüyü aç/kapat" aria-expanded="false">
-            <span></span>
-        </button>
-        <div class="nav-menu-wrap">${menuKodum}</div>
-    `;
+    navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        const isActive = href === currentPath || (currentPath === "" && href === "index.html");
 
-    let page = window.location.pathname.split("/").pop().replace(".html", "");
-    if (!page) page = "index";
-
-    const activeLink = document.getElementById(`link-${page}`);
-    if (activeLink) {
-        activeLink.classList.add("active");
-        activeLink.setAttribute("aria-current", "page");
-    }
-
-    const toggleButton = navElement.querySelector(".nav-toggle");
-    const menuLinks = navElement.querySelectorAll("a");
-
-    if (toggleButton) {
-        toggleButton.addEventListener("click", function () {
-            const isOpen = navElement.classList.toggle("nav-open");
-            toggleButton.setAttribute("aria-expanded", String(isOpen));
-        });
-    }
-
-    menuLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-            navElement.classList.remove("nav-open");
-            if (toggleButton) toggleButton.setAttribute("aria-expanded", "false");
-        });
-    });
-
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 768) {
-            navElement.classList.remove("nav-open");
-            if (toggleButton) toggleButton.setAttribute("aria-expanded", "false");
+        if (isActive) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.classList.remove("active");
+            link.removeAttribute("aria-current");
         }
     });
+
+    if (navToggle && header) {
+        navToggle.addEventListener("click", () => {
+            const isOpen = header.classList.toggle("nav-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                header.classList.remove("nav-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                header.classList.remove("nav-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 820) {
+                header.classList.remove("nav-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    currentYearTargets.forEach((item) => {
+        item.textContent = new Date().getFullYear();
+    });
+
+    const revealItems = document.querySelectorAll("[data-reveal]");
+
+    if ("IntersectionObserver" in window && revealItems.length) {
+        const observer = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        obs.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.16 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+    } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
 });

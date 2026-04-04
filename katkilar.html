@@ -1,409 +1,123 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Katkılar - Yusuf</title>
-<style>
-:root {
-    --bg-main: #0d1117;
-    --bg-sec: #161b22;
-    --accent: #58a6ff;
-    --accent-soft: rgba(88, 166, 255, 0.10);
-    --text-main: #f0f6fc;
-    --text-dim: #c9d1d9;
-    --border: #30363d;
-    --success: #3fb950;
-    --shadow: 0 18px 40px rgba(0,0,0,0.35);
-}
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    background: var(--bg-main);
-    color: var(--text-main);
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-/* NAV */
-header nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    min-height: 72px;
-    background: rgba(22, 27, 34, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-}
-
-header nav ul {
-    display: flex;
-    list-style: none;
-    padding: 0 20px;
-    margin: 0;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-}
-
-header nav ul::-webkit-scrollbar { display: none; }
-
-header nav ul li a {
-    display: block;
-    padding: 20px 15px;
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.94rem;
-    transition: 0.3s ease;
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-    color: var(--accent);
-    box-shadow: inset 0 -3px 0 var(--accent);
-}
-
-/* HERO */
-.hero {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 20px 44px;
-    background:
-        radial-gradient(circle at top center, rgba(88,166,255,0.16), transparent 35%),
-        linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-}
-
-.hero-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border: 1px solid rgba(88,166,255,0.22);
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-radius: 999px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-}
-
-.hero h1 {
-    margin: 0;
-    font-size: clamp(2.4rem, 7vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -1px;
-}
-
-.hero h1 span {
-    color: var(--accent);
-}
-
-.hero p {
-    max-width: 780px;
-    margin: 18px auto 0;
-    color: var(--text-dim);
-    font-size: 1.05rem;
-}
-
-/* SECTION */
-.section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 48px 20px 0;
-}
-
-.section-head {
-    margin-bottom: 24px;
-}
-
-.section-head h2 {
-    margin: 0 0 10px;
-    color: var(--accent);
-    font-size: 1.8rem;
-    letter-spacing: -0.4px;
-}
-
-.section-head p {
-    margin: 0;
-    color: var(--text-dim);
-    max-width: 760px;
-}
-
-/* GRID */
-.main-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px;
-}
-
-.card {
-    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 30px 24px;
-    text-align: center;
-    transition: 0.3s ease;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(88,166,255,0.12), transparent 45%);
-    pointer-events: none;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(88,166,255,0.38);
-}
-
-.card .icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-    background: var(--accent-soft);
-    border: 1px solid rgba(88,166,255,0.18);
-    font-size: 1.3rem;
-}
-
-.card h2 {
-    margin: 0;
-    font-size: 3rem;
-    color: var(--accent);
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-.card h3 {
-    margin: 12px 0 10px;
-    color: var(--text-main);
-    font-size: 1.08rem;
-    font-weight: 700;
-}
-
-.card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.95rem;
-}
-
-/* TOTAL */
-.total-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 34px 20px 0;
-    text-align: center;
-}
-
-.total-box {
-    display: inline-block;
-    min-width: 280px;
-    padding: 22px 34px;
-    background: linear-gradient(180deg, rgba(88,166,255,0.10), rgba(88,166,255,0.04));
-    border: 1px dashed rgba(88,166,255,0.50);
-    border-radius: 999px;
-    box-shadow: var(--shadow);
-}
-
-.total-label {
-    display: block;
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-}
-
-.total {
-    font-size: 2.4rem;
-    color: var(--accent);
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-/* NOTE */
-.note-box {
-    max-width: 920px;
-    margin: 36px auto 0;
-    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 22px;
-    text-align: center;
-    box-shadow: var(--shadow);
-}
-
-.note-box h3 {
-    margin: 0 0 10px;
-    color: var(--accent);
-    font-size: 1.08rem;
-}
-
-.note-box p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.94rem;
-}
-
-/* FOOTER */
-footer {
-    background: var(--bg-sec);
-    text-align: center;
-    padding: 42px 20px;
-    border-top: 1px solid var(--border);
-    margin-top: 56px;
-}
-
-footer p {
-    margin: 10px 0;
-    color: var(--text-dim);
-    font-size: 0.92rem;
-}
-
-footer a {
-    color: var(--accent);
-    margin: 0 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-footer a:hover {
-    color: var(--text-main);
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .hero {
-        padding: 60px 16px 34px;
-    }
-
-    .section,
-    .total-wrapper {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .card {
-        padding: 24px 20px;
-    }
-
-    .total-box {
-        width: 100%;
-        min-width: 0;
-        border-radius: 22px;
-    }
-}
-</style>
-<link rel="stylesheet" href="site-theme.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katkılar | Yusuf</title>
+    <meta name="description" content="Teknik üretim, içerik, geri bildirim ve topluluk odaklı katkı alanlarını özetleyen sayfa.">
+    <meta name="theme-color" content="#0d1117">
+    <link rel="stylesheet" href="site-theme.css">
+    <script src="ortak-api.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#icerik">İçeriğe geç</a>
 
-<header>
-<nav></nav>
-</header>
-
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">Katkı Alanları</div>
-        <h1>Teknik üretim ve <span>katkı</span> başlıkları</h1>
-        <p>
-            Bu sayfa; yazılım, teknik destek, güvenlik odaklı çalışmalar ve topluluk katkıları gibi başlıklarda yürüttüğüm genel katkı alanlarını özetlemek amacıyla hazırlanmıştır.
-        </p>
-    </div>
-</section>
-
-<section class="section">
-    <div class="section-head">
-        <h2>Katkı dağılımı</h2>
-        <p>Farklı başlıklarda yapılan üretim, destek ve gönüllü katkıların genel dağılımı.</p>
-    </div>
-
-    <div class="main-container">
-        <div class="card">
-            <div class="icon">💻</div>
-            <h2>120</h2>
-            <h3>Teknik üretim</h3>
-            <p>Yazılım geliştirme, demo arayüzler, otomasyon, teknik araçlar ve güvenlik odaklı dijital üretim süreçleri.</p>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Yusuf<span>.</span></a>
+            <button class="nav-toggle" type="button" aria-label="Menüyü aç veya kapat" aria-expanded="false">
+                <span></span>
+            </button>
+            <nav class="site-nav" aria-label="Ana menü">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Anasayfa</a></li>
+                    <li><a class="nav-link" href="hakkimda.html">Hakkımda</a></li>
+                    <li><a class="nav-link" href="faaliyetler.html">Faaliyetler</a></li>
+                    <li><a class="nav-link" href="urunler.html">Ürünler</a></li>
+                    <li><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+                    <li><a class="nav-link" href="egitimler.html">Eğitimler</a></li>
+                    <li><a class="nav-link" href="katkilar.html">Katkılar</a></li>
+                    <li><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="card">
-            <div class="icon">🛡️</div>
-            <h2>301</h2>
-            <h3>Profesyonel katkılar</h3>
-            <p>Danışmanlık, teknik değerlendirme, güvenlik bakışı, sistem analizi ve proje bazlı profesyonel destek alanları.</p>
+    <main id="icerik">
+        <section class="hero">
+            <div class="container hero-inner">
+                <span class="eyebrow">Katkı alanları</span>
+                <h1 class="hero-title">Sadece iş üretmek değil, <span>katkı bırakmak</span> da önemli</h1>
+                <p class="hero-text">
+                    Burada büyük rakamlar ya da belirsiz sayaçlar yerine, gerçekten hangi tür katkıları önemsediğimi açıkça göstermeyi tercih ettim.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-4">
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">💻</span>
+                            <span class="card-tag">Üretim</span>
+                        </div>
+                        <h3>Teknik üretim</h3>
+                        <p class="card-text">Kod, arayüz, küçük sistemler ve düzenli çalışan teknik yapılar üretmek.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">📝</span>
+                            <span class="card-tag">İçerik</span>
+                        </div>
+                        <h3>Not ve anlatım</h3>
+                        <p class="card-text">Teknik konuları ağırlaştırmadan, daha anlaşılır hale getiren anlatım ve özetler hazırlamak.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🧭</span>
+                            <span class="card-tag">Yönlendirme</span>
+                        </div>
+                        <h3>Doğru başlangıç noktası</h3>
+                        <p class="card-text">Karışık görünen işlerde önce neyin çözülmesi gerektiğini ayıklamaya yardımcı olmak.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🤝</span>
+                            <span class="card-tag">Geri bildirim</span>
+                        </div>
+                        <h3>Yapıcı değerlendirme</h3>
+                        <p class="card-text">Eksik, gereksiz ya da riskli tarafları açık ama kırmadan söyleyebilmek.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split">
+                <article class="panel" data-reveal>
+                    <h3>Katkı benim için ne demek?</h3>
+                    <ul class="check-list">
+                        <li>Sadece çalışan bir şey bırakmak değil, anlaşılır bir yapı bırakmak.</li>
+                        <li>Bir işi teslim edip çıkmak değil, gerektiğinde mantığını da aktarabilmek.</li>
+                        <li>Karmaşayı artırmak değil, azaltmak.</li>
+                        <li>Şık görünen ama içi boş işler yerine, sessiz ama sağlam işler üretmek.</li>
+                    </ul>
+                </article>
+
+                <article class="notice" data-reveal>
+                    <h3>Bilerek değiştirdiğim şey</h3>
+                    <p>
+                        Bu sayfadan şüpheli görünen büyük sayaçları kaldırdım.
+                        Ölçüsü belirsiz rakamlar yerine, katkının niteliğini anlatan daha dürüst bir yapı daha iyi duruyor.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span data-current-year></span> Yusuf. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="https://instagram.com/avyusuf95" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://t.me/Yusufavsarofficial" target="_blank" rel="noopener noreferrer">Telegram</a>
+                <a href="mailto:yusufavsarsgu@gmail.com">E-posta</a>
+            </div>
         </div>
-
-        <div class="card">
-            <div class="icon">🤝</div>
-            <h2>4012</h2>
-            <h3>Topluluk ve gönüllü destek</h3>
-            <p>Bilgi paylaşımı, topluluk katkıları, teknik yönlendirmeler, eğitim odaklı destekler ve gönüllü üretim alanları.</p>
-        </div>
-    </div>
-</section>
-
-<div class="total-wrapper">
-    <div class="total-box">
-        <span class="total-label">Genel toplam katkı</span>
-        <span class="total" id="counter">0</span>
-    </div>
-</div>
-
-<section class="section">
-    <div class="note-box">
-        <h3>Not</h3>
-        <p>
-            Bu veriler; farklı dönemlerde yürütülen teknik üretim, bireysel katkı, profesyonel destek ve topluluk bazlı çalışmaların genel bir özetini temsil etmektedir.
-            İçerikler sabit bir ölçüm sistemi yerine genel faaliyet yoğunluğunu yansıtacak biçimde sunulmaktadır.
-        </p>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
-    <p>
-        <a href="https://instagram.com/avyusuf95" target="_blank">📸 Instagram</a> |
-        <a href="https://t.me/Yusufavsarofficial" target="_blank">✈️ Telegram</a> |
-        <a href="mailto:yusufavsarsgu@gmail.com">✉️ Email</a>
-    </p>
-</footer>
-
-<script>
-let count = 0;
-const end = 4433;
-const counter = document.getElementById('counter');
-
-function updateCounter() {
-    let increment = Math.ceil((end - count) / 15);
-    count += increment;
-
-    if (count >= end) {
-        counter.textContent = end;
-    } else {
-        counter.textContent = count;
-        requestAnimationFrame(updateCounter);
-    }
-}
-
-updateCounter();
-</script>
-<script src="ortak-api.js"></script>
+    </footer>
 </body>
 </html>

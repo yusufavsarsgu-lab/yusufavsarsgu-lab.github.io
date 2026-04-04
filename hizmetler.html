@@ -1,677 +1,161 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hizmetler - Yusuf</title>
-<style>
-:root {
-    --bg-main: #0d1117;
-    --bg-sec: #161b22;
-    --accent: #58a6ff;
-    --accent-soft: rgba(88, 166, 255, 0.10);
-    --text-main: #f0f6fc;
-    --text-dim: #c9d1d9;
-    --border: #30363d;
-    --success: #3fb950;
-    --danger: #ff6b6b;
-    --shadow: 0 18px 40px rgba(0,0,0,0.35);
-}
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    background: var(--bg-main);
-    color: var(--text-main);
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-header nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    min-height: 72px;
-    background: rgba(22, 27, 34, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-}
-
-header nav ul {
-    display: flex;
-    list-style: none;
-    padding: 0 20px;
-    margin: 0;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-}
-
-header nav ul::-webkit-scrollbar { display: none; }
-
-header nav ul li a {
-    display: block;
-    padding: 20px 15px;
-    color: var(--text-main);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.94rem;
-    transition: 0.3s ease;
-}
-
-header nav ul li a:hover,
-header nav ul li a.active {
-    color: var(--accent);
-    box-shadow: inset 0 -3px 0 var(--accent);
-}
-
-.hero {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 20px 50px;
-    background:
-        radial-gradient(circle at top center, rgba(88,166,255,0.16), transparent 35%),
-        linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-}
-
-.hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border: 1px solid rgba(88,166,255,0.22);
-    background: var(--accent-soft);
-    color: var(--accent);
-    border-radius: 999px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-}
-
-.hero h1 {
-    margin: 0;
-    font-size: clamp(2.5rem, 7vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -1px;
-}
-
-.hero h1 span {
-    color: var(--accent);
-}
-
-.hero p {
-    max-width: 860px;
-    margin: 18px auto 0;
-    color: var(--text-dim);
-    font-size: 1.08rem;
-}
-
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-}
-
-.hero-actions a {
-    text-decoration: none;
-    padding: 13px 20px;
-    border-radius: 12px;
-    font-weight: 700;
-    transition: 0.3s ease;
-}
-
-.btn-primary {
-    background: var(--accent);
-    color: #0d1117;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
-}
-
-.btn-secondary {
-    color: var(--accent);
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.03);
-}
-
-.btn-secondary:hover {
-    border-color: rgba(88,166,255,0.40);
-    transform: translateY(-2px);
-}
-
-.legal-wrap {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.legal-box {
-    background: linear-gradient(180deg, rgba(255,107,107,0.08), rgba(255,107,107,0.03));
-    border: 1px solid rgba(255,107,107,0.20);
-    border-radius: 18px;
-    padding: 22px;
-    box-shadow: var(--shadow);
-}
-
-.legal-box h2 {
-    margin: 0 0 10px;
-    color: #ff8b8b;
-    font-size: 1.25rem;
-}
-
-.legal-box p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.96rem;
-    line-height: 1.8;
-}
-
-.section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px 0;
-}
-
-.section-head {
-    margin-bottom: 24px;
-}
-
-.section-head h2 {
-    margin: 0 0 10px;
-    font-size: 1.9rem;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-}
-
-.section-head p {
-    margin: 0;
-    color: var(--text-dim);
-    max-width: 760px;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 22px;
-}
-
-.service-card {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(18,22,28,1));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    transition: 0.3s ease;
-}
-
-.service-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(88,166,255,0.12), transparent 45%);
-    pointer-events: none;
-}
-
-.service-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(88,166,255,0.42);
-    box-shadow: var(--shadow);
-}
-
-.card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-.card-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent-soft);
-    border: 1px solid rgba(88,166,255,0.20);
-    font-size: 1.2rem;
-}
-
-.card-tag {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--success);
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(63,185,80,0.10);
-    border: 1px solid rgba(63,185,80,0.22);
-}
-
-.service-card h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: var(--text-main);
-    letter-spacing: -0.2px;
-}
-
-.service-card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.96rem;
-}
-
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
-}
-
-.features span {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.82rem;
-    color: var(--text-main);
-    padding: 8px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.03);
-}
-
-.card-bottom {
-    margin-top: auto;
-    padding-top: 8px;
-}
-
-.card-bottom a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 700;
-    transition: 0.3s ease;
-}
-
-.card-bottom a:hover {
-    transform: translateX(2px);
-    opacity: 0.9;
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
-
-.process-card {
-    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(17,22,29,1));
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 24px;
-    transition: 0.3s ease;
-}
-
-.process-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(88,166,255,0.35);
-    box-shadow: var(--shadow);
-}
-
-.process-number {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent-soft);
-    border: 1px solid rgba(88,166,255,0.20);
-    color: var(--accent);
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-
-.process-card h3 {
-    margin: 0 0 8px;
-    color: var(--text-main);
-    font-size: 1.05rem;
-}
-
-.process-card p {
-    margin: 0;
-    color: var(--text-dim);
-    font-size: 0.94rem;
-}
-
-.cta-box {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-}
-
-.cta-inner {
-    background: linear-gradient(180deg, rgba(22,27,34,1), rgba(16,20,25,1));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 34px 28px;
-    text-align: center;
-    box-shadow: var(--shadow);
-}
-
-.cta-inner h2 {
-    margin: 0 0 10px;
-    color: var(--accent);
-    font-size: 1.8rem;
-}
-
-.cta-inner p {
-    margin: 0 auto 22px;
-    color: var(--text-dim);
-    max-width: 760px;
-}
-
-footer {
-    background: var(--bg-sec);
-    text-align: center;
-    padding: 42px 20px;
-    border-top: 1px solid var(--border);
-}
-
-footer p {
-    margin: 10px 0;
-    color: var(--text-dim);
-    font-size: 0.92rem;
-}
-
-footer a {
-    color: var(--accent);
-    margin: 0 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-footer a:hover {
-    color: var(--text-main);
-}
-
-@media (max-width: 768px) {
-    .hero {
-        padding: 60px 16px 36px;
-    }
-
-    .section,
-    .cta-box {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-
-    .legal-wrap {
-        padding: 0 16px;
-    }
-
-    .service-card,
-    .process-card {
-        padding: 22px;
-    }
-
-    .cta-inner {
-        padding: 26px 18px;
-    }
-}
-</style>
-<link rel="stylesheet" href="site-theme.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetler | Yusuf</title>
+    <meta name="description" content="İzinli kapsamda sunulan güvenlik odaklı inceleme, değerlendirme ve teknik danışmanlık hizmetleri.">
+    <meta name="theme-color" content="#0d1117">
+    <link rel="stylesheet" href="site-theme.css">
+    <script src="ortak-api.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#icerik">İçeriğe geç</a>
 
-<header>
-<nav></nav>
-</header>
-
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">Siber Güvenlik Hizmetleri</div>
-        <h1>Profesyonel <span>siber güvenlik</span> hizmetleri</h1>
-        <p>
-            Bu sayfa; web uygulama güvenliği, pentest simülasyonları, mobil ve API güvenlik incelemeleri,
-            zafiyet doğrulama, teknik araştırma, güvenlik danışmanlığı ve kontrollü demo/lab çalışmaları gibi
-            siber güvenlik odaklı hizmet başlıklarını içermektedir.
-        </p>
-        <div class="hero-actions">
-            <a href="iletisim.html" class="btn-primary">İletişime Geç</a>
-            <a href="#hizmetler" class="btn-secondary">Hizmetleri İncele</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Yusuf<span>.</span></a>
+            <button class="nav-toggle" type="button" aria-label="Menüyü aç veya kapat" aria-expanded="false">
+                <span></span>
+            </button>
+            <nav class="site-nav" aria-label="Ana menü">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="index.html">Anasayfa</a></li>
+                    <li><a class="nav-link" href="hakkimda.html">Hakkımda</a></li>
+                    <li><a class="nav-link" href="faaliyetler.html">Faaliyetler</a></li>
+                    <li><a class="nav-link" href="urunler.html">Ürünler</a></li>
+                    <li><a class="nav-link" href="hizmetler.html">Hizmetler</a></li>
+                    <li><a class="nav-link" href="egitimler.html">Eğitimler</a></li>
+                    <li><a class="nav-link" href="katkilar.html">Katkılar</a></li>
+                    <li><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
 
-<div class="legal-wrap">
-    <div class="legal-box">
-        <h2>Yasal ve etik çerçeve</h2>
-        <p>
-            Bu sayfadaki tüm hizmet başlıkları yalnızca yasal, izinli ve profesyonel kapsamda değerlendirilir.
-            Yetkisiz erişim, veri ihlali, sistem istismarı, üçüncü taraf altyapılara izinsiz müdahale, zararlı amaçlı kullanım
-            veya hukuka aykırı talep içeren çalışmalar kabul edilmez. Tüm değerlendirme, analiz ve simülasyon süreçleri etik yaklaşım,
-            kontrollü kapsam ve profesyonel sorumluluk anlayışıyla yürütülür.
-        </p>
-    </div>
-</div>
-
-<section class="section" id="hizmetler">
-    <div class="section-head">
-        <h2>Hizmet başlıkları</h2>
-        <p>Siber güvenlik odağında konumlanan analiz, test, araştırma ve danışmanlık alanları.</p>
-    </div>
-
-    <div class="services-grid">
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🛡️</div>
-                <div class="card-tag">Web Security</div>
+    <main id="icerik">
+        <section class="hero">
+            <div class="container hero-inner">
+                <span class="eyebrow">Güvenlik odaklı hizmetler</span>
+                <h1 class="hero-title">İzinli kapsamda yürütülen <span>teknik inceleme</span> ve değerlendirme işleri</h1>
+                <p class="hero-text">
+                    Buradaki başlıklar, saldırı amacı taşımayan; izinli kapsamda yürütülen değerlendirme, doğrulama, raporlama ve danışmanlık işlerini kapsar.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="iletisim.html">İletişime Geç</a>
+                    <a class="btn btn-secondary" href="#liste">Hizmetleri Gör</a>
+                </div>
             </div>
-            <h3>Web Uygulama Güvenlik Analizi</h3>
-            <p>Web tabanlı sistemlerde güvenlik yüzeyi, giriş noktaları, zafiyet alanları ve uygulama akışına yönelik teknik değerlendirme çalışmaları.</p>
-            <div class="features">
-                <span>Yüzey Analizi</span>
-                <span>Risk Değerlendirme</span>
-                <span>Teknik Rapor</span>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="legal-box" data-reveal>
+                    <h2>Yasal ve etik çerçeve</h2>
+                    <p>
+                        Yetkisiz erişim, üçüncü taraf sistemlere izinsiz müdahale, veri ihlali, sömürü amaçlı test ya da hukuka aykırı talep içeren işler kabul edilmez.
+                        Çalışmalar yalnızca açık izin, net kapsam ve profesyonel sorumluluk çerçevesinde değerlendirilir.
+                    </p>
+                </div>
             </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
+        </section>
+
+        <section class="section" id="liste">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Hizmet başlıkları</h2>
+                    <p>Kapsama göre tek tek ya da birlikte yürütülebilecek örnek başlıklar.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🌐</span>
+                            <span class="card-tag">Web</span>
+                        </div>
+                        <h3>Web uygulama güvenlik incelemesi</h3>
+                        <p class="card-text">Temel güvenlik başlıkları, erişim mantığı, giriş alanları ve yüzey davranışı üzerinden değerlendirme.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🔌</span>
+                            <span class="card-tag">API</span>
+                        </div>
+                        <h3>API yapı değerlendirmesi</h3>
+                        <p class="card-text">Kimlik doğrulama, yetkilendirme, veri akışı ve beklenmeyen cevap davranışları üzerinde inceleme.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">📱</span>
+                            <span class="card-tag">Mobil</span>
+                        </div>
+                        <h3>Mobil uygulama mantık incelemesi</h3>
+                        <p class="card-text">Uygulamanın istemci davranışı, servis ilişkileri ve temel güvenlik bakışıyla gözden geçirilmesi.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🧪</span>
+                            <span class="card-tag">Doğrulama</span>
+                        </div>
+                        <h3>Bulgu teyidi ve ikinci görüş</h3>
+                        <p class="card-text">Daha önce tespit edilmiş bir bulgunun gerçekten risk oluşturup oluşturmadığını teknik olarak doğrulama.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">📄</span>
+                            <span class="card-tag">Rapor</span>
+                        </div>
+                        <h3>Raporlama ve iyileştirme notları</h3>
+                        <p class="card-text">Bulgu varsa etkisi, önceliği ve olası iyileştirme yönü sade bir dille raporlanır.</p>
+                    </article>
+
+                    <article class="card" data-reveal>
+                        <div class="card-top">
+                            <span class="card-icon">🧭</span>
+                            <span class="card-tag">Danışmanlık</span>
+                        </div>
+                        <h3>Kapsam öncesi teknik yönlendirme</h3>
+                        <p class="card-text">Teste başlamadan önce neyin, nasıl ve hangi sınırda ele alınmasının daha doğru olacağına dair yönlendirme.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split">
+                <article class="panel" data-reveal>
+                    <h3>Çalışma akışı</h3>
+                    <ul class="check-list">
+                        <li>Kapsam ve izin bilgisi netleştirilir.</li>
+                        <li>Uygun yöntem ve teslim formatı belirlenir.</li>
+                        <li>İnceleme sonrası notlar ve gerekiyorsa rapor paylaşılır.</li>
+                    </ul>
+                </article>
+
+                <article class="panel" data-reveal>
+                    <h3>Beklentiyi baştan netleştirmek önemli</h3>
+                    <p>
+                        Güvenlik işleri en çok belirsizlik yüzünden uzar.
+                        Hedef, kapsam, zaman ve beklenen çıktı baştan açık olduğunda süreç hem daha hızlı hem daha sağlıklı ilerler.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span data-current-year></span> Yusuf. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="https://instagram.com/avyusuf95" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://t.me/Yusufavsarofficial" target="_blank" rel="noopener noreferrer">Telegram</a>
+                <a href="mailto:yusufavsarsgu@gmail.com">E-posta</a>
+            </div>
         </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🎯</div>
-                <div class="card-tag">Pentest</div>
-            </div>
-            <h3>Pentest Simülasyon ve Demo Ortamları</h3>
-            <p>Yetkili test senaryoları, eğitim amaçlı lab kurguları ve kontrollü gösterim ortamları üzerinden pentest süreçlerinin simülasyonu.</p>
-            <div class="features">
-                <span>Lab Kurgu</span>
-                <span>Kontrollü Test</span>
-                <span>Demo Senaryo</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">📱</div>
-                <div class="card-tag">Mobile</div>
-            </div>
-            <h3>Mobil Uygulama Güvenlik İncelemesi</h3>
-            <p>Mobil uygulama akışı, istemci tarafı davranışları, veri görünürlüğü ve temel risk yüzeyine odaklanan teknik inceleme süreçleri.</p>
-            <div class="features">
-                <span>Uygulama Akışı</span>
-                <span>Risk Yüzeyi</span>
-                <span>Teknik Notlar</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🌐</div>
-                <div class="card-tag">API Security</div>
-            </div>
-            <h3>API Güvenlik İncelemeleri</h3>
-            <p>API yapılarında endpoint mantığı, erişim kontrolü, kimlik doğrulama akışı ve entegrasyon güvenliğine yönelik teknik değerlendirme.</p>
-            <div class="features">
-                <span>Endpoint İnceleme</span>
-                <span>Access Control</span>
-                <span>Akış Analizi</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🔍</div>
-                <div class="card-tag">Validation</div>
-            </div>
-            <h3>Zafiyet Doğrulama ve Teknik İnceleme</h3>
-            <p>Belirli bir bulgunun gerçekten güvenlik riski oluşturup oluşturmadığını değerlendirmeye yönelik doğrulama ve teknik inceleme süreçleri.</p>
-            <div class="features">
-                <span>Bulgu Doğrulama</span>
-                <span>Teknik Kontrol</span>
-                <span>Risk Seviyesi</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🧪</div>
-                <div class="card-tag">Research</div>
-            </div>
-            <h3>Güvenlik Araştırması ve Teknik Raporlama</h3>
-            <p>Belirli sistemler, akışlar veya senaryolar üzerinde gerçekleştirilen teknik incelemelerin anlamlı, profesyonel ve okunabilir şekilde raporlanması.</p>
-            <div class="features">
-                <span>İnceleme</span>
-                <span>Dokümantasyon</span>
-                <span>Sunum</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🧠</div>
-                <div class="card-tag">Consulting</div>
-            </div>
-            <h3>Siber Güvenlik Danışmanlığı</h3>
-            <p>Proje veya yapı özelinde güvenlik yaklaşımı, önceliklendirme, temel riskler, savunma mantığı ve süreç planlaması hakkında profesyonel yönlendirme.</p>
-            <div class="features">
-                <span>Yol Haritası</span>
-                <span>Güvenlik Yaklaşımı</span>
-                <span>Planlama</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🛰️</div>
-                <div class="card-tag">Surface</div>
-            </div>
-            <h3>Sistem ve Saldırı Yüzeyi Değerlendirmesi</h3>
-            <p>Bir yapının dışarıdan görünen bileşenleri, potansiyel giriş alanları ve genel görünür güvenlik yüzeyine odaklanan teknik değerlendirme.</p>
-            <div class="features">
-                <span>Yüzey Haritalama</span>
-                <span>Varlık Görünürlüğü</span>
-                <span>Ön Değerlendirme</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-        <div class="service-card">
-            <div class="card-top">
-                <div class="card-icon">🔐</div>
-                <div class="card-tag">Hardening</div>
-            </div>
-            <h3>Temel Güvenlik Sertleştirme Yönlendirmesi</h3>
-            <p>Panel, uygulama veya servis yapılarında temel güvenlik sertleştirme yaklaşımına yönelik yönlendirme, kontrol ve iyileştirme başlıkları.</p>
-            <div class="features">
-                <span>Temel Hardening</span>
-                <span>Kontrol Başlıkları</span>
-                <span>İyileştirme Notları</span>
-            </div>
-            <div class="card-bottom"><a href="iletisim.html">Detaylı iletişim →</a></div>
-        </div>
-
-    </div>
-</section>
-
-<section class="section">
-    <div class="section-head">
-        <h2>Süreç nasıl ilerler?</h2>
-        <p>İlk talepten teknik değerlendirmeye kadar daha net ve kontrollü bir çalışma akışı.</p>
-    </div>
-
-    <div class="process-grid">
-        <div class="process-card">
-            <div class="process-number">1</div>
-            <h3>Talep değerlendirmesi</h3>
-            <p>İlk aşamada ihtiyaç, amaç ve çalışmanın yasal/etik uygunluğu değerlendirilir.</p>
-        </div>
-        <div class="process-card">
-            <div class="process-number">2</div>
-            <h3>Kapsam belirleme</h3>
-            <p>Hangi yapı, hangi sınır ve hangi çıktı beklentisiyle ilerlenmesi gerektiği netleştirilir.</p>
-        </div>
-        <div class="process-card">
-            <div class="process-number">3</div>
-            <h3>Analiz / simülasyon</h3>
-            <p>Uygun bulunan kapsam dahilinde değerlendirme, inceleme veya demo/simülasyon süreci yürütülür.</p>
-        </div>
-        <div class="process-card">
-            <div class="process-number">4</div>
-            <h3>Çıktı ve yönlendirme</h3>
-            <p>Elde edilen bulgular, teknik notlar ve gerekirse iyileştirme önerileri düzenli şekilde sunulur.</p>
-        </div>
-    </div>
-</section>
-
-<section class="cta-box">
-    <div class="cta-inner">
-        <h2>Siber güvenlik odağında profesyonel yaklaşım</h2>
-        <p>
-            Buradaki hizmet başlıkları sabit paket mantığında değil; ihtiyaç, kapsam ve uygunluk durumuna göre değerlendirilir.
-            Güvenlik odaklı bir çalışma için kısa bir özetle iletişime geçebilirsin.
-        </p>
-        <div class="hero-actions">
-            <a href="iletisim.html" class="btn-primary">İletişime Geç</a>
-            <a href="hakkimda.html" class="btn-secondary">Hakkımda</a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2026 Yusuf. Tüm hakları saklıdır.</p>
-    <p>
-        <a href="https://instagram.com/avyusuf95" target="_blank">📸 Instagram</a> |
-        <a href="https://t.me/Yusufavsarofficial" target="_blank">✈️ Telegram</a> |
-        <a href="mailto:yusufavsarsgu@gmail.com">✉️ Email</a>
-    </p>
-</footer>
-
-<script src="ortak-api.js"></script>
+    </footer>
 </body>
 </html>
