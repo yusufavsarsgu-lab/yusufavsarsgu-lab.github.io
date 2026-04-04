@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yusufavsarofficial.gt.tc/sitemap.xml

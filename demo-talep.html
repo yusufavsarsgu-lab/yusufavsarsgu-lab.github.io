@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İletişim | Kurumsal İş Birliği, Teknik Görüşme ve Ön Değerlendirme Kanalları</title>
-    <meta name="description" content="Kurumsal güvenlik talepleri için e-posta, Telegram ve iletişim formu.">
+    <title>Demo Talebi | Kurumsal Ön Değerlendirme, Kapsam Eşleştirme ve İlk Temas Formu</title>
+    <meta name="description" content="Kurumsal ön görüşme ve demo talep formu.">
     <meta name="theme-color" content="#0b1220">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="İletişim | Kurumsal İş Birliği, Teknik Görüşme ve Ön Değerlendirme Kanalları">
-    <meta property="og:description" content="Kurumsal güvenlik talepleri için e-posta, Telegram ve iletişim formu.">
+    <meta property="og:title" content="Demo Talebi | Kurumsal Ön Değerlendirme, Kapsam Eşleştirme ve İlk Temas Formu">
+    <meta property="og:description" content="Kurumsal ön görüşme ve demo talep formu.">
     <meta property="og:site_name" content="Yusuf Avşar Official">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="site-theme.css">
@@ -29,40 +29,43 @@
         </div>
     </header>
     <main id="icerik">
-<section class="page-hero"><div class="container"><span class="eyebrow">İletişim</span><h1 class="page-title">Kurumsal iş birliği ve <span>ön değerlendirme</span> için iletişim kanalları</h1><p class="lead">İlk temas için en doğru yöntem e-posta veya demo talep formudur. Kısa kapsam bilgisi, sistem tipi ve beklenen çıktı yazıldığında süreç çok daha hızlı netleşir.</p></div></section>
-<section class="section"><div class="container contact-grid card-grid-2">
-<aside class="panel">
-  <span class="section-kicker">İletişim kanalları</span>
-  <h2 style="margin:14px 0 12px;">Öncelikli kanallar</h2>
-  <div class="mini-grid mini-grid-2" style="margin-top:18px;">
-    <a class="contact-card" href="mailto:yusufavsarsgu@gmail.com"><strong>E-posta</strong><p>yusufavsarsgu@gmail.com</p></a>
-    <a class="contact-card" href="https://t.me/Yusufavsarofficial" target="_blank" rel="noopener noreferrer"><strong>Telegram</strong><p>@Yusufavsarofficial</p></a>
-    <a class="contact-card" href="https://instagram.com/avyusuf95" target="_blank" rel="noopener noreferrer"><strong>Instagram</strong><p>@avyusuf95</p></a>
-    <a class="contact-card" href="demo-talep.html"><strong>Demo Talep</strong><p>Kurumsal ihtiyaç formu</p></a>
-  </div>
-  <div class="notice-bar">Bireysel fiyat soruları veya genel amaçlı mesajlar yerine, sistem tipi ve ihtiyaç özeti içeren kurumsal talepler öncelikli değerlendirilir.</div>
-</aside>
-<section class="form-card">
-  <span class="section-kicker">Hızlı mesaj</span>
-  <h2 style="margin:14px 0 12px;">İletişim formu</h2>
-  <p class="muted small" style="margin-bottom:16px;">Web3Forms kullanıyorsanız aşağıdaki access_key alanını kendi anahtarınızla değiştirin.</p>
-  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-api-form>
+<section class="page-hero"><div class="container"><span class="eyebrow">Demo talep</span><h1 class="page-title">Kurumsal <span>ön görüşme</span> ve demo talep başvurusu</h1><p class="lead">Bu form; fiyat sormak için değil, kurumsal ihtiyacın teknik ve operasyonel çerçevesini anlamak için tasarlanmıştır. Kısa ve net bilgi yeterlidir.</p></div></section>
+<section class="section"><div class="container split-layout">
+<section class="form-card demo-form">
+  <span class="section-kicker">Kurumsal form</span>
+  <h2 style="margin:14px 0 12px;">Demo / ön görüşme talebi</h2>
+  <form action="https://api.web3forms.com/submit" method="POST" data-api-form>
     <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY_BURAYA">
-    <input type="hidden" name="subject" value="Yusuf Avşar Official - Yeni İletişim Mesajı">
+    <input type="hidden" name="subject" value="Yusuf Avşar Official - Demo Talebi">
     <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" style="display:none;">
     <div class="field-row">
-      <div class="field"><label for="name">Ad Soyad</label><input type="text" id="name" name="name" required placeholder="Adınızı yazın"></div>
-      <div class="field"><label for="email">E-posta</label><input type="email" id="email" name="email" required placeholder="ornek@kurum.com"></div>
+      <div class="field"><label for="demo-name">Ad Soyad</label><input type="text" id="demo-name" name="name" required placeholder="Adınızı yazın"></div>
+      <div class="field"><label for="demo-company">Şirket / Kurum</label><input type="text" id="demo-company" name="company" required placeholder="Kurum adını yazın"></div>
     </div>
     <div class="field-row">
-      <div class="field"><label for="company">Kurum / Şirket</label><input type="text" id="company" name="company" placeholder="Şirket adı"></div>
-      <div class="field"><label for="topic">Konu</label><input type="text" id="topic" name="topic" placeholder="Kısa konu başlığı"></div>
+      <div class="field"><label for="demo-email">Kurumsal E-posta</label><input type="email" id="demo-email" name="email" required placeholder="ornek@kurum.com"></div>
+      <div class="field"><label for="system-type">Sistem Tipi</label><select id="system-type" name="system_type"><option>Web Uygulaması</option><option>API</option><option>Web + API</option><option>Mobil Uygulama</option><option>İç Panel / Kurumsal Sistem</option><option>Diğer</option></select></div>
     </div>
-    <div class="field"><label for="message">Mesaj</label><textarea id="message" name="message" required placeholder="Sistem tipi, ihtiyaç ve beklenen çıktıyı kısaca yazın"></textarea></div>
+    <div class="field-row">
+      <div class="field"><label for="request-type">Talep Türü</label><select id="request-type" name="request_type"><option>Güvenlik Testi</option><option>Pentest</option><option>Bulgu Doğrulama</option><option>Danışmanlık</option><option>Eğitim / Workshop</option><option>Diğer</option></select></div>
+      <div class="field"><label for="timeline">Zaman Bilgisi</label><input type="text" id="timeline" name="timeline" placeholder="Örn. Bu ay içinde"></div>
+    </div>
+    <div class="field"><label for="scope">İhtiyaç Özeti</label><textarea id="scope" name="message" required placeholder="Sistem tipi, kısa kapsam, beklenti ve varsa zaman bilgisini paylaşın"></textarea></div>
     <div class="form-status" aria-live="polite"></div>
-    <button class="btn btn-primary" type="submit">Mesajı Gönder</button>
+    <button class="btn btn-primary" type="submit">Talebi Gönder</button>
   </form>
 </section>
+<aside class="panel">
+  <span class="section-kicker">Bu form ne için?</span>
+  <h2 style="margin:14px 0 12px;">Doğru kapsamı hızlı kurmak için</h2>
+  <ul class="check-list">
+    <li>Uygun hizmet modelini hızlı önermek</li>
+    <li>Web, API veya panel gibi sistem tipini erken anlamak</li>
+    <li>Gerekiyorsa demo görüşmesi veya kısa ön toplantı planlamak</li>
+    <li>Kurumsal dönüş için öncelikli talepleri ayırmak</li>
+  </ul>
+  <div class="notice-bar">Not: Bu form üzerinden gelen taleplerin sağlıklı değerlendirilebilmesi için mümkünse kurumsal e-posta adresi kullanın.</div>
+</aside>
 </div></section>
 
     </main>
